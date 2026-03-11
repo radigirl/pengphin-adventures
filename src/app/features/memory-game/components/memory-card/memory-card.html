@@ -1,5 +1,16 @@
-<div class="card">
-  <span>
-    {{ card.flipped || card.matched ? card.icon : '❓' }}
-  </span>
+<div
+  class="card"
+  [class.card--flipped]="card.flipped || card.matched"
+  [class.card--matched]="card.matched"
+  (click)="onCardClick()"
+>
+  <div class="card__inner">
+    <div class="card__face card__face--front">
+      <span class="card__emoji">❓</span>
+    </div>
+
+    <div class="card__face card__face--back">
+      <span class="card__emoji">{{ card.icon }}</span>
+    </div>
+  </div>
 </div>

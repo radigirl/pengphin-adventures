@@ -7,7 +7,9 @@
     <div class="hud-row">
       <app-score-bar
         [level]="currentLevel"
-        [coins]="0">
+        [coins]="coins"
+        [hintDisabled]="!canUseHint()"
+        (hintClicked)="onHintClicked()">
       </app-score-bar>
     </div>
 
@@ -22,10 +24,11 @@
       </aside>
 
       <div class="board-wrap">
-        <div class="board">
+        <div class="board" [class.board--locked]="isBoardLocked()">
           <app-memory-card
-            *ngFor="let card of cards"
-            [card]="card">
+            *ngFor="let card of cards; trackBy: trackByCard"
+            [card]="card"
+            (cardClicked)="onCardClicked(card)">
           </app-memory-card>
         </div>
       </div>

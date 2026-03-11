@@ -82,6 +82,11 @@
   justify-content: center;
 }
 
+.board--locked {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
 @media (min-width: 1024px) {
   .mascot-bar {
     display: none;

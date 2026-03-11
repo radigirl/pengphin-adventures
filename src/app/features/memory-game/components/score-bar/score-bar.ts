@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-score-bar',
@@ -9,14 +9,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './score-bar.scss',
 })
 export class ScoreBar {
-
   @Input() level = 1;
   @Input() coins = 0;
+  @Input() hintDisabled = false;
 
   @Output() hintClicked = new EventEmitter<void>();
 
-  onHintClick() {
+  onHintClick(): void {
+    if (this.hintDisabled) {
+      return;
+    }
+
     this.hintClicked.emit();
   }
-
 }

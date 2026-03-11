@@ -55,3 +55,27 @@
   border-color: #86efac;
   box-shadow: 0 10px 22px rgba(134, 239, 172, 0.28);
 }
+
+.card--hinted .card__face {
+  border-color: #facc15;
+  box-shadow:
+    0 0 0 4px rgba(250, 204, 21, 0.2),
+    0 10px 24px rgba(250, 204, 21, 0.35);
+}
+
+.card--swapped .card__face {
+  border-color: #60a5fa;
+  box-shadow:
+    0 0 0 4px rgba(96, 165, 250, 0.18),
+    0 8px 18px rgba(96, 165, 250, 0.28);
+}
+
+.card__face--bonus {
+  background: linear-gradient(180deg, #fff7cc 0%, #facc15 100%);
+  border-color: #f59e0b;
+}
+
+.card__face--mischief {
+  background: linear-gradient(180deg, #f3e8ff 0%, #c084fc 100%);
+  border-color: #9333ea;
+}

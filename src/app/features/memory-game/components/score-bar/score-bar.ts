@@ -12,6 +12,7 @@ export class ScoreBar {
   @Input() level = 1;
   @Input() coins = 0;
   @Input() hintDisabled = false;
+  @Input() hintCost = 20;
 
   @Output() hintClicked = new EventEmitter<void>();
 

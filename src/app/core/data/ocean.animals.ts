@@ -1,4 +1,4 @@
-import { Animal } from "../models/animal.model"
+import { Animal } from "../models/animal.model";
 
 export const OCEAN_ANIMALS: Animal[] = [
   {
@@ -42,11 +42,11 @@ export const OCEAN_ANIMALS: Animal[] = [
     introductionBg: "Аз съм кит! Обичам да пръскам вода!"
   },
   {
-    id: "seahorse",
-    nameEn: "Seahorse",
-    nameBg: "Морско конче",
-    icon: "🐴",
-    introductionEn: "I'm a seahorse! I love floating in the sea!",
-    introductionBg: "Аз съм морско конче! Обичам да се нося във водата!"
+    id: "jellyfish",
+    nameEn: "Jellyfish",
+    nameBg: "Медуза",
+    icon: "🪼",
+    introductionEn: "I'm a jellyfish! I float gently in the sea!",
+    introductionBg: "Аз съм медуза! Нежно се нося в морето!"
   }
-]
+];

@@ -18,6 +18,8 @@ export class MemoryGameService {
         icon: animal.icon,
         flipped: false,
         matched: false,
+        hinted: false,
+        swapped: false,
       },
       {
         id: `${animal.id}-2`,
@@ -26,6 +28,8 @@ export class MemoryGameService {
         icon: animal.icon,
         flipped: false,
         matched: false,
+        hinted: false,
+        swapped: false,
       },
     ]);
 
@@ -39,9 +43,12 @@ export class MemoryGameService {
     return Array.from({ length: count }, (_, index) => ({
       id: `bonus-${index + 1}`,
       type: 'bonus' as const,
-      icon: '💰',
+      icon: '🧰',
       flipped: false,
       matched: false,
+      hinted: false,
+      swapped: false,
+      rewardCoins: 25,
     }));
   }
 
@@ -52,6 +59,8 @@ export class MemoryGameService {
       icon: '🐙',
       flipped: false,
       matched: false,
+      hinted: false,
+      swapped: false,
     }));
   }
 

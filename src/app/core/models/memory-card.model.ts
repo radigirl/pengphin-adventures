@@ -7,4 +7,7 @@ export interface MemoryCard {
   flipped: boolean;
   matched: boolean;
   animalId?: string;
+  hinted?: boolean;
+  swapped?: boolean;
+  rewardCoins?: number;
 }

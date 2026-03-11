@@ -2,6 +2,8 @@
   class="card"
   [class.card--flipped]="card.flipped || card.matched"
   [class.card--matched]="card.matched"
+  [class.card--hinted]="card.hinted"
+  [class.card--swapped]="card.swapped"
   (click)="onCardClick()"
 >
   <div class="card__inner">
@@ -9,7 +11,11 @@
       <span class="card__emoji">❓</span>
     </div>
 
-    <div class="card__face card__face--back">
+    <div
+      class="card__face card__face--back"
+      [class.card__face--bonus]="card.type === 'bonus'"
+      [class.card__face--mischief]="card.type === 'mischief'"
+    >
       <span class="card__emoji">{{ card.icon }}</span>
     </div>
   </div>

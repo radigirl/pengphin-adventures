@@ -1,83 +1,165 @@
-<div class="game-page">
-    <div class="game-shell">
-        <header class="game-header">
-            <h1>🌊 Ocean</h1>
-            <p class="game-subtitle">Level {{ currentLevel }}</p>
-        </header>
+<div
+  class="game-page"
+  [style.background-image]="'url(' + currentWorld.backgroundImage + ')'"
+>
+  <div class="game-shell">
+    <header class="game-header">
+      <h1 [style.color]="currentWorld.theme.titleColor">
+        {{ currentWorld.title }} World
+      </h1>
+      <p
+        class="game-subtitle"
+        [style.color]="currentWorld.theme.subtitleColor"
+      >
+        {{ currentWorld.messages.subtitleMessage }}
+      </p>
+    </header>
 
-        <div class="hud-row">
-            <app-score-bar [level]="currentLevel" [coins]="coins" [hintCost]="hintCost" [hintDisabled]="!canUseHint()"
-                (hintClicked)="onHintClicked()">
-            </app-score-bar>
-        </div>
-
-        <div class="feedback-banner-slot">
-            <div class="feedback-banner" [class.feedback-banner--visible]="!!feedbackMessage">
-                {{ feedbackMessage }}
-            </div>
-        </div>
-
-        <div class="mascot-bar">
-            <div class="mascot-chip">🐧 Peng</div>
-            <div class="mascot-chip">🐬 Phin</div>
-        </div>
-
-        <section class="play-area">
-            <aside class="mascot-side" aria-hidden="true">
-                <div class="mascot-circle">🐧</div>
-            </aside>
-
-            <div class="board-wrap">
-                <div class="board" [class.board--locked]="isBoardLocked()">
-                    <app-memory-card *ngFor="let card of cards; trackBy: trackByCard" [card]="card"
-                        (cardClicked)="onCardClicked(card)">
-                    </app-memory-card>
-                </div>
-            </div>
-
-            <aside class="mascot-side" aria-hidden="true">
-                <div class="mascot-circle">🐬</div>
-            </aside>
-        </section>
+    <div class="hud-row">
+      <app-score-bar
+        [level]="currentLevel"
+        [coins]="coins"
+        [hintCost]="hintCost"
+        [hintDisabled]="!canUseHint()"
+        [backgroundColor]="currentWorld.theme.scoreBarBg"
+        [textColor]="currentWorld.theme.scoreBarTextColor"
+        [hintButtonBg]="currentWorld.theme.hintButtonBg"
+        [hintButtonTextColor]="currentWorld.theme.hintButtonTextColor"
+        (hintClicked)="onHintClicked()"
+      >
+      </app-score-bar>
     </div>
+
+    <div class="feedback-banner-slot">
+      <div
+        class="feedback-banner"
+        [class.feedback-banner--visible]="!!feedbackMessage"
+      >
+        {{ feedbackMessage }}
+      </div>
+    </div>
+
+    <!-- phone only: mascots on top, no bubbles -->
+    <div class="mascot-top-row">
+      <div class="mascot-top-item">
+        <div class="mascot-figure">
+          <img
+            class="mascot-image mascot-image--mobile"
+            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.peng"
+            alt="Peng"
+          />
+        </div>
+      </div>
+
+      <div class="mascot-top-item">
+        <div class="mascot-figure">
+          <img
+            class="mascot-image mascot-image--mobile"
+            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.phin"
+            alt="Phin"
+          />
+        </div>
+      </div>
+    </div>
+
+    <section class="play-area">
+      <aside class="mascot-side mascot-side--left" aria-hidden="true">
+        <div class="mascot-figure">
+          <div
+            class="mascot-bubble mascot-bubble--side"
+            *ngIf="showPengBubble && !isPhoneView"
+          >
+            {{ currentPengSpeech }}
+          </div>
+
+          <img
+            class="mascot-image mascot-image--desktop"
+            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.peng"
+            alt="Peng"
+          />
+        </div>
+      </aside>
+
+      <div
+        class="board-wrap"
+        [style.background]="currentWorld.theme.boardWrapBg"
+      >
+        <div class="board" [class.board--locked]="isBoardLocked()">
+          <app-memory-card
+            *ngFor="let card of cards; trackBy: trackByCard"
+            [card]="card"
+            (cardClicked)="onCardClicked(card)"
+          >
+          </app-memory-card>
+        </div>
+      </div>
+
+      <aside class="mascot-side mascot-side--right" aria-hidden="true">
+        <div class="mascot-figure">
+          <div
+            class="mascot-bubble mascot-bubble--side"
+            *ngIf="showPhinBubble && !isPhoneView"
+          >
+            {{ currentPhinSpeech }}
+          </div>
+
+          <img
+            class="mascot-image mascot-image--desktop"
+            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.phin"
+            alt="Phin"
+          />
+        </div>
+      </aside>
+    </section>
+  </div>
 </div>
 
 <div class="modal-overlay" *ngIf="showLevelCompleteModal">
-    <div class="modal-card">
-        <h2>⭐ Level Complete!</h2>
-        <p>You finished Level {{ currentLevel }}.</p>
-        <p>Total coins: {{ coins }}</p>
+  <div class="modal-card">
+    <h2>⭐ Level Complete!</h2>
+    <p>You finished Level {{ currentLevel }}.</p>
+    <p>Total coins: {{ coins }}</p>
 
-        <button class="modal-button" (click)="goToNextLevel()">
-            Next Level ▶
-        </button>
-    </div>
+    <button class="modal-button" (click)="goToNextLevel()">
+      Next Level ▶
+    </button>
+  </div>
 </div>
 
 <div class="modal-overlay" *ngIf="showSpecialCardsIntroModal">
-    <div class="modal-card">
-        <h2>✨ New Surprise Cards!</h2>
-        <p>Starting in the next level, special cards can appear.</p>
+  <div class="modal-card">
+    <h2>{{ currentWorld.messages.specialCardsIntroTitle }}</h2>
+    <p>{{ currentWorld.messages.specialCardsIntroText }}</p>
 
-        <div class="special-info">
-            <p>🧰 Treasure Chest: gives you bonus coins.</p>
-            <p>🐙 Octopus: causes mischief on the board.</p>
-        </div>
-
-        <button class="modal-button" (click)="continueToSpecialCardsLevel()">
-            Start Level 3 ▶
-        </button>
+    <div class="special-info">
+      <p>
+        {{ currentWorld.bonusIcon }} {{ currentWorld.bonusName }}: gives you
+        bonus coins.
+      </p>
+      <p>
+        {{ currentWorld.mischiefIcon }} {{ currentWorld.mischiefName }}: causes
+        mischief on the board.
+      </p>
     </div>
+
+    <button class="modal-button" (click)="continueToSpecialCardsLevel()">
+      Start Level 3 ▶
+    </button>
+  </div>
 </div>
 
 <div class="modal-overlay" *ngIf="showWorldCompleteModal">
-    <div class="modal-card">
-        <h2>🌍 Ocean World Complete!</h2>
-        <p>You finished all 5 Ocean levels.</p>
-        <p>Total coins: {{ coins }}</p>
+  <div class="modal-card">
+    <h2>{{ currentWorld.messages.worldCompleteTitle }}</h2>
+    <p>{{ currentWorld.messages.worldCompleteText }}</p>
+    <p>Total coins: {{ coins }}</p>
 
-        <button class="modal-button" (click)="goToNextWorld()">
-            Next World ▶
-        </button>
-    </div>
+    <button class="modal-button" (click)="goToNextWorld()">
+      Next World ▶
+    </button>
+  </div>
 </div>

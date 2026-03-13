@@ -1,4 +1,10 @@
-<div class="score-bar">
+<div
+  class="score-bar"
+  [ngStyle]="{
+    background: backgroundColor,
+    color: textColor
+  }"
+>
   <div class="score-item">⭐ Level {{ level }}</div>
   <div class="score-item">💰 Coins: {{ coins }}</div>
 
@@ -6,7 +12,12 @@
     class="hint-button"
     type="button"
     [disabled]="hintDisabled"
-    (click)="onHintClick()">
+    [ngStyle]="{
+      background: hintButtonBg,
+      color: hintButtonTextColor
+    }"
+    (click)="onHintClick()"
+  >
     💡 Hint (-{{ hintCost }})
   </button>
 </div>

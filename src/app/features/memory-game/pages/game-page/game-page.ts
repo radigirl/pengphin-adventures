@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 
-import { OCEAN_ANIMALS } from '../../../../core/data/ocean.animals';
-import { OCEAN_LEVELS } from '../../../../core/data/ocean.levels';
+import { WORLDS } from '../../../../core/data/worlds';
 import { MemoryCard as MemoryCardModel } from '../../../../core/models/memory-card.model';
 import { MemoryGameService } from '../../../../core/services/memory-game.service';
 
@@ -18,6 +17,7 @@ import { ScoreBar } from '../../components/score-bar/score-bar';
 })
 export class GamePage implements OnInit {
   cards: MemoryCardModel[] = [];
+  currentWorldIndex = 0;
   currentLevel = 1;
   coins = 0;
 
@@ -26,6 +26,12 @@ export class GamePage implements OnInit {
   showWorldCompleteModal = false;
   feedbackMessage = '';
 
+  showPengBubble = false;
+  showPhinBubble = false;
+  currentPengSpeech = '';
+  currentPhinSpeech = '';
+  isPhoneView = false;
+
   readonly matchReward = 10;
   readonly hintCost = 20;
   readonly bonusReward = 25;
@@ -33,22 +39,42 @@ export class GamePage implements OnInit {
   private firstSelectedCardId: string | null = null;
   private secondSelectedCardId: string | null = null;
   private boardLocked = false;
+  private speechSequenceId = 0;
+  private feedbackTimeoutId: number | null = null;
 
   constructor(
     private memoryGameService: MemoryGameService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.updateViewportMode();
     this.setupBoard();
   }
 
+  @HostListener('window:resize')
+  onResize(): void {
+    const wasPhone = this.isPhoneView;
+    this.updateViewportMode();
+
+    if (wasPhone !== this.isPhoneView) {
+      this.clearMascotBubbles();
+      this.runIntroSpeech();
+    }
+  }
+
+  get currentWorld() {
+    return WORLDS[this.currentWorldIndex];
+  }
+
   setupBoard(): void {
-    const levelConfig = OCEAN_LEVELS[this.currentLevel - 1];
+    const levelConfig = this.currentWorld.levels[this.currentLevel - 1];
 
     this.cards = this.memoryGameService.createBoard(
-      OCEAN_ANIMALS,
-      levelConfig
+      this.currentWorld.animals,
+      levelConfig,
+      this.currentWorld.bonusIcon,
+      this.currentWorld.mischiefIcon
     );
 
     this.firstSelectedCardId = null;
@@ -60,7 +86,10 @@ export class GamePage implements OnInit {
     this.showWorldCompleteModal = false;
     this.feedbackMessage = '';
 
+    this.clearMascotBubbles();
     this.cdr.detectChanges();
+
+    void this.runIntroSpeech();
   }
 
   async onCardClicked(card: MemoryCardModel): Promise<void> {
@@ -80,7 +109,6 @@ export class GamePage implements OnInit {
       ? this.findCardById(this.firstSelectedCardId)
       : null;
 
-    // First click in a turn
     if (!firstSelectedCard) {
       this.setCardState(card.id, { flipped: true });
       this.cdr.detectChanges();
@@ -99,23 +127,19 @@ export class GamePage implements OnInit {
       return;
     }
 
-    // Second click in a turn
     this.setCardState(card.id, { flipped: true });
     this.cdr.detectChanges();
 
-    // Animal -> Treasure
     if (card.type === 'bonus') {
       await this.handleBonusAsSecond(card.id);
       return;
     }
 
-    // Animal -> Octopus
     if (card.type === 'mischief') {
       await this.handleMischiefAsSecond(card.id, firstSelectedCard.id);
       return;
     }
 
-    // Animal -> Animal normal behavior
     this.secondSelectedCardId = card.id;
     this.boardLocked = true;
     this.cdr.detectChanges();
@@ -165,9 +189,7 @@ export class GamePage implements OnInit {
     this.coins += card.rewardCoins ?? this.bonusReward;
     this.setCardState(cardId, { matched: true });
 
-    this.showFeedback(
-      `🎉 Treasure found! +${card.rewardCoins ?? this.bonusReward} coins`
-    );
+    this.showFeedback(this.currentWorld.messages.bonusFound);
     this.cdr.detectChanges();
 
     await this.sleep(700);
@@ -180,19 +202,17 @@ export class GamePage implements OnInit {
     const firstCard = this.firstSelectedCardId
       ? this.findCardById(this.firstSelectedCardId)
       : null;
-    const treasureCard = this.findCardById(cardId);
+    const bonusCard = this.findCardById(cardId);
 
-    if (!treasureCard) {
+    if (!bonusCard) {
       return;
     }
 
     this.boardLocked = true;
-    this.coins += treasureCard.rewardCoins ?? this.bonusReward;
+    this.coins += bonusCard.rewardCoins ?? this.bonusReward;
     this.setCardState(cardId, { matched: true });
 
-    this.showFeedback(
-      `🎉 Treasure found! +${treasureCard.rewardCoins ?? this.bonusReward} coins`
-    );
+    this.showFeedback(this.currentWorld.messages.bonusFound);
     this.cdr.detectChanges();
 
     await this.sleep(700);
@@ -217,7 +237,7 @@ export class GamePage implements OnInit {
     );
 
     if (hiddenCandidates.length < 1) {
-      this.showFeedback('🐙 Octopus looked around… but nothing could be swapped!');
+      this.showFeedback(this.currentWorld.messages.mischiefFailed);
       this.boardLocked = false;
       this.cdr.detectChanges();
       return;
@@ -230,7 +250,7 @@ export class GamePage implements OnInit {
     this.setCardState(cardId, { swapped: true });
     this.setCardState(targetCard.id, { swapped: true });
 
-    this.showFeedback('🐙 Octopus mischief! Cards swapped!');
+    this.showFeedback(this.currentWorld.messages.mischiefSwapped);
     this.cdr.detectChanges();
 
     await this.sleep(1200);
@@ -243,33 +263,33 @@ export class GamePage implements OnInit {
   }
 
   private async handleMischiefAsSecond(
-  octopusId: string,
-  firstAnimalId: string
-): Promise<void> {
-  this.boardLocked = true;
-  this.setCardState(octopusId, { matched: true });
-  this.cdr.detectChanges();
+    mischiefCardId: string,
+    firstAnimalCardId: string
+  ): Promise<void> {
+    this.boardLocked = true;
+    this.setCardState(mischiefCardId, { matched: true });
+    this.cdr.detectChanges();
 
-  await this.sleep(700);
+    await this.sleep(700);
 
-  this.swapCards(octopusId, firstAnimalId);
-  this.setCardState(octopusId, { swapped: true });
-  this.setCardState(firstAnimalId, { swapped: true });
+    this.swapCards(mischiefCardId, firstAnimalCardId);
+    this.setCardState(mischiefCardId, { swapped: true });
+    this.setCardState(firstAnimalCardId, { swapped: true });
 
-  this.showFeedback('🐙 Octopus moved your card!');
-  this.cdr.detectChanges();
+    this.showFeedback(this.currentWorld.messages.mischiefMovedCard);
+    this.cdr.detectChanges();
 
-  await this.sleep(1200);
+    await this.sleep(1200);
 
-  this.setCardState(octopusId, { swapped: false });
-  this.setCardState(firstAnimalId, {
-    swapped: false,
-    flipped: false,
-  });
+    this.setCardState(mischiefCardId, { swapped: false });
+    this.setCardState(firstAnimalCardId, {
+      swapped: false,
+      flipped: false,
+    });
 
-  this.resetTurn();
-  this.cdr.detectChanges();
-}
+    this.resetTurn();
+    this.cdr.detectChanges();
+  }
 
   onHintClicked(): void {
     if (!this.canUseHint()) {
@@ -355,7 +375,7 @@ export class GamePage implements OnInit {
   goToNextLevel(): void {
     this.showLevelCompleteModal = false;
 
-    if (this.currentLevel < OCEAN_LEVELS.length) {
+    if (this.currentLevel < this.currentWorld.levels.length) {
       this.currentLevel++;
       this.setupBoard();
     }
@@ -366,7 +386,7 @@ export class GamePage implements OnInit {
   continueToSpecialCardsLevel(): void {
     this.showSpecialCardsIntroModal = false;
 
-    if (this.currentLevel < OCEAN_LEVELS.length) {
+    if (this.currentLevel < this.currentWorld.levels.length) {
       this.currentLevel++;
       this.setupBoard();
     }
@@ -376,8 +396,97 @@ export class GamePage implements OnInit {
 
   goToNextWorld(): void {
     this.showWorldCompleteModal = false;
-    this.showFeedback('🌍 New world coming next!');
+
+    if (this.currentWorldIndex < WORLDS.length - 1) {
+      this.currentWorldIndex++;
+      this.currentLevel = 1;
+      this.setupBoard();
+      this.showFeedback(this.currentWorld.messages.welcome);
+    } else {
+      this.showFeedback('🏆 You finished all available worlds!');
+    }
+
     this.cdr.detectChanges();
+  }
+
+  private updateViewportMode(): void {
+    this.isPhoneView = window.innerWidth <= 700;
+  }
+
+  private clearMascotBubbles(): void {
+    this.showPengBubble = false;
+    this.showPhinBubble = false;
+    this.currentPengSpeech = '';
+    this.currentPhinSpeech = '';
+  }
+
+  private async runIntroSpeech(): Promise<void> {
+    this.speechSequenceId += 1;
+    const sequenceId = this.speechSequenceId;
+
+    this.clearMascotBubbles();
+    this.clearFeedbackMessage();
+
+    const pengText = this.currentWorld.mascotMessages.peng;
+    const phinText = this.currentWorld.mascotMessages.phin;
+
+    if (this.isPhoneView) {
+      this.showFeedback(`🐧 Peng: ${pengText}`, 1800);
+      this.cdr.detectChanges();
+
+      await this.sleep(2100);
+
+      if (sequenceId !== this.speechSequenceId) {
+        return;
+      }
+
+      this.showFeedback(`🐬 Phin: ${phinText}`, 1800);
+      this.cdr.detectChanges();
+      return;
+    }
+
+    this.currentPengSpeech = pengText;
+    this.showPengBubble = true;
+    this.cdr.detectChanges();
+
+    await this.sleep(1800);
+
+    if (sequenceId !== this.speechSequenceId) {
+      return;
+    }
+
+    this.showPengBubble = false;
+    this.currentPengSpeech = '';
+    this.cdr.detectChanges();
+
+    await this.sleep(250);
+
+    if (sequenceId !== this.speechSequenceId) {
+      return;
+    }
+
+    this.currentPhinSpeech = phinText;
+    this.showPhinBubble = true;
+    this.cdr.detectChanges();
+
+    await this.sleep(1800);
+
+    if (sequenceId !== this.speechSequenceId) {
+      return;
+    }
+
+    this.showPhinBubble = false;
+    this.currentPhinSpeech = '';
+    this.cdr.detectChanges();
+  }
+
+  private clearFeedbackMessage(): void {
+    if (this.feedbackTimeoutId !== null) {
+      clearTimeout(this.feedbackTimeoutId);
+      this.feedbackTimeoutId = null;
+    }
+
+    this.feedbackMessage = '';
   }
 
   private resetTurn(): void {
@@ -398,7 +507,7 @@ export class GamePage implements OnInit {
     setTimeout(() => {
       if (this.currentLevel === 2) {
         this.showSpecialCardsIntroModal = true;
-      } else if (this.currentLevel === OCEAN_LEVELS.length) {
+      } else if (this.currentLevel === this.currentWorld.levels.length) {
         this.showWorldCompleteModal = true;
       } else {
         this.showLevelCompleteModal = true;
@@ -408,15 +517,17 @@ export class GamePage implements OnInit {
     }, 300);
   }
 
-  private showFeedback(message: string): void {
+  private showFeedback(message: string, duration = 1800): void {
+    this.clearFeedbackMessage();
     this.feedbackMessage = message;
 
-    setTimeout(() => {
+    this.feedbackTimeoutId = window.setTimeout(() => {
       if (this.feedbackMessage === message) {
         this.feedbackMessage = '';
         this.cdr.detectChanges();
       }
-    }, 1800);
+      this.feedbackTimeoutId = null;
+    }, duration);
   }
 
   private setCardState(

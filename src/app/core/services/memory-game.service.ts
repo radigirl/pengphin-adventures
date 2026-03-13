@@ -7,7 +7,12 @@ import { MemoryCard } from '../models/memory-card.model';
   providedIn: 'root',
 })
 export class MemoryGameService {
-  createBoard(animals: Animal[], levelConfig: LevelConfig): MemoryCard[] {
+  createBoard(
+    animals: Animal[],
+    levelConfig: LevelConfig,
+    bonusIcon: string,
+    mischiefIcon: string
+  ): MemoryCard[] {
     const selectedAnimals = animals.slice(0, levelConfig.animalCount);
 
     const animalCards: MemoryCard[] = selectedAnimals.flatMap((animal) => [
@@ -33,17 +38,17 @@ export class MemoryGameService {
       },
     ]);
 
-    const bonusCards = this.createBonusCards(levelConfig.bonusCards);
-    const mischiefCards = this.createMischiefCards(levelConfig.mischiefCards);
+    const bonusCards = this.createBonusCards(levelConfig.bonusCards, bonusIcon);
+    const mischiefCards = this.createMischiefCards(levelConfig.mischiefCards, mischiefIcon);
 
     return this.shuffle([...animalCards, ...bonusCards, ...mischiefCards]);
   }
 
-  private createBonusCards(count: number): MemoryCard[] {
+  private createBonusCards(count: number, bonusIcon: string): MemoryCard[] {
     return Array.from({ length: count }, (_, index) => ({
       id: `bonus-${index + 1}`,
       type: 'bonus' as const,
-      icon: '🧰',
+      icon: bonusIcon,
       flipped: false,
       matched: false,
       hinted: false,
@@ -52,11 +57,11 @@ export class MemoryGameService {
     }));
   }
 
-  private createMischiefCards(count: number): MemoryCard[] {
+  private createMischiefCards(count: number, mischiefIcon: string): MemoryCard[] {
     return Array.from({ length: count }, (_, index) => ({
       id: `mischief-${index + 1}`,
       type: 'mischief' as const,
-      icon: '🐙',
+      icon: mischiefIcon,
       flipped: false,
       matched: false,
       hinted: false,

@@ -14,6 +14,11 @@ export class ScoreBar {
   @Input() hintDisabled = false;
   @Input() hintCost = 20;
 
+  @Input() backgroundColor = 'rgba(255, 255, 255, 0.1)';
+  @Input() textColor = '#ffffff';
+  @Input() hintButtonBg = '#ffd166';
+  @Input() hintButtonTextColor = '#1f2937';
+
   @Output() hintClicked = new EventEmitter<void>();
 
   onHintClick(): void {

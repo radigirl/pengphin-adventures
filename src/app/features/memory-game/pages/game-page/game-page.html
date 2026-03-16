@@ -1,4 +1,37 @@
-<div class="game-page" [style.background-image]="'url(' + currentWorld.backgroundImage + ')'">
+<!-- START SCREEN -->
+<div class="start-screen-overlay" *ngIf="showStartScreen">
+  <div class="start-screen-card">
+    <h1 class="start-title">PengPhin Adventures</h1>
+
+    <p class="start-subtitle">
+      Join Peng and Phin and explore the animal worlds!
+    </p>
+
+    <div class="start-mascots">
+      <img
+        class="start-mascot"
+        [src]="currentWorld.mascots.peng"
+        alt="Peng"
+      />
+
+      <img
+        class="start-mascot"
+        [src]="currentWorld.mascots.phin"
+        alt="Phin"
+      />
+    </div>
+
+    <button class="start-button" (click)="startAdventure()">
+      Start Adventure ▶
+    </button>
+  </div>
+</div>
+
+<div
+  class="game-page"
+  *ngIf="!showStartScreen"
+  [style.background-image]="'url(' + currentWorld.backgroundImage + ')'"
+>
   <div class="game-shell">
     <header class="game-header">
       <h1 [style.color]="currentWorld.theme.titleColor">
@@ -10,10 +43,17 @@
     </header>
 
     <div class="hud-row">
-      <app-score-bar [level]="currentLevel" [coins]="coins" [hintCost]="hintCost" [hintDisabled]="!canUseHint()"
-        [backgroundColor]="currentWorld.theme.scoreBarBg" [textColor]="currentWorld.theme.scoreBarTextColor"
-        [hintButtonBg]="currentWorld.theme.hintButtonBg" [hintButtonTextColor]="currentWorld.theme.hintButtonTextColor"
-        (hintClicked)="onHintClicked()">
+      <app-score-bar
+        [level]="currentLevel"
+        [coins]="coins"
+        [hintCost]="hintCost"
+        [hintDisabled]="!canUseHint()"
+        [backgroundColor]="currentWorld.theme.scoreBarBg"
+        [textColor]="currentWorld.theme.scoreBarTextColor"
+        [hintButtonBg]="currentWorld.theme.hintButtonBg"
+        [hintButtonTextColor]="currentWorld.theme.hintButtonTextColor"
+        (hintClicked)="onHintClicked()"
+      >
       </app-score-bar>
     </div>
 
@@ -27,15 +67,23 @@
     <div class="mascot-top-row">
       <div class="mascot-top-item">
         <div class="mascot-figure">
-          <img class="mascot-image mascot-image--mobile" [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-            [src]="currentWorld.mascots.peng" alt="Peng" />
+          <img
+            class="mascot-image mascot-image--mobile"
+            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.peng"
+            alt="Peng"
+          />
         </div>
       </div>
 
       <div class="mascot-top-item">
         <div class="mascot-figure">
-          <img class="mascot-image mascot-image--mobile" [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-            [src]="currentWorld.mascots.phin" alt="Phin" />
+          <img
+            class="mascot-image mascot-image--mobile"
+            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.phin"
+            alt="Phin"
+          />
         </div>
       </div>
     </div>
@@ -47,15 +95,22 @@
             {{ currentPengSpeech }}
           </div>
 
-          <img class="mascot-image mascot-image--desktop" [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-            [src]="currentWorld.mascots.peng" alt="Peng" />
+          <img
+            class="mascot-image mascot-image--desktop"
+            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.peng"
+            alt="Peng"
+          />
         </div>
       </aside>
 
       <div class="board-wrap" [style.background]="currentWorld.theme.boardWrapBg">
         <div class="board" [class.board--locked]="isBoardLocked()">
-          <app-memory-card *ngFor="let card of cards; trackBy: trackByCard" [card]="card"
-            (cardClicked)="onCardClicked(card)">
+          <app-memory-card
+            *ngFor="let card of cards; trackBy: trackByCard"
+            [card]="card"
+            (cardClicked)="onCardClicked(card)"
+          >
           </app-memory-card>
         </div>
       </div>
@@ -66,8 +121,12 @@
             {{ currentPhinSpeech }}
           </div>
 
-          <img class="mascot-image mascot-image--desktop" [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-            [src]="currentWorld.mascots.phin" alt="Phin" />
+          <img
+            class="mascot-image mascot-image--desktop"
+            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.phin"
+            alt="Phin"
+          />
         </div>
       </aside>
     </section>

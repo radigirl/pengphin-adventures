@@ -17,7 +17,7 @@ import { ScoreBar } from '../../components/score-bar/score-bar';
 })
 export class GamePage implements OnInit {
   cards: MemoryCardModel[] = [];
-  currentWorldIndex = 0;
+  currentWorldIndex = 2;
   currentLevel = 1;
   coins = 0;
 
@@ -496,26 +496,26 @@ export class GamePage implements OnInit {
   }
 
   private checkWin(): void {
-    const allAnimalCardsMatched = this.cards
-      .filter((card) => card.type === 'animal')
-      .every((card) => card.matched);
+  const allAnimalCardsMatched = this.cards
+    .filter((card) => card.type === 'animal')
+    .every((card) => card.matched);
 
-    if (!allAnimalCardsMatched) {
-      return;
+  if (!allAnimalCardsMatched) {
+    return;
+  }
+
+  setTimeout(() => {
+    if (this.currentWorldIndex === 0 && this.currentLevel === 1) {
+      this.showSpecialCardsIntroModal = true;
+    } else if (this.currentLevel === this.currentWorld.levels.length) {
+      this.showWorldCompleteModal = true;
+    } else {
+      this.showLevelCompleteModal = true;
     }
 
-    setTimeout(() => {
-      if (this.currentLevel === 2) {
-        this.showSpecialCardsIntroModal = true;
-      } else if (this.currentLevel === this.currentWorld.levels.length) {
-        this.showWorldCompleteModal = true;
-      } else {
-        this.showLevelCompleteModal = true;
-      }
-
-      this.cdr.detectChanges();
-    }, 300);
-  }
+    this.cdr.detectChanges();
+  }, 300);
+}
 
   private showFeedback(message: string, duration = 1800): void {
     this.clearFeedbackMessage();

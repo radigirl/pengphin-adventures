@@ -1,0 +1,68 @@
+import { Animal } from '../models/animal.model';
+
+export const ARCTIC_ANIMALS: Animal[] = [
+  {
+    id: 'polar-bear',
+    nameEn: 'Polar Bear',
+    nameBg: 'Полярна мечка',
+    icon: '🐻‍❄️',
+    introductionEn: "I'm a polar bear! I love walking on the ice!",
+    introductionBg: 'Аз съм полярна мечка! Обичам да ходя по леда!',
+  },
+  {
+    id: 'seal',
+    nameEn: 'Seal',
+    nameBg: 'Тюлен',
+    icon: '🦭',
+    introductionEn: "I'm a seal! I love swimming in icy water!",
+    introductionBg: 'Аз съм тюлен! Обичам да плувам в ледената вода!',
+  },
+  {
+    id: 'walrus',
+    nameEn: 'Walrus',
+    nameBg: 'Морж',
+    icon: '🦭',
+    introductionEn: "I'm a walrus! Look at my big tusks!",
+    introductionBg: 'Аз съм морж! Виж големите ми бивни!',
+  },
+  {
+    id: 'arctic-fox',
+    nameEn: 'Arctic Fox',
+    nameBg: 'Арктическа лисица',
+    icon: '🦊',
+    introductionEn: "I'm an arctic fox! My fur keeps me warm!",
+    introductionBg: 'Аз съм арктическа лисица! Козината ми ме топли!',
+  },
+  {
+    id: 'snow-hare',
+    nameEn: 'Snow Hare',
+    nameBg: 'Полярен заек',
+    icon: '🐇',
+    introductionEn: "I'm a snow hare! I hop quickly across the snow!",
+    introductionBg: 'Аз съм полярен заек! Подскачам бързо по снега!',
+  },
+  {
+    id: 'narwhal',
+    nameEn: 'Narwhal',
+    nameBg: 'Нарвал',
+    icon: '🐋',
+    introductionEn: "I'm a narwhal! My tusk looks like a unicorn horn!",
+    introductionBg: 'Аз съм нарвал! Бивникът ми прилича на рог на еднорог!',
+  },
+  {
+    id: 'reindeer',
+    nameEn: 'Reindeer',
+    nameBg: 'Елен',
+    icon: '🦌',
+    introductionEn: "I'm a reindeer! I run across snowy lands!",
+    introductionBg: 'Аз съм елен! Тичам по снежните равнини!',
+  },
+  {
+    id: 'beluga',
+    nameEn: 'Beluga Whale',
+    nameBg: 'Белуга',
+    icon: '🐋',
+    introductionEn: "I'm a beluga whale! I sing in the icy ocean!",
+    introductionBg: 'Аз съм белуга! Пея в студения океан!',
+  },
+];

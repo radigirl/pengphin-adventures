@@ -49,4 +49,20 @@ export const JUNGLE_ANIMALS: Animal[] = [
     introductionEn: "I'm a frog! I love jumping near the jungle river!",
     introductionBg: 'Аз съм жаба! Обичам да скачам край реката!',
   },
+  {
+    id: 'gorilla',
+    nameEn: 'Gorilla',
+    nameBg: 'Горила',
+    icon: '🦍',
+    introductionEn: "I'm a gorilla! I'm strong and live deep in the jungle!",
+    introductionBg: 'Аз съм горила! Силен съм и живея дълбоко в джунглата!',
+  },
+  {
+    id: 'sloth',
+    nameEn: 'Sloth',
+    nameBg: 'Ленивец',
+    icon: '🦥',
+    introductionEn: "I'm a sloth! I move very slowly in the trees!",
+    introductionBg: 'Аз съм ленивец! Движа се много бавно по дърветата!',
+  },
 ];

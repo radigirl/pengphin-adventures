@@ -10,23 +10,17 @@ export const OCEAN_LEVELS: LevelConfig[] = [
   {
     levelNumber: 2,
     animalCount: 6,
-    bonusCards: 0,
+    bonusCards: 2,
     mischiefCards: 0,
   },
   {
     levelNumber: 3,
     animalCount: 6,
-    bonusCards: 2,
-    mischiefCards: 0,
-  },
-  {
-    levelNumber: 4,
-    animalCount: 6,
     bonusCards: 1,
     mischiefCards: 1,
   },
   {
-    levelNumber: 5,
+    levelNumber: 4,
     animalCount: 6,
     bonusCards: 0,
     mischiefCards: 2,

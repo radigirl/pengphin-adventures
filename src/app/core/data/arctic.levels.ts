@@ -1,6 +1,6 @@
 import { LevelConfig } from "../models/level-config.model";
 
-export const JUNGLE_LEVELS: LevelConfig[] = [
+export const ARCTIC_LEVELS: LevelConfig[] = [
   {
     levelNumber: 1,
     animalCount: 8,

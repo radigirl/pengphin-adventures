@@ -42,6 +42,7 @@
   backface-visibility: hidden;
   box-sizing: border-box;
   border: 2px solid #d7def7;
+  overflow: hidden;
 }
 
 .card__face--front {
@@ -56,6 +57,14 @@
 .card__emoji {
   font-size: clamp(2.2rem, 2.6vw, 3rem);
   line-height: 1;
+}
+
+.card__image {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
 }
 
 .card--matched .card__face--back {

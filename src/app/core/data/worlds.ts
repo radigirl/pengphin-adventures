@@ -27,10 +27,10 @@ export const WORLDS: WorldConfig[] = [
     animals: OCEAN_ANIMALS,
     levels: OCEAN_LEVELS,
 
-    bonusIcon: '🧰',
+    bonusIcon: 'assets/ocean/treasure.png',
     bonusName: 'Treasure Chest',
 
-    mischiefIcon: '🐙',
+    mischiefIcon: 'assets/ocean/octopus.png',
     mischiefName: 'Octopus',
 
     theme: {
@@ -77,10 +77,10 @@ export const WORLDS: WorldConfig[] = [
     animals: FARM_ANIMALS,
     levels: FARM_LEVELS,
 
-    bonusIcon: '🧺',
+    bonusIcon: 'assets/farm/treasure.png',
     bonusName: 'Egg Basket',
 
-    mischiefIcon: '🐔',
+    mischiefIcon: 'assets/farm/chicken.png',
     mischiefName: 'Mad Chicken',
 
     theme: {
@@ -127,10 +127,10 @@ export const WORLDS: WorldConfig[] = [
     animals: JUNGLE_ANIMALS,
     levels: JUNGLE_LEVELS,
 
-    bonusIcon: '🍌',
+    bonusIcon: 'assets/jungle/treasure.png',
     bonusName: 'Banana Bunch',
 
-    mischiefIcon: '🐒',
+    mischiefIcon: 'assets/jungle/sneaky-monkey.png',
     mischiefName: 'Sneaky Monkey',
 
     theme: {
@@ -177,10 +177,10 @@ export const WORLDS: WorldConfig[] = [
     animals: ARCTIC_ANIMALS,
     levels: ARCTIC_LEVELS,
 
-    bonusIcon: '💎',
+    bonusIcon: 'assets/arctic/treasure.png',
     bonusName: 'Ice Crystal',
 
-    mischiefIcon: '🦉',
+    mischiefIcon: 'assets/arctic/snowy-owl.png',
     mischiefName: 'Snowy Owl',
 
     theme: {
@@ -227,10 +227,10 @@ export const WORLDS: WorldConfig[] = [
     animals: DINOSAUR_ANIMALS,
     levels: DINOSAUR_LEVELS,
 
-    bonusIcon: '🥚',
+    bonusIcon: 'assets/dinosaurs/treasure.png',
     bonusName: 'Dinosaur Egg',
 
-    mischiefIcon: '🦕',
+    mischiefIcon: 'assets/dinosaurs/sneaky-raptor.png',
     mischiefName: 'Sneaky Raptor',
 
     theme: {
@@ -277,11 +277,11 @@ export const WORLDS: WorldConfig[] = [
     animals: SPACE_ANIMALS,
     levels: SPACE_LEVELS,
 
-    bonusIcon: '⭐',
+    bonusIcon: 'assets/space/treasure.png',
     bonusName: 'Star Crystal',
 
-    mischiefIcon: '👾',
-    mischiefName: 'Space Alien',
+    mischiefIcon: 'assets/space/jelly-alien.png',
+    mischiefName: 'Jelly Alien',
 
     theme: {
       titleColor: '#e0f2fe',
@@ -299,9 +299,9 @@ export const WORLDS: WorldConfig[] = [
       welcome: '🚀 Welcome to Space!',
       subtitleMessage: 'Explore the Galaxy!',
       bonusFound: '⭐ Star crystal found! +25 coins',
-      mischiefSwapped: '👾 Space Alien mischief! Cards swapped!',
-      mischiefFailed: '👾 Space Alien looked around… but nothing could be swapped!',
-      mischiefMovedCard: '👾 Space Alien moved your card!',
+      mischiefSwapped: '👾 JellyAlien mischief! Cards swapped!',
+      mischiefFailed: '👾 Jelly Alien looked around… but nothing could be swapped!',
+      mischiefMovedCard: '👾 Jelly Alien moved your card!',
       specialCardsIntroTitle: '✨ New Surprise Cards!',
       specialCardsIntroText: 'Starting in the next level, special cards can appear.',
       worldCompleteTitle: '🌍 Space World Complete!',

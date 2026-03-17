@@ -1,15 +1,7 @@
-<app-welcome-screen
-  *ngIf="showStartScreen"
-  [pengSrc]="welcomePeng"
-  [phinSrc]="welcomePhin"
-  (startClicked)="startAdventure()"
-></app-welcome-screen>
+<app-welcome-screen *ngIf="showStartScreen" [pengSrc]="welcomePeng" [phinSrc]="welcomePhin"
+  (startClicked)="startAdventure()"></app-welcome-screen>
 
-<div
-  class="game-page"
-  *ngIf="!showStartScreen"
-  [style.background-image]="'url(' + currentWorld.backgroundImage + ')'"
->
+<div class="game-page" *ngIf="!showStartScreen" [style.background-image]="'url(' + currentWorld.backgroundImage + ')'">
   <div class="game-shell">
     <header class="game-header">
       <h1 [style.color]="currentWorld.theme.titleColor">
@@ -21,17 +13,10 @@
     </header>
 
     <div class="hud-row">
-      <app-score-bar
-        [level]="currentLevel"
-        [coins]="coins"
-        [hintCost]="hintCost"
-        [hintDisabled]="!canUseHint()"
-        [backgroundColor]="currentWorld.theme.scoreBarBg"
-        [textColor]="currentWorld.theme.scoreBarTextColor"
-        [hintButtonBg]="currentWorld.theme.hintButtonBg"
-        [hintButtonTextColor]="currentWorld.theme.hintButtonTextColor"
-        (hintClicked)="onHintClicked()"
-      >
+      <app-score-bar [level]="currentLevel" [coins]="coins" [hintCost]="hintCost" [hintDisabled]="!canUseHint()"
+        [backgroundColor]="currentWorld.theme.scoreBarBg" [textColor]="currentWorld.theme.scoreBarTextColor"
+        [hintButtonBg]="currentWorld.theme.hintButtonBg" [hintButtonTextColor]="currentWorld.theme.hintButtonTextColor"
+        (hintClicked)="onHintClicked()">
       </app-score-bar>
     </div>
 
@@ -41,73 +26,61 @@
       </div>
     </div>
 
-    <!-- phone only: mascots on top, no bubbles -->
-    <div class="mascot-top-row">
-      <div class="mascot-top-item">
-        <div class="mascot-figure">
-          <img
-            class="mascot-image mascot-image--mobile"
-            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-            [src]="currentWorld.mascots.peng"
-            alt="Peng"
-          />
-        </div>
+    <section
+  class="play-area"
+  [style.--mascot-side-width.px]="mascotSideWidth"
+  [style.--mascot-size.px]="mascotSize"
+  [style.--play-gap.px]="playAreaGap"
+>
+  <aside class="mascot-side mascot-side--left" aria-hidden="true">
+    <div class="mascot-figure">
+      <div class="mascot-bubble mascot-bubble--side" *ngIf="showPengBubble && !isPhoneView">
+        {{ currentPengSpeech }}
       </div>
 
-      <div class="mascot-top-item">
-        <div class="mascot-figure">
-          <img
-            class="mascot-image mascot-image--mobile"
-            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-            [src]="currentWorld.mascots.phin"
-            alt="Phin"
-          />
-        </div>
-      </div>
+      <img
+        class="mascot-image mascot-image--desktop"
+        [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+        [src]="currentWorld.mascots.peng"
+        alt="Peng"
+      />
     </div>
+  </aside>
 
-    <section class="play-area">
-      <aside class="mascot-side mascot-side--left" aria-hidden="true">
-        <div class="mascot-figure">
-          <div class="mascot-bubble mascot-bubble--side" *ngIf="showPengBubble && !isPhoneView">
-            {{ currentPengSpeech }}
-          </div>
+  <div
+    class="board-wrap"
+    [style.background]="currentWorld.theme.boardWrapBg"
+    [style.--board-columns]="boardColumns"
+    [style.--board-card-size.px]="boardCardSize"
+    [style.--board-gap.px]="boardGap"
+    [style.--board-padding.px]="boardPadding"
+  >
+    <div class="board" [class.board--locked]="isBoardLocked()">
+      <app-memory-card
+        *ngFor="let card of cards; trackBy: trackByCard"
+        [card]="card"
+        (cardClicked)="onCardClicked(card)"
+      >
+      </app-memory-card>
+    </div>
+  </div>
 
-          <img
-            class="mascot-image mascot-image--desktop"
-            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-            [src]="currentWorld.mascots.peng"
-            alt="Peng"
-          />
-        </div>
-      </aside>
-
-      <div class="board-wrap" [style.background]="currentWorld.theme.boardWrapBg">
-        <div class="board" [class.board--locked]="isBoardLocked()">
-          <app-memory-card
-            *ngFor="let card of cards; trackBy: trackByCard"
-            [card]="card"
-            (cardClicked)="onCardClicked(card)"
-          >
-          </app-memory-card>
-        </div>
+  <aside class="mascot-side mascot-side--right" aria-hidden="true">
+    <div class="mascot-figure">
+      <div class="mascot-bubble mascot-bubble--side" *ngIf="showPhinBubble && !isPhoneView">
+        {{ currentPhinSpeech }}
       </div>
 
-      <aside class="mascot-side mascot-side--right" aria-hidden="true">
-        <div class="mascot-figure">
-          <div class="mascot-bubble mascot-bubble--side" *ngIf="showPhinBubble && !isPhoneView">
-            {{ currentPhinSpeech }}
-          </div>
-
-          <img
-            class="mascot-image mascot-image--desktop"
-            [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-            [src]="currentWorld.mascots.phin"
-            alt="Phin"
-          />
-        </div>
-      </aside>
-    </section>
+      <img
+        class="mascot-image mascot-image--desktop"
+        [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+        [src]="currentWorld.mascots.phin"
+        alt="Phin"
+      />
+    </div>
+  </aside>
+</section>
+    
   </div>
 </div>
 

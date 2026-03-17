@@ -17,7 +17,6 @@ import { WelcomeScreen } from '../../components/welcome-screen/welcome-screen';
   styleUrl: './game-page.scss',
 })
 export class GamePage implements OnInit {
-
   welcomePeng = 'assets/mascots/peng-home.png';
   welcomePhin = 'assets/mascots/phin-home.png';
 
@@ -55,7 +54,7 @@ export class GamePage implements OnInit {
   constructor(
     private memoryGameService: MemoryGameService,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.updateViewportMode();
@@ -81,12 +80,134 @@ export class GamePage implements OnInit {
   startAdventure(): void {
     this.showStartScreen = false;
 
-    // helps unlock speech in stricter browsers
     speechSynthesis.cancel();
     speechSynthesis.resume();
 
     this.setupBoard();
     this.cdr.detectChanges();
+  }
+
+  get boardColumns(): number {
+    return this.isPhoneView ? 3 : 4;
+  }
+
+  get boardRows(): number {
+    return Math.ceil(this.cards.length / this.boardColumns);
+  }
+
+  get boardGap(): number {
+    if (this.isPhoneView) {
+      return this.boardRows >= 8 ? 8 : 10;
+    }
+
+    if (window.innerWidth <= 1023) {
+      return this.boardRows >= 6 ? 10 : 12;
+    }
+
+    return this.boardRows >= 6 ? 10 : 16;
+  }
+
+  get boardPadding(): number {
+    if (this.isPhoneView) {
+      return 10;
+    }
+
+    if (window.innerWidth <= 1023) {
+      return this.boardRows >= 6 ? 12 : 14;
+    }
+
+    return this.boardRows >= 6 ? 12 : 18;
+  }
+
+  get playAreaGap(): number {
+    if (this.isPhoneView) {
+      return 0;
+    }
+
+    if (window.innerWidth <= 1023) {
+      return this.boardRows >= 6 ? 12 : 16;
+    }
+
+    return this.boardRows >= 6 ? 18 : 24;
+  }
+
+get mascotSideWidth(): number {
+  if (this.isPhoneView) {
+    return 56;
+  }
+
+  if (window.innerWidth <= 1023) {
+    return this.boardRows >= 6 ? 110 : 130;
+  }
+
+  return this.boardRows >= 6 ? 185 : 230;
+}
+
+get mascotSize(): number {
+  if (this.isPhoneView) {
+    return 102;
+  }
+
+  if (window.innerWidth <= 1023) {
+    return this.boardRows >= 6 ? 110 : 135;
+  }
+
+  return this.boardRows >= 6 ? 235 : 290;
+}
+
+  get boardCardSize(): number {
+    const columns = this.boardColumns;
+    const rows = this.boardRows;
+    const gap = this.boardGap;
+    const padding = this.boardPadding;
+
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    const availableWidth = this.getAvailableBoardWidth(viewportWidth);
+    const availableHeight = this.getAvailableBoardHeight(viewportHeight);
+
+    const maxCardWidth =
+      (availableWidth - padding * 2 - gap * (columns - 1)) / columns;
+
+    const maxCardHeight =
+      (availableHeight - padding * 2 - gap * (rows - 1)) / rows;
+
+    const rawSize = Math.floor(Math.min(maxCardWidth, maxCardHeight));
+
+    if (this.isPhoneView) {
+      return Math.max(54, Math.min(rawSize, 96));
+    }
+
+    if (window.innerWidth <= 1023) {
+      return Math.max(58, Math.min(rawSize, 112));
+    }
+
+    return Math.max(62, Math.min(rawSize, 132));
+  }
+
+  private getAvailableBoardWidth(viewportWidth: number): number {
+    if (this.isPhoneView) {
+      return viewportWidth - 20;
+    }
+
+    const horizontalPadding = 32;
+    const sideMascots = this.mascotSideWidth * 2;
+    const gaps = this.playAreaGap * 2;
+
+    return viewportWidth - horizontalPadding - sideMascots - gaps;
+  }
+
+  private getAvailableBoardHeight(viewportHeight: number): number {
+    if (this.isPhoneView) {
+      return viewportHeight - 220;
+    }
+
+    if (window.innerWidth <= 1023) {
+      return viewportHeight - 200;
+    }
+
+    return viewportHeight - 250;
   }
 
   setupBoard(): void {

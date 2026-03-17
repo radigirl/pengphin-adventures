@@ -1,0 +1,31 @@
+<div class="welcome-screen">
+  <div class="welcome-screen__overlay"></div>
+
+  <div class="welcome-screen__content">
+    <h1 class="welcome-screen__title">PengPhin Adventures</h1>
+
+    <p class="welcome-screen__subtitle">
+      Join Peng and Phin and explore the animal worlds!
+    </p>
+
+    <div class="welcome-screen__mascots">
+      <div class="welcome-screen__mascot-block welcome-screen__mascot-block--left">
+        <div class="welcome-screen__bubble">Welcome!</div>
+        <img class="welcome-screen__mascot" [src]="pengSrc" alt="Peng" />
+      </div>
+
+      <div class="welcome-screen__mascot-block welcome-screen__mascot-block--right">
+        <div class="welcome-screen__bubble">Let’s play!</div>
+        <img class="welcome-screen__mascot" [src]="phinSrc" alt="Phin" />
+      </div>
+    </div>
+
+    <button
+      class="welcome-screen__button"
+      type="button"
+      (click)="onStartClick()"
+    >
+      Start Adventure
+    </button>
+  </div>
+</div>

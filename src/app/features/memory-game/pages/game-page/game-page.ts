@@ -7,17 +7,22 @@ import { MemoryGameService } from '../../../../core/services/memory-game.service
 
 import { MemoryCard } from '../../components/memory-card/memory-card';
 import { ScoreBar } from '../../components/score-bar/score-bar';
+import { WelcomeScreen } from '../../components/welcome-screen/welcome-screen';
 
 @Component({
   selector: 'app-game-page',
   standalone: true,
-  imports: [CommonModule, MemoryCard, ScoreBar],
+  imports: [CommonModule, MemoryCard, ScoreBar, WelcomeScreen],
   templateUrl: './game-page.html',
   styleUrl: './game-page.scss',
 })
 export class GamePage implements OnInit {
+
+  welcomePeng = 'assets/mascots/peng-home.png';
+  welcomePhin = 'assets/mascots/phin-home.png';
+
   cards: MemoryCardModel[] = [];
-  currentWorldIndex = 2;
+  currentWorldIndex = 0;
   currentLevel = 1;
   coins = 0;
 
@@ -50,7 +55,7 @@ export class GamePage implements OnInit {
   constructor(
     private memoryGameService: MemoryGameService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.updateViewportMode();

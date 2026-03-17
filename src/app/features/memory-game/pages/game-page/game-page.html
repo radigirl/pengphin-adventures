@@ -1,31 +1,9 @@
-<!-- START SCREEN -->
-<div class="start-screen-overlay" *ngIf="showStartScreen">
-  <div class="start-screen-card">
-    <h1 class="start-title">PengPhin Adventures</h1>
-
-    <p class="start-subtitle">
-      Join Peng and Phin and explore the animal worlds!
-    </p>
-
-    <div class="start-mascots">
-      <img
-        class="start-mascot"
-        [src]="currentWorld.mascots.peng"
-        alt="Peng"
-      />
-
-      <img
-        class="start-mascot"
-        [src]="currentWorld.mascots.phin"
-        alt="Phin"
-      />
-    </div>
-
-    <button class="start-button" (click)="startAdventure()">
-      Start Adventure ▶
-    </button>
-  </div>
-</div>
+<app-welcome-screen
+  *ngIf="showStartScreen"
+  [pengSrc]="welcomePeng"
+  [phinSrc]="welcomePhin"
+  (startClicked)="startAdventure()"
+></app-welcome-screen>
 
 <div
   class="game-page"

@@ -21,8 +21,8 @@ export class GamePage implements OnInit {
   welcomePhin = 'assets/mascots/phin-home.png';
 
   cards: MemoryCardModel[] = [];
-  currentWorldIndex = 2;
-  currentLevel = 2;
+  currentWorldIndex = 0;
+  currentLevel = 1;
   coins = 0;
 
   showStartScreen = true;

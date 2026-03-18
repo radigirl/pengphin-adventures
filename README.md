@@ -168,7 +168,7 @@ http://localhost:4200/
 ## 🐞 Known Issues
 
 - Hint can be triggered multiple times before being consumed (edge case)
-- Minor UI polish improvements still in progress
+- UI polish improvements still in progress
 - Some animations and transitions are simplified for now
 
 ---

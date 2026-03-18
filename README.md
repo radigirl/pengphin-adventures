@@ -145,7 +145,9 @@ _(Current version – visuals are actively being improved)_
 ![Gameplay Ocean](./screenshots/gameplay-ocean.png)
 
 ### Gameplay (Jungle World) - mobile view
-![Gameplay Jungle](./screenshots/gameplay-jungle-mobile.png)
+<p align="center">
+  <img src="./screenshots/mobile-view.png" alt="Gameplay Jungle Mobile" width="320" />
+</p>
 
 ---
 

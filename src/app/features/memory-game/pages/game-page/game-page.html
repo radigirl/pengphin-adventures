@@ -13,7 +13,7 @@
     </header>
 
     <div class="hud-row">
-      <app-score-bar [level]="currentLevel" [coins]="coins" [hintCost]="hintCost" [hintDisabled]="!canUseHint()"
+      <app-score-bar [level]="getGlobalLevel()" [coins]="coins" [hintCost]="hintCost" [hintDisabled]="!canUseHint()"
         [backgroundColor]="currentWorld.theme.scoreBarBg" [textColor]="currentWorld.theme.scoreBarTextColor"
         [hintButtonBg]="currentWorld.theme.hintButtonBg" [hintButtonTextColor]="currentWorld.theme.hintButtonTextColor"
         (hintClicked)="onHintClicked()">
@@ -87,7 +87,7 @@
 <div class="modal-overlay" *ngIf="showLevelCompleteModal">
   <div class="modal-card">
     <h2>⭐ Level Complete!</h2>
-    <p>You finished Level {{ currentLevel }}.</p>
+    <p>You finished Level {{ getGlobalLevel() }}.</p>
     <p>Total coins: {{ coins }}</p>
 
     <button class="modal-button" (click)="goToNextLevel()">
@@ -113,7 +113,7 @@
     </div>
 
     <button (click)="continueToSpecialCardsLevel()">
-      Start Level {{ currentLevel + 1 }} ▶
+      Start Level {{ getGlobalLevel() + 1 }} ▶
     </button>
   </div>
 </div>

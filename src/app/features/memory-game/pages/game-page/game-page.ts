@@ -21,8 +21,8 @@ export class GamePage implements OnInit {
   welcomePhin = 'assets/mascots/phin-home.png';
 
   cards: MemoryCardModel[] = [];
-  currentWorldIndex = 5;
-  currentLevel = 2;
+  currentWorldIndex = 0;
+  currentLevel = 1;
   coins = 0;
 
   showStartScreen = true;
@@ -76,6 +76,14 @@ export class GamePage implements OnInit {
   get currentWorld() {
     return WORLDS[this.currentWorldIndex];
   }
+
+  getGlobalLevel(): number {
+  const levelsBefore = WORLDS
+    .slice(0, this.currentWorldIndex)
+    .reduce((sum, world) => sum + world.levels.length, 0);
+
+  return levelsBefore + this.currentLevel;
+}
 
   startAdventure(): void {
     this.showStartScreen = false;

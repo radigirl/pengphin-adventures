@@ -146,7 +146,7 @@ _(Current version – visuals are actively being improved)_
 
 ### Gameplay (Jungle World) - mobile view
 <p align="center">
-  <img src="./screenshots/mobile-view.png" alt="Gameplay Jungle Mobile" width="320" />
+  <img src="./screenshots/gameplay-jungle-mobile.png" alt="Gameplay Jungle Mobile" width="320" />
 </p>
 
 ---

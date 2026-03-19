@@ -36,11 +36,15 @@ export class GamePage implements OnInit {
   showPhinBubble = false;
   currentPengSpeech = '';
   currentPhinSpeech = '';
+  activeMobileSpeaker: 'peng' | 'phin' | null = null;
   isPhoneView = false;
 
   readonly matchReward = 10;
   readonly hintCost = 20;
   readonly bonusReward = 25;
+
+  private readonly PHONE_MAX_WIDTH = 700;
+  private readonly DESKTOP_MIN_WIDTH = 1260;
 
   private firstSelectedCardId: string | null = null;
   private secondSelectedCardId: string | null = null;
@@ -54,7 +58,7 @@ export class GamePage implements OnInit {
   constructor(
     private memoryGameService: MemoryGameService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.updateViewportMode();
@@ -78,12 +82,12 @@ export class GamePage implements OnInit {
   }
 
   getGlobalLevel(): number {
-  const levelsBefore = WORLDS
-    .slice(0, this.currentWorldIndex)
-    .reduce((sum, world) => sum + world.levels.length, 0);
+    const levelsBefore = WORLDS
+      .slice(0, this.currentWorldIndex)
+      .reduce((sum, world) => sum + world.levels.length, 0);
 
-  return levelsBefore + this.currentLevel;
-}
+    return levelsBefore + this.currentLevel;
+  }
 
   startAdventure(): void {
     this.showStartScreen = false;
@@ -96,7 +100,17 @@ export class GamePage implements OnInit {
   }
 
   get boardColumns(): number {
-    return this.isPhoneView ? 3 : 4;
+    const width = window.innerWidth;
+
+    if (width <= this.PHONE_MAX_WIDTH) {
+      return 3;
+    }
+
+    if (width < this.DESKTOP_MIN_WIDTH) {
+      return 4;
+    }
+
+    return 5;
   }
 
   get boardRows(): number {
@@ -104,11 +118,13 @@ export class GamePage implements OnInit {
   }
 
   get boardGap(): number {
-    if (this.isPhoneView) {
+    const width = window.innerWidth;
+
+    if (width <= this.PHONE_MAX_WIDTH) {
       return this.boardRows >= 8 ? 8 : 10;
     }
 
-    if (window.innerWidth <= 1023) {
+    if (width < this.DESKTOP_MIN_WIDTH) {
       return this.boardRows >= 6 ? 10 : 12;
     }
 
@@ -116,11 +132,13 @@ export class GamePage implements OnInit {
   }
 
   get boardPadding(): number {
-    if (this.isPhoneView) {
+    const width = window.innerWidth;
+
+    if (width <= this.PHONE_MAX_WIDTH) {
       return 10;
     }
 
-    if (window.innerWidth <= 1023) {
+    if (width < this.DESKTOP_MIN_WIDTH) {
       return this.boardRows >= 6 ? 12 : 14;
     }
 
@@ -128,40 +146,46 @@ export class GamePage implements OnInit {
   }
 
   get playAreaGap(): number {
-    if (this.isPhoneView) {
+    const width = window.innerWidth;
+
+    if (width <= this.PHONE_MAX_WIDTH) {
       return 0;
     }
 
-    if (window.innerWidth <= 1023) {
-      return this.boardRows >= 6 ? 12 : 16;
+    if (width < this.DESKTOP_MIN_WIDTH) {
+      return this.boardRows >= 6 ? 8 : 10;
     }
 
     return this.boardRows >= 6 ? 18 : 24;
   }
 
-get mascotSideWidth(): number {
-  if (this.isPhoneView) {
-    return 56;
+  get mascotSideWidth(): number {
+    const width = window.innerWidth;
+
+    if (width <= this.PHONE_MAX_WIDTH) {
+      return 0;
+    }
+
+    if (width < this.DESKTOP_MIN_WIDTH) {
+      return this.boardRows >= 6 ? 140 : 180;
+    }
+
+    return this.boardRows >= 6 ? 170 : 210;
   }
 
-  if (window.innerWidth <= 1023) {
-    return this.boardRows >= 6 ? 110 : 130;
+  get mascotSize(): number {
+    const width = window.innerWidth;
+
+    if (width <= this.PHONE_MAX_WIDTH) {
+      return 0;
+    }
+
+    if (width < this.DESKTOP_MIN_WIDTH) {
+      return this.boardRows >= 6 ? 200 : 240;
+    }
+
+    return this.boardRows >= 6 ? 220 : 270;
   }
-
-  return this.boardRows >= 6 ? 185 : 230;
-}
-
-get mascotSize(): number {
-  if (this.isPhoneView) {
-    return 102;
-  }
-
-  if (window.innerWidth <= 1023) {
-    return this.boardRows >= 6 ? 110 : 135;
-  }
-
-  return this.boardRows >= 6 ? 235 : 290;
-}
 
   get boardCardSize(): number {
     const columns = this.boardColumns;
@@ -182,20 +206,23 @@ get mascotSize(): number {
       (availableHeight - padding * 2 - gap * (rows - 1)) / rows;
 
     const rawSize = Math.floor(Math.min(maxCardWidth, maxCardHeight));
+    const width = window.innerWidth;
 
-    if (this.isPhoneView) {
+    if (width <= this.PHONE_MAX_WIDTH) {
       return Math.max(54, Math.min(rawSize, 96));
     }
 
-    if (window.innerWidth <= 1023) {
-      return Math.max(58, Math.min(rawSize, 112));
+    if (width < this.DESKTOP_MIN_WIDTH) {
+      return Math.max(64, Math.min(rawSize, 120));
     }
 
     return Math.max(62, Math.min(rawSize, 132));
   }
 
   private getAvailableBoardWidth(viewportWidth: number): number {
-    if (this.isPhoneView) {
+    const width = window.innerWidth;
+
+    if (width <= this.PHONE_MAX_WIDTH) {
       return viewportWidth - 20;
     }
 
@@ -207,15 +234,21 @@ get mascotSize(): number {
   }
 
   private getAvailableBoardHeight(viewportHeight: number): number {
-    if (this.isPhoneView) {
+    const width = window.innerWidth;
+
+    if (width <= this.PHONE_MAX_WIDTH) {
       return viewportHeight - 220;
     }
 
-    if (window.innerWidth <= 1023) {
+    if (width < this.DESKTOP_MIN_WIDTH) {
       return viewportHeight - 200;
     }
 
     return viewportHeight - 250;
+  }
+
+  get isCompactMobileLayout(): boolean {
+    return this.isPhoneView && this.boardRows >= 6;
   }
 
   setupBoard(): void {
@@ -563,7 +596,7 @@ get mascotSize(): number {
   }
 
   private updateViewportMode(): void {
-    this.isPhoneView = window.innerWidth <= 700;
+    this.isPhoneView = window.innerWidth <= this.PHONE_MAX_WIDTH;
   }
 
   private initSpeechVoice(): void {
@@ -595,6 +628,7 @@ get mascotSize(): number {
     this.showPhinBubble = false;
     this.currentPengSpeech = '';
     this.currentPhinSpeech = '';
+    this.activeMobileSpeaker = null;
   }
 
   private async runIntroSpeech(): Promise<void> {
@@ -619,6 +653,7 @@ get mascotSize(): number {
 
     if (this.isPhoneView) {
       console.log('Phone: showing Peng feedback');
+      this.activeMobileSpeaker = 'peng';
       this.showFeedback(`🐧 Peng: ${pengText}`, 1800);
       this.speak(pengText);
       this.cdr.detectChanges();
@@ -627,13 +662,23 @@ get mascotSize(): number {
 
       if (sequenceId !== this.speechSequenceId) {
         console.log('Phone: sequence cancelled before Phin');
+        this.activeMobileSpeaker = null;
         return;
       }
 
       console.log('Phone: showing Phin feedback');
+      this.activeMobileSpeaker = 'phin';
       this.showFeedback(`🐬 Phin: ${phinText}`, 1800);
       this.speak(phinText);
       this.cdr.detectChanges();
+
+      await this.sleep(2100);
+
+      if (sequenceId === this.speechSequenceId) {
+        this.activeMobileSpeaker = null;
+        this.cdr.detectChanges();
+      }
+
       return;
     }
 

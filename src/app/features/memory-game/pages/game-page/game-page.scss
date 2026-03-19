@@ -109,6 +109,7 @@
   --board-gap: 16px;
   --board-padding: 18px;
 
+  position: relative;
   padding: var(--board-padding);
   border-radius: 28px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
@@ -121,6 +122,7 @@
   max-width: 100%;
   max-height: 100%;
   overflow: visible;
+  z-index: 2;
 }
 
 .board {
@@ -129,6 +131,8 @@
   gap: var(--board-gap);
   justify-content: center;
   align-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 .board--locked {
@@ -149,8 +153,10 @@
 .mascot-figure {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  width: 100%;
+  height: var(--mascot-size);
 }
 
 .mascot-image {
@@ -158,15 +164,16 @@
   width: auto;
   height: var(--mascot-size);
   max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.22));
   pointer-events: none;
 }
 
-.mascot-image--desktop,
-.mascot-image--mobile {
+.mascot-image--desktop {
   height: var(--mascot-size);
   max-width: 100%;
+  max-height: 100%;
 }
 
 .mascot-image--floating {
@@ -216,8 +223,7 @@
   background: rgba(255, 255, 255, 0.94);
 }
 
-.mascot-top-row,
-.mascot-top-item {
+.mobile-mascot-peek {
   display: none;
 }
 
@@ -262,7 +268,8 @@
   cursor: pointer;
 }
 
-@media (min-width: 701px) and (max-width: 1023px) {
+/* Tablet + small laptop: 701px - 1259px */
+@media (min-width: 701px) and (max-width: 1259px) {
   .game-page {
     padding: 12px 12px 12px;
   }
@@ -284,6 +291,10 @@
     margin-bottom: 6px;
   }
 
+  .play-area {
+    padding-bottom: 10px;
+  }
+
   .mascot-bubble {
     font-size: 0.74rem;
     padding: 7px 9px;
@@ -297,6 +308,7 @@
   }
 }
 
+/* Phone: <= 700px */
 @media (max-width: 700px) {
   .game-page {
     padding: 10px 8px 10px;
@@ -322,61 +334,119 @@
   }
 
   .feedback-banner-slot {
-    height: 40px;
-    margin-bottom: 4px;
+    height: 34px;
+    margin-bottom: 2px;
   }
 
   .feedback-banner {
-    padding: 8px 10px;
-    font-size: 0.9rem;
+    padding: 6px 8px;
+    font-size: 0.84rem;
+  }
+
+  .feedback-banner-slot--compact {
+    height: 28px;
+    margin-bottom: 0;
+  }
+
+  .feedback-banner-slot--compact .feedback-banner {
+    font-size: 0.78rem;
+    padding: 4px 6px;
   }
 
   .play-area {
-    --mascot-side-width: 56px;
-    --mascot-size: 102px;
-    --play-gap: 0;
+    --mascot-side-width: 0px;
+    --mascot-size: 0px;
+    --play-gap: 0px;
 
-    display: grid;
-    grid-template-columns: var(--mascot-side-width) minmax(0, auto) var(--mascot-side-width);
+    grid-template-columns: minmax(0, auto);
     gap: 0;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
     padding-bottom: 8px;
+    align-items: start;
+    align-content: start;
   }
 
   .mascot-side {
-    position: relative;
-    width: var(--mascot-side-width);
-    z-index: 3;
-    pointer-events: none;
-    overflow: visible;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .mascot-side--left .mascot-image--desktop,
-  .mascot-side--left .mascot-image--mobile {
-    transform: translateX(4px);
-  }
-
-  .mascot-side--right .mascot-image--desktop,
-  .mascot-side--right .mascot-image--mobile {
-    transform: translateX(-4px);
-  }
-
-  .mascot-image--desktop,
-  .mascot-image--mobile {
-    height: var(--mascot-size);
-    max-width: none;
+    display: none;
+    width: 0;
   }
 
   .mascot-bubble {
     display: none;
   }
 
+  /* IMPORTANT: board stays above mascots */
   .board-wrap {
+    position: relative;
+    overflow: visible;
     border-radius: 22px;
+    margin-top: 10px;
+    z-index: 3;
   }
+
+  .board {
+    position: relative;
+    z-index: 3;
+  }
+
+  /* BIG PEEK MASCOTS */
+.mobile-mascot-peek {
+  display: block;
+  position: absolute;
+  top: -16px;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  z-index: 1; /* behind board */
+}
+
+.mobile-mascot-peek--left {
+  left: -70px;
+}
+
+.mobile-mascot-peek--right {
+  right: -70px;
+}
+
+.mobile-mascot-peek img {
+  display: block;
+  width: 130px;
+  height: 130px;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.25));
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Tilt toward board (always) */
+.mobile-mascot-peek--left img {
+  transform: rotate(-8deg);
+  transform-origin: bottom right;
+}
+
+.mobile-mascot-peek--right img {
+  transform: rotate(8deg);
+  transform-origin: bottom left;
+}
+
+/* Slightly smaller for tall boards */
+.mobile-mascot-peek--compact {
+  top: -20px;
+  width: 104px;
+  height: 104px;
+}
+
+.mobile-mascot-peek--compact.mobile-mascot-peek--left {
+  left: -50px;
+}
+
+.mobile-mascot-peek--compact.mobile-mascot-peek--right {
+  right: -50px;
+}
+
+.mobile-mascot-peek--compact img {
+  width: 104px;
+  height: 104px;
+}
+
 }

@@ -20,67 +20,54 @@
       </app-score-bar>
     </div>
 
-    <div class="feedback-banner-slot">
+    <div class="feedback-banner-slot" [class.feedback-banner-slot--compact]="isCompactMobileLayout">
       <div class="feedback-banner" [class.feedback-banner--visible]="!!feedbackMessage">
         {{ feedbackMessage }}
       </div>
     </div>
 
-    <section
-  class="play-area"
-  [style.--mascot-side-width.px]="mascotSideWidth"
-  [style.--mascot-size.px]="mascotSize"
-  [style.--play-gap.px]="playAreaGap"
->
-  <aside class="mascot-side mascot-side--left" aria-hidden="true">
-    <div class="mascot-figure">
-      <div class="mascot-bubble mascot-bubble--side" *ngIf="showPengBubble && !isPhoneView">
-        {{ currentPengSpeech }}
+    <section class="play-area" [style.--mascot-side-width.px]="mascotSideWidth" [style.--mascot-size.px]="mascotSize"
+      [style.--play-gap.px]="playAreaGap">
+      <aside class="mascot-side mascot-side--left" aria-hidden="true">
+        <div class="mascot-figure">
+          <div class="mascot-bubble mascot-bubble--side" *ngIf="showPengBubble && !isPhoneView">
+            {{ currentPengSpeech }}
+          </div>
+
+          <img class="mascot-image mascot-image--desktop" [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.peng" alt="Peng" />
+        </div>
+      </aside>
+
+      <div class="board-wrap" [style.background]="currentWorld.theme.boardWrapBg" [style.--board-columns]="boardColumns"
+        [style.--board-card-size.px]="boardCardSize" [style.--board-gap.px]="boardGap"
+        [style.--board-padding.px]="boardPadding">
+        <div class="mobile-mascot-peek mobile-mascot-peek--left" *ngIf="isPhoneView">
+          <img [src]="currentWorld.mascots.peng" alt="Peng" [class.active]="activeMobileSpeaker === 'peng'" />
+        </div>
+
+        <div class="mobile-mascot-peek mobile-mascot-peek--right" *ngIf="isPhoneView">
+          <img [src]="currentWorld.mascots.phin" alt="Phin" [class.active]="activeMobileSpeaker === 'phin'" />
+        </div>
+
+        <div class="board" [class.board--locked]="isBoardLocked()">
+          <app-memory-card *ngFor="let card of cards; trackBy: trackByCard" [card]="card"
+            (cardClicked)="onCardClicked(card)">
+          </app-memory-card>
+        </div>
       </div>
 
-      <img
-        class="mascot-image mascot-image--desktop"
-        [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-        [src]="currentWorld.mascots.peng"
-        alt="Peng"
-      />
-    </div>
-  </aside>
+      <aside class="mascot-side mascot-side--right" aria-hidden="true">
+        <div class="mascot-figure">
+          <div class="mascot-bubble mascot-bubble--side" *ngIf="showPhinBubble && !isPhoneView">
+            {{ currentPhinSpeech }}
+          </div>
 
-  <div
-    class="board-wrap"
-    [style.background]="currentWorld.theme.boardWrapBg"
-    [style.--board-columns]="boardColumns"
-    [style.--board-card-size.px]="boardCardSize"
-    [style.--board-gap.px]="boardGap"
-    [style.--board-padding.px]="boardPadding"
-  >
-    <div class="board" [class.board--locked]="isBoardLocked()">
-      <app-memory-card
-        *ngFor="let card of cards; trackBy: trackByCard"
-        [card]="card"
-        (cardClicked)="onCardClicked(card)"
-      >
-      </app-memory-card>
-    </div>
-  </div>
-
-  <aside class="mascot-side mascot-side--right" aria-hidden="true">
-    <div class="mascot-figure">
-      <div class="mascot-bubble mascot-bubble--side" *ngIf="showPhinBubble && !isPhoneView">
-        {{ currentPhinSpeech }}
-      </div>
-
-      <img
-        class="mascot-image mascot-image--desktop"
-        [class.mascot-image--floating]="currentWorld.id === 'ocean'"
-        [src]="currentWorld.mascots.phin"
-        alt="Phin"
-      />
-    </div>
-  </aside>
-</section>
-    
+          <img class="mascot-image mascot-image--desktop" [class.mascot-image--floating]="currentWorld.id === 'ocean'"
+            [src]="currentWorld.mascots.phin" alt="Phin" />
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 

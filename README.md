@@ -62,6 +62,18 @@ It is also developed as a portfolio project, focusing on clean Angular architect
 
 ---
 
+## 📱 Responsive Design
+
+- Adaptive layout across mobile, tablet, and desktop
+- Game board dynamically adjusts rows and columns based on screen size and level complexity
+- Card sizes scale to maintain usability and visual balance
+- Mascots reposition responsively:
+  - Desktop: full side placement
+  - Mobile: partially hidden “peek” design to preserve space while keeping character presence
+- Layout carefully prevents overlap with UI elements (HUD, feedback banner), even for tall boards
+
+---
+
 ## 🧠 Educational Value
 
 The game is designed with simple educational goals in mind:
@@ -125,19 +137,19 @@ Levels are continuous across worlds (not reset per world), creating a stronger s
 
 Peng and Phin are more than visual elements — they are part of the gameplay experience:
 
-- Guide the player through the game
-- Provide feedback during gameplay events
-- Support onboarding and transitions between worlds
-- Add personality and emotional engagement
+- Guide the player through the game  
+- Provide feedback during gameplay events  
+- Support onboarding and transitions between worlds  
+- Add personality and emotional engagement  
 
 ---
 
 ## 🧩 Architecture Notes
 
-- World content is defined through configuration (`WorldConfig`)
-- Levels are structured per world and combined through global progression logic
-- UI styling is driven by per-world theme configuration
-- Game state is managed through component logic and services
+- World content is defined through configuration (`WorldConfig`)  
+- Levels are structured per world and combined through global progression logic  
+- UI styling is driven by per-world theme configuration  
+- Game state is managed through component logic and services  
 
 ---
 
@@ -145,14 +157,13 @@ Peng and Phin are more than visual elements — they are part of the gameplay ex
 
 _(Current version – visuals are actively being improved)_
 
-
-### Start Screen
+### Start Screen  
 ![Start Screen](./screenshots/start-screen.png)
 
-### Gameplay (Ocean World)
+### Gameplay (Ocean World)  
 ![Gameplay Ocean](./screenshots/gameplay-ocean.png)
 
-### Gameplay (Jungle World) - mobile view
+### Gameplay (Jungle World) - mobile view  
 <p align="center">
   <img src="./screenshots/gameplay-jungle-mobile.png" alt="Gameplay Jungle Mobile" width="320" />
 </p>
@@ -163,9 +174,7 @@ _(Current version – visuals are actively being improved)_
 
 Run the project locally:
 
-```bash
 ng serve
-```
 
 Then open:
 
@@ -175,21 +184,21 @@ http://localhost:4200/
 
 ## 🐞 Known Issues
 
-- Hint can be triggered multiple times before being consumed (edge case)
-- UI polish improvements still in progress
-- Some animations and transitions are simplified for now
+- Hint can be triggered multiple times before being consumed (edge case)  
+- UI polish improvements still in progress  
+- Some animations and transitions are simplified for now  
 
 ---
 
 ## 🌱 Future Improvements
 
-- Add a final celebration level (Level 20) combining animals from all worlds
-- Introduce distinct voices for Peng and Phin
-- Improve speech timing and interaction flow
-- Complete speech system for Peng and Phin (timing, voices, interaction flow)
-- Complete bilingual support (English and Bulgarian content and speech)
-- Add animations and celebration moments
-- Enhance accessibility and interaction polish
+- Add a final celebration level (Level 20) combining animals from all worlds  
+- Introduce distinct voices for Peng and Phin  
+- Improve speech timing and interaction flow  
+- Complete speech system for Peng and Phin (timing, voices, interaction flow)  
+- Complete bilingual support (English and Bulgarian content and speech)  
+- Add animations and celebration moments  
+- Enhance accessibility and interaction polish  
 
 ---
 

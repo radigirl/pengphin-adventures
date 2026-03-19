@@ -1,5 +1,9 @@
 # 🐧🐬 PengPhin Adventures
 
+## 🚀 Live Demo
+
+👉 https://radigirl.github.io/pengphin-adventures/
+
 PengPhin Adventures is a responsive Angular memory game designed for children, combining playful gameplay with thoughtful UX and educational elements.
 
 Players join Peng the penguin and Phin the dolphin on a journey through multiple themed worlds, matching animals, discovering special cards, and progressing through a structured adventure.
@@ -11,6 +15,15 @@ Players join Peng the penguin and Phin the dolphin on a journey through multiple
 This project started as a way to build something meaningful and fun for my child. The goal was to create a simple but engaging memory game that feels playful, visually clear, and rewarding to interact with.
 
 It is also developed as a portfolio project, focusing on clean Angular architecture, responsive design, and product thinking beyond basic functionality.
+
+---
+
+## 🛠️ Tech Stack
+
+- Angular (standalone components)
+- TypeScript
+- SCSS
+- Web Speech API (in progress)
 
 ---
 
@@ -26,14 +39,18 @@ It is also developed as a portfolio project, focusing on clean Angular architect
 
 - Special cards:
   - 🎁 Bonus cards (reward coins)
-  - 😈 Mischief cards (introduce unexpected board behavior)
+  - 😈 Mischief cards (swap positions with another hidden card, or move the first selected card if revealed second)
 
 - Hint system to support young players
 
 - Mascot-driven interaction  
   Peng 🐧 and Phin 🐬 guide the player, provide feedback, and enhance engagement
 
-- Basic speech support for character feedback
+- 🗣️ Speech-enhanced interaction (in progress)  
+  Character voice feedback is being developed using the Web Speech API to create a more engaging experience
+
+- 🌍 Bilingual support (English 🇬🇧 / Bulgarian 🇧🇬) – in progress  
+  The game is being prepared for multilingual content and speech in both English and Bulgarian
 
 - Responsive design (mobile, tablet, desktop)
 
@@ -115,15 +132,6 @@ Peng and Phin are more than visual elements — they are part of the gameplay ex
 
 ---
 
-## 🛠️ Tech Stack
-
-- Angular (standalone components)
-- TypeScript
-- SCSS
-- Web Speech API (basic speech support)
-
----
-
 ## 🧩 Architecture Notes
 
 - World content is defined through configuration (`WorldConfig`)
@@ -178,7 +186,8 @@ http://localhost:4200/
 - Add a final celebration level (Level 20) combining animals from all worlds
 - Introduce distinct voices for Peng and Phin
 - Improve speech timing and interaction flow
-- Add bilingual support (multi-language speech and content)
+- Complete speech system for Peng and Phin (timing, voices, interaction flow)
+- Complete bilingual support (English and Bulgarian content and speech)
 - Add animations and celebration moments
 - Enhance accessibility and interaction polish
 

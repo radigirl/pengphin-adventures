@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LanguageService } from '../../../../services/language.service';
+import { Snackbar } from '../../../../shared/snackbar';
 
-type AppLanguage = 'en' | 'bg';
 
 @Component({
   selector: 'app-welcome-screen',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Snackbar],
   templateUrl: './welcome-screen.html',
   styleUrl: './welcome-screen.scss',
 })
@@ -17,28 +18,23 @@ export class WelcomeScreen {
   @Output() startClicked = new EventEmitter<void>();
 
   soundEnabled = true;
-  language: AppLanguage = 'en';
 
-  get title(): string {
-    return this.language === 'bg' ? 'Приключенията на PengPhin' : 'PengPhin Adventures';
-  }
+  isVoiceWarningVisible = false;
+  hasShownVoiceWarning = false;
+  private voiceWarningTimeout?: number;
 
-  get subtitle(): string {
-    return this.language === 'bg'
-      ? 'Присъедини се към Peng и Phin и открий животинските светове!'
-      : 'Join Peng and Phin and explore the animal worlds!';
-  }
+  constructor(public languageService: LanguageService) { }
 
-  get startLabel(): string {
-    return this.language === 'bg' ? 'Започни приключението' : 'Start Adventure';
+  get language(): string {
+    return this.languageService.getLanguage();
   }
 
   get pengBubble(): string {
-    return this.language === 'bg' ? 'Здравей!' : 'Welcome!';
+    return this.languageService.t('welcome.pengBubble');
   }
 
   get phinBubble(): string {
-    return this.language === 'bg' ? 'Да играем!' : 'Let’s play!';
+    return this.languageService.t('welcome.phinBubble');
   }
 
   get soundIcon(): string {
@@ -50,9 +46,8 @@ export class WelcomeScreen {
   }
 
   toggleLanguage(): void {
-    this.language = this.language === 'en' ? 'bg' : 'en';
+    this.languageService.toggleLanguage();
   }
-
   onMascotClick(mascot: 'peng' | 'phin'): void {
     if (!this.soundEnabled) {
       return;
@@ -71,8 +66,8 @@ export class WelcomeScreen {
       voice.lang.toLowerCase().startsWith('bg')
     );
 
-    if (this.language === 'bg' && !hasBulgarianVoice) {
-      console.warn('No Bulgarian voice available on this device. Showing text only.');
+    if (this.languageService.getLanguage() === 'bg' && !hasBulgarianVoice) {
+      this.showVoiceWarningOnce();
       return;
     }
 
@@ -81,7 +76,7 @@ export class WelcomeScreen {
     const utterance = new SpeechSynthesisUtterance(spokenText);
 
     utterance.lang =
-      this.language === 'bg' && hasBulgarianVoice
+      this.languageService.getLanguage() === 'bg' && hasBulgarianVoice
         ? 'bg-BG'
         : 'en-US';
 
@@ -95,10 +90,30 @@ export class WelcomeScreen {
       utterance.voice = matchingVoice;
     }
 
-    utterance.rate = 0.9;
-    utterance.pitch = 1.2;
+    if (mascot === 'peng') {
+      utterance.rate = 0.88;
+      utterance.pitch = 0.95;
+    } else {
+      utterance.rate = 1.02;
+      utterance.pitch = 1.35;
+    }
 
     window.speechSynthesis.speak(utterance);
+  }
+
+  private showVoiceWarningOnce(): void {
+    if (this.hasShownVoiceWarning) {
+      return;
+    }
+
+    this.hasShownVoiceWarning = true;
+    this.isVoiceWarningVisible = true;
+
+    window.clearTimeout(this.voiceWarningTimeout);
+
+    this.voiceWarningTimeout = window.setTimeout(() => {
+      this.isVoiceWarningVisible = false;
+    }, 4200);
   }
 
   onStartClick(): void {

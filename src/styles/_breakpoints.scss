@@ -1,0 +1,14 @@
+$bp-mobile: 767px;
+$bp-tablet: 1024px;
+
+@mixin mobile {
+  @media (max-width: $bp-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $bp-tablet) {
+    @content;
+  }
+}

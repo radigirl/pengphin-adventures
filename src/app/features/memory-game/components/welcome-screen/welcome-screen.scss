@@ -1,3 +1,6 @@
+@use '../../../../../styles/variables' as *;
+@use '../../../../../styles/breakpoints' as *;
+
 .welcome-screen {
     position: fixed;
     inset: 0;
@@ -39,13 +42,13 @@
     width: 46px;
     height: 46px;
     border: 2px solid rgba(255, 255, 255, 0.75);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.88);
-    color: #21486b;
+    border-radius: $radius-pill;
+    background: $color-surface;
+    color: $color-primary;
     font-size: 1.1rem;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+    box-shadow: $shadow-control;
 }
 
 .welcome-screen__control--language {
@@ -67,7 +70,7 @@
     font-size: clamp(2.6rem, 5vw, 4.8rem);
     line-height: 1;
     font-weight: 700;
-    color: #ffffff;
+    color: $color-white;
     text-shadow:
         0 8px 24px rgba(0, 0, 0, 0.35),
         0 0 30px rgba(255, 255, 255, 0.25);
@@ -102,13 +105,13 @@
 .welcome-screen__bubble {
     margin-bottom: 18px;
     padding: 16px 24px;
-    border-radius: 24px;
-    background: #ffffff;
-    color: #21486b;
+    border-radius: $radius-bubble;
+    background: $color-white;
+    color: $color-primary;
     font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.2;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
+    box-shadow: $shadow-bubble;
     border: 2px solid rgba(0, 0, 0, 0.05);
     position: relative;
 }
@@ -120,7 +123,7 @@
     left: 50%;
     width: 16px;
     height: 16px;
-    background: #ffffff;
+    background: $color-white;
     transform: translateX(-50%) rotate(45deg);
     border-right: 2px solid rgba(0, 0, 0, 0.05);
     border-bottom: 2px solid rgba(0, 0, 0, 0.05);
@@ -149,12 +152,12 @@
 .welcome-screen__button {
     margin-top: 26px;
     border: none;
-    border-radius: 999px;
+    border-radius: $radius-pill;
     padding: 16px 34px;
     min-width: 220px;
     font-size: 1.1rem;
     font-weight: 800;
-    color: #ffffff;
+    color: $color-white;
     background: linear-gradient(180deg, #5ed0ff 0%, #1d8fe1 100%);
     box-shadow:
         0 12px 28px rgba(10, 88, 148, 0.4),
@@ -191,7 +194,7 @@
     }
 }
 
-@media (max-width: 700px) {
+@include mobile {
     .welcome-screen {
         padding: 20px 16px;
     }

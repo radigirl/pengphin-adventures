@@ -2,42 +2,32 @@
   <div class="welcome-screen__overlay"></div>
 
   <div class="welcome-screen__controls" aria-label="Game settings">
-    <button
-      class="welcome-screen__control"
-      type="button"
-      (click)="toggleSound()"
-      [attr.aria-label]="soundEnabled ? 'Turn sound off' : 'Turn sound on'"
-    >
+    <button class="welcome-screen__control" type="button" (click)="toggleSound()"
+      [attr.aria-label]="soundEnabled ? 'Turn sound off' : 'Turn sound on'">
       {{ soundIcon }}
     </button>
 
-    <button
-      class="welcome-screen__control welcome-screen__control--language"
-      type="button"
-      (click)="toggleLanguage()"
-      aria-label="Change language"
-    >
+    <button class="welcome-screen__control welcome-screen__control--language" type="button" (click)="toggleLanguage()"
+      aria-label="Change language">
       {{ language.toUpperCase() }}
     </button>
   </div>
 
   <div class="welcome-screen__content">
-    <h1 class="welcome-screen__title">{{ title }}</h1>
+    <h1 class="welcome-screen__title">
+      {{ languageService.t('welcome.title') }}
+    </h1>
 
     <p class="welcome-screen__subtitle">
-      {{ subtitle }}
+      {{ languageService.t('welcome.subtitle') }}
     </p>
 
     <div class="welcome-screen__mascots">
       <div class="welcome-screen__mascot-block welcome-screen__mascot-block--left">
         <div class="welcome-screen__bubble">{{ pengBubble }}</div>
 
-        <button
-          class="welcome-screen__mascot-button"
-          type="button"
-          (click)="onMascotClick('peng')"
-          aria-label="Talk to Peng"
-        >
+        <button class="welcome-screen__mascot-button" type="button" (click)="onMascotClick('peng')"
+          aria-label="Talk to Peng">
           <img class="welcome-screen__mascot" [src]="pengSrc" alt="Peng" />
         </button>
       </div>
@@ -45,23 +35,17 @@
       <div class="welcome-screen__mascot-block welcome-screen__mascot-block--right">
         <div class="welcome-screen__bubble">{{ phinBubble }}</div>
 
-        <button
-          class="welcome-screen__mascot-button"
-          type="button"
-          (click)="onMascotClick('phin')"
-          aria-label="Talk to Phin"
-        >
+        <button class="welcome-screen__mascot-button" type="button" (click)="onMascotClick('phin')"
+          aria-label="Talk to Phin">
           <img class="welcome-screen__mascot" [src]="phinSrc" alt="Phin" />
         </button>
       </div>
     </div>
 
-    <button
-      class="welcome-screen__button"
-      type="button"
-      (click)="onStartClick()"
-    >
-      {{ startLabel }}
+    <button class="welcome-screen__button" type="button" (click)="onStartClick()">
+      {{ languageService.t('welcome.start') }}
     </button>
   </div>
 </div>
+
+<app-snackbar [message]="languageService.t('messages.voiceUnavailable')" [isVisible]="isVoiceWarningVisible" />

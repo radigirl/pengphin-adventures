@@ -91,11 +91,11 @@ export class WelcomeScreen {
     }
 
     if (mascot === 'peng') {
-      utterance.rate = 0.88;
-      utterance.pitch = 0.95;
+      utterance.rate = 0.8;
+      utterance.pitch = 0.75;
     } else {
-      utterance.rate = 1.02;
-      utterance.pitch = 1.35;
+      utterance.rate = 1.12;
+      utterance.pitch = 1.65;
     }
 
     window.speechSynthesis.speak(utterance);

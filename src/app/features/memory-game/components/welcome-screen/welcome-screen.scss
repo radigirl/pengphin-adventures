@@ -39,16 +39,24 @@
 }
 
 .welcome-screen__control {
-    width: 46px;
-    height: 46px;
-    border: 2px solid rgba(255, 255, 255, 0.75);
+    width: 42px;
+    height: 42px;
+    border: 2px solid rgba(255, 255, 255, 0.72);
     border-radius: $radius-pill;
-    background: $color-surface;
+    background: rgba(255, 255, 255, 0.78);
     color: $color-primary;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: $shadow-control;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    transition:
+        transform 0.15s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.welcome-screen__control:active {
+    transform: scale(0.95);
 }
 
 .welcome-screen__control--language {
@@ -135,6 +143,13 @@
     margin: 0;
     background: transparent;
     cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.welcome-screen__mascot-button:focus,
+.welcome-screen__mascot-button:active {
+    outline: none;
 }
 
 .welcome-screen__mascot-button:active {
@@ -231,5 +246,59 @@
         min-width: 200px;
         padding: 15px 28px;
         font-size: 1rem;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .welcome-screen {
+        padding: 12px 18px;
+        align-items: center;
+    }
+
+    .welcome-screen__content {
+        transform: scale(0.82);
+        transform-origin: center;
+    }
+
+    .welcome-screen__title {
+        font-size: clamp(1.9rem, 5vw, 3rem);
+    }
+
+    .welcome-screen__subtitle {
+        margin-top: 8px;
+        font-size: 0.95rem;
+    }
+
+    .welcome-screen__mascots {
+        margin-top: 18px;
+        gap: 34px;
+    }
+
+    .welcome-screen__bubble {
+        margin-bottom: 10px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .welcome-screen__mascot {
+        height: clamp(110px, 22vh, 150px);
+    }
+
+    .welcome-screen__button {
+        margin-top: 18px;
+        min-width: 190px;
+        padding: 13px 28px;
+        font-size: 1rem;
+    }
+
+    .welcome-screen__controls {
+        top: 12px;
+        right: 12px;
+    }
+
+    .welcome-screen__control {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
     }
 }

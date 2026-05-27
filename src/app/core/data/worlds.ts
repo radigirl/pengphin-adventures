@@ -21,17 +21,17 @@ import { SPACE_LEVELS } from './space.levels';
 export const WORLDS: WorldConfig[] = [
   {
     id: 'ocean',
-    title: 'Ocean',
+    title: { en: 'Ocean', bg: 'Океан' },
     icon: '🌊',
     backgroundImage: 'assets/backgrounds/ocean-bg.png',
     animals: OCEAN_ANIMALS,
     levels: OCEAN_LEVELS,
 
     bonusIcon: 'assets/ocean/treasure.png',
-    bonusName: 'Treasure Chest',
+    bonusName: { en: 'Treasure Chest', bg: 'Съкровище' },
 
     mischiefIcon: 'assets/ocean/octopus.png',
-    mischiefName: 'Octopus',
+    mischiefName: { en: 'Octopus', bg: 'Октопод' },
 
     theme: {
       titleColor: '#e6f7ff',
@@ -46,16 +46,16 @@ export const WORLDS: WorldConfig[] = [
     },
 
     messages: {
-      welcome: '🌊 Welcome to the Ocean!',
-      subtitleMessage: 'Dive into the Ocean!',
-      bonusFound: '🎉 Treasure found! +25 coins',
-      mischiefSwapped: '🐙 Octopus mischief! Cards swapped!',
-      mischiefFailed: '🐙 Octopus looked around… but nothing could be swapped!',
-      mischiefMovedCard: '🐙 Octopus moved your card!',
-      specialCardsIntroTitle: '✨ New Surprise Cards!',
-      specialCardsIntroText: 'Starting in the next level, special cards can appear.',
-      worldCompleteTitle: '🌍 Ocean World Complete!',
-      worldCompleteText: 'You finished all Ocean levels.',
+      welcome: { en: '🌊 Welcome to the Ocean!', bg: '🌊 Добре дошъл в океана!' },
+      subtitleMessage: { en: 'Dive into the Ocean!', bg: 'Гмурни се в океана!' },
+      bonusFound: { en: '🎉 Treasure found! +25 coins', bg: '🎉 Откри съкровище! +25 монети' },
+      mischiefSwapped: { en: '🐙 Octopus mischief! Cards swapped!', bg: '🐙 Октоподът разбърка картите!' },
+      mischiefFailed: { en: '🐙 Octopus looked around… but nothing could be swapped!', bg: '🐙 Октоподът се огледа… но няма какво да размени!' },
+      mischiefMovedCard: { en: '🐙 Octopus moved your card!', bg: '🐙 Октоподът премести картата ти!' },
+      specialCardsIntroTitle: { en: '✨ New Surprise Cards!', bg: '✨ Нови изненадващи карти!' },
+      specialCardsIntroText: { en: 'Starting in the next level, special cards can appear.', bg: 'От следващото ниво могат да се появят специални карти.' },
+      worldCompleteTitle: { en: '🌍 Ocean World Complete!', bg: '🌍 Океанът е завършен!' },
+      worldCompleteText: { en: 'You finished all Ocean levels.', bg: 'Завърши всички нива в океана.' },
     },
 
     mascots: {
@@ -64,24 +64,24 @@ export const WORLDS: WorldConfig[] = [
     },
 
     mascotMessages: {
-      peng: "Let's explore the ocean!",
-      phin: "Find the matching sea animals!"
-    }
+      peng: { en: "Let's explore the ocean!", bg: 'Хайде да изследваме океана!' },
+      phin: { en: 'Find the matching sea animals!', bg: 'Намери еднаквите морски животни!' },
+    },
   },
 
   {
     id: 'farm',
-    title: 'Farm',
+    title: { en: 'Farm', bg: 'Ферма' },
     icon: '🚜',
     backgroundImage: 'assets/backgrounds/farm-bg.png',
     animals: FARM_ANIMALS,
     levels: FARM_LEVELS,
 
     bonusIcon: 'assets/farm/treasure.png',
-    bonusName: 'Egg Basket',
+    bonusName: { en: 'Egg Basket', bg: 'Кошничка с яйца' },
 
     mischiefIcon: 'assets/farm/chicken.png',
-    mischiefName: 'Mad Chicken',
+    mischiefName: { en: 'Mad Chicken', bg: 'Луда кокошка' },
 
     theme: {
       titleColor: '#fffaf0',
@@ -96,16 +96,16 @@ export const WORLDS: WorldConfig[] = [
     },
 
     messages: {
-      welcome: '🚜 Welcome to the Farm!',
-      subtitleMessage: 'Explore the Farm!',
-      bonusFound: '🥚 Egg basket found! +25 coins',
-      mischiefSwapped: '🐔 Mad Chicken mischief! Cards swapped!',
-      mischiefFailed: '🐔 Mad Chicken looked around… but nothing could be swapped!',
-      mischiefMovedCard: '🐔 Mad Chicken moved your card!',
-      specialCardsIntroTitle: '✨ New Surprise Cards!',
-      specialCardsIntroText: 'Starting in the next level, special cards can appear.',
-      worldCompleteTitle: '🌍 Farm World Complete!',
-      worldCompleteText: 'You finished all Farm levels.',
+      welcome: { en: '🚜 Welcome to the Farm!', bg: '🚜 Добре дошъл във фермата!' },
+      subtitleMessage: { en: 'Explore the Farm!', bg: 'Разгледай фермата!' },
+      bonusFound: { en: '🥚 Egg basket found! +25 coins', bg: '🥚 Откри кошничка с яйца! +25 монети' },
+      mischiefSwapped: { en: '🐔 Mad Chicken mischief! Cards swapped!', bg: '🐔 Лудата кокошка разбърка картите!' },
+      mischiefFailed: { en: '🐔 Mad Chicken looked around… but nothing could be swapped!', bg: '🐔 Лудата кокошка се огледа… но няма какво да размени!' },
+      mischiefMovedCard: { en: '🐔 Mad Chicken moved your card!', bg: '🐔 Лудата кокошка премести картата ти!' },
+      specialCardsIntroTitle: { en: '✨ New Surprise Cards!', bg: '✨ Нови изненадващи карти!' },
+      specialCardsIntroText: { en: 'Starting in the next level, special cards can appear.', bg: 'От следващото ниво могат да се появят специални карти.' },
+      worldCompleteTitle: { en: '🌍 Farm World Complete!', bg: '🌍 Фермата е завършена!' },
+      worldCompleteText: { en: 'You finished all Farm levels.', bg: 'Завърши всички нива във фермата.' },
     },
 
     mascots: {
@@ -114,24 +114,24 @@ export const WORLDS: WorldConfig[] = [
     },
 
     mascotMessages: {
-      peng: "Let's explore the farm!",
-      phin: "Find the matching farm animals!"
-    }
+      peng: { en: "Let's explore the farm!", bg: 'Хайде да разгледаме фермата!' },
+      phin: { en: 'Find the matching farm animals!', bg: 'Намери еднаквите животни от фермата!' },
+    },
   },
 
   {
     id: 'jungle',
-    title: 'Jungle',
+    title: { en: 'Jungle', bg: 'Джунгла' },
     icon: '🌴',
     backgroundImage: 'assets/backgrounds/jungle-bg.png',
     animals: JUNGLE_ANIMALS,
     levels: JUNGLE_LEVELS,
 
     bonusIcon: 'assets/jungle/treasure.png',
-    bonusName: 'Banana Bunch',
+    bonusName: { en: 'Banana Bunch', bg: 'Банани' },
 
     mischiefIcon: 'assets/jungle/sneaky-monkey.png',
-    mischiefName: 'Sneaky Monkey',
+    mischiefName: { en: 'Sneaky Monkey', bg: 'Палавата маймунка' },
 
     theme: {
       titleColor: '#f0fdf4',
@@ -146,16 +146,16 @@ export const WORLDS: WorldConfig[] = [
     },
 
     messages: {
-      welcome: '🌴 Welcome to the Jungle!',
-      subtitleMessage: 'Explore the Jungle!',
-      bonusFound: '🍌 Banana bunch found! +25 coins',
-      mischiefSwapped: '🐒 Sneaky Monkey mischief! Cards swapped!',
-      mischiefFailed: '🐒 Sneaky Monkey looked around… but nothing could be swapped!',
-      mischiefMovedCard: '🐒 Sneaky Monkey moved your card!',
-      specialCardsIntroTitle: '✨ New Surprise Cards!',
-      specialCardsIntroText: 'Starting in the next level, special cards can appear.',
-      worldCompleteTitle: '🌍 Jungle World Complete!',
-      worldCompleteText: 'You finished all Jungle levels.',
+      welcome: { en: '🌴 Welcome to the Jungle!', bg: '🌴 Добре дошъл в джунглата!' },
+      subtitleMessage: { en: 'Explore the Jungle!', bg: 'Разгледай джунглата!' },
+      bonusFound: { en: '🍌 Banana bunch found! +25 coins', bg: '🍌 Откри банани! +25 монети' },
+      mischiefSwapped: { en: '🐒 Sneaky Monkey mischief! Cards swapped!', bg: '🐒 Палавата маймунка разбърка картите!' },
+      mischiefFailed: { en: '🐒 Sneaky Monkey looked around… but nothing could be swapped!', bg: '🐒 Палавата маймунка се огледа… но няма какво да размени!' },
+      mischiefMovedCard: { en: '🐒 Sneaky Monkey moved your card!', bg: '🐒 Палавата маймунка премести картата ти!' },
+      specialCardsIntroTitle: { en: '✨ New Surprise Cards!', bg: '✨ Нови изненадващи карти!' },
+      specialCardsIntroText: { en: 'Starting in the next level, special cards can appear.', bg: 'От следващото ниво могат да се появят специални карти.' },
+      worldCompleteTitle: { en: '🌍 Jungle World Complete!', bg: '🌍 Джунглата е завършена!' },
+      worldCompleteText: { en: 'You finished all Jungle levels.', bg: 'Завърши всички нива в джунглата.' },
     },
 
     mascots: {
@@ -164,24 +164,24 @@ export const WORLDS: WorldConfig[] = [
     },
 
     mascotMessages: {
-      peng: "Let's explore the jungle!",
-      phin: "Find the matching jungle animals!"
-    }
+      peng: { en: "Let's explore the jungle!", bg: 'Хайде да разгледаме джунглата!' },
+      phin: { en: 'Find the matching jungle animals!', bg: 'Намери еднаквите животни от джунглата!' },
+    },
   },
 
   {
     id: 'arctic',
-    title: 'Arctic',
+    title: { en: 'Arctic', bg: 'Арктика' },
     icon: '❄️',
     backgroundImage: 'assets/backgrounds/arctic-bg.png',
     animals: ARCTIC_ANIMALS,
     levels: ARCTIC_LEVELS,
 
     bonusIcon: 'assets/arctic/treasure.png',
-    bonusName: 'Ice Crystal',
+    bonusName: { en: 'Ice Crystal', bg: 'Леден кристал' },
 
     mischiefIcon: 'assets/arctic/snowy-owl.png',
-    mischiefName: 'Snowy Owl',
+    mischiefName: { en: 'Snowy Owl', bg: 'Снежна сова' },
 
     theme: {
       titleColor: '#e0f7ff',
@@ -196,16 +196,16 @@ export const WORLDS: WorldConfig[] = [
     },
 
     messages: {
-      welcome: '❄️ Welcome to the Arctic!',
-      subtitleMessage: 'Explore the frozen world!',
-      bonusFound: '💎 Ice crystal found! +25 coins',
-      mischiefSwapped: '🦉 Snowy Owl mischief! Cards swapped!',
-      mischiefFailed: '🦉 Snowy Owl looked around… but nothing could be swapped!',
-      mischiefMovedCard: '🦉 Snowy Owl moved your card!',
-      specialCardsIntroTitle: '✨ New Surprise Cards!',
-      specialCardsIntroText: 'Starting in the next level, special cards can appear.',
-      worldCompleteTitle: '🌍 Arctic World Complete!',
-      worldCompleteText: 'You finished all Arctic levels.',
+      welcome: { en: '❄️ Welcome to the Arctic!', bg: '❄️ Добре дошъл в Арктика!' },
+      subtitleMessage: { en: 'Explore the frozen world!', bg: 'Разгледай ледения свят!' },
+      bonusFound: { en: '💎 Ice crystal found! +25 coins', bg: '💎 Откри леден кристал! +25 монети' },
+      mischiefSwapped: { en: '🦉 Snowy Owl mischief! Cards swapped!', bg: '🦉 Снежната сова разбърка картите!' },
+      mischiefFailed: { en: '🦉 Snowy Owl looked around… but nothing could be swapped!', bg: '🦉 Снежната сова се огледа… но няма какво да размени!' },
+      mischiefMovedCard: { en: '🦉 Snowy Owl moved your card!', bg: '🦉 Снежната сова премести картата ти!' },
+      specialCardsIntroTitle: { en: '✨ New Surprise Cards!', bg: '✨ Нови изненадващи карти!' },
+      specialCardsIntroText: { en: 'Starting in the next level, special cards can appear.', bg: 'От следващото ниво могат да се появят специални карти.' },
+      worldCompleteTitle: { en: '🌍 Arctic World Complete!', bg: '🌍 Арктика е завършена!' },
+      worldCompleteText: { en: 'You finished all Arctic levels.', bg: 'Завърши всички нива в Арктика.' },
     },
 
     mascots: {
@@ -214,24 +214,24 @@ export const WORLDS: WorldConfig[] = [
     },
 
     mascotMessages: {
-      peng: "Brrr! Let's explore the Arctic!",
-      phin: "Find the matching arctic animals!"
-    }
+      peng: { en: "It's cold here! Let's explore the Arctic!", bg: 'Тук е студено! Хайде да разгледаме Арктика!' },
+      phin: { en: 'Find the matching arctic animals!', bg: 'Намери еднаквите арктически животни!' },
+    },
   },
 
   {
     id: 'dinosaur',
-    title: 'Dinosaur',
+    title: { en: 'Dinosaur', bg: 'Динозаври' },
     icon: '🦖',
     backgroundImage: 'assets/backgrounds/dinosaur-bg.png',
     animals: DINOSAUR_ANIMALS,
     levels: DINOSAUR_LEVELS,
 
     bonusIcon: 'assets/dinosaurs/treasure.png',
-    bonusName: 'Dinosaur Egg',
+    bonusName: { en: 'Dinosaur Egg', bg: 'Динозавърско яйце' },
 
     mischiefIcon: 'assets/dinosaurs/sneaky-raptor.png',
-    mischiefName: 'Sneaky Raptor',
+    mischiefName: { en: 'Sneaky Raptor', bg: 'Палав раптор' },
 
     theme: {
       titleColor: '#fef3c7',
@@ -246,16 +246,16 @@ export const WORLDS: WorldConfig[] = [
     },
 
     messages: {
-      welcome: '🦖 Welcome to the Dinosaur World!',
-      subtitleMessage: 'Travel back in time!',
-      bonusFound: '🥚 Dinosaur egg found! +25 coins',
-      mischiefSwapped: '🦕 Sneaky Raptor mischief! Cards swapped!',
-      mischiefFailed: '🦕 Sneaky Raptor looked around… but nothing could be swapped!',
-      mischiefMovedCard: '🦕 Sneaky Raptor moved your card!',
-      specialCardsIntroTitle: '✨ New Surprise Cards!',
-      specialCardsIntroText: 'Starting in the next level, special cards can appear.',
-      worldCompleteTitle: '🌍 Dinosaur World Complete!',
-      worldCompleteText: 'You finished all Dinosaur levels.',
+      welcome: { en: '🦖 Welcome to the Dinosaur World!', bg: '🦖 Добре дошъл при динозаврите!' },
+      subtitleMessage: { en: 'Travel back in time!', bg: 'Върни се назад във времето!' },
+      bonusFound: { en: '🥚 Dinosaur egg found! +25 coins', bg: '🥚 Откри динозавърско яйце! +25 монети' },
+      mischiefSwapped: { en: '🦕 Sneaky Raptor mischief! Cards swapped!', bg: '🦕 Палавият раптор разбърка картите!' },
+      mischiefFailed: { en: '🦕 Sneaky Raptor looked around… but nothing could be swapped!', bg: '🦕 Палавият раптор се огледа… но няма какво да размени!' },
+      mischiefMovedCard: { en: '🦕 Sneaky Raptor moved your card!', bg: '🦕 Палавият раптор премести картата ти!' },
+      specialCardsIntroTitle: { en: '✨ New Surprise Cards!', bg: '✨ Нови изненадващи карти!' },
+      specialCardsIntroText: { en: 'Starting in the next level, special cards can appear.', bg: 'От следващото ниво могат да се появят специални карти.' },
+      worldCompleteTitle: { en: '🌍 Dinosaur World Complete!', bg: '🌍 Светът на динозаврите е завършен!' },
+      worldCompleteText: { en: 'You finished all Dinosaur levels.', bg: 'Завърши всички нива при динозаврите.' },
     },
 
     mascots: {
@@ -264,24 +264,24 @@ export const WORLDS: WorldConfig[] = [
     },
 
     mascotMessages: {
-      peng: "Let's explore the dinosaur world!",
-      phin: "Find the matching dinosaurs!"
-    }
+      peng: { en: "Let's explore the dinosaur world!", bg: 'Хайде при динозаврите!' },
+      phin: { en: 'Find the matching dinosaurs!', bg: 'Намери еднаквите динозаври!' },
+    },
   },
 
   {
     id: 'space',
-    title: 'Space',
+    title: { en: 'Space', bg: 'Космос' },
     icon: '🚀',
     backgroundImage: 'assets/backgrounds/space-bg.png',
     animals: SPACE_ANIMALS,
     levels: SPACE_LEVELS,
 
     bonusIcon: 'assets/space/treasure.png',
-    bonusName: 'Star Crystal',
+    bonusName: { en: 'Star Crystal', bg: 'Звезден кристал' },
 
     mischiefIcon: 'assets/space/jelly-alien.png',
-    mischiefName: 'Jelly Alien',
+    mischiefName: { en: 'Jelly Alien', bg: 'Лепкаво извънземно' },
 
     theme: {
       titleColor: '#e0f2fe',
@@ -296,16 +296,16 @@ export const WORLDS: WorldConfig[] = [
     },
 
     messages: {
-      welcome: '🚀 Welcome to Space!',
-      subtitleMessage: 'Explore the Galaxy!',
-      bonusFound: '⭐ Star crystal found! +25 coins',
-      mischiefSwapped: '👾 JellyAlien mischief! Cards swapped!',
-      mischiefFailed: '👾 Jelly Alien looked around… but nothing could be swapped!',
-      mischiefMovedCard: '👾 Jelly Alien moved your card!',
-      specialCardsIntroTitle: '✨ New Surprise Cards!',
-      specialCardsIntroText: 'Starting in the next level, special cards can appear.',
-      worldCompleteTitle: '🌍 Space World Complete!',
-      worldCompleteText: 'You finished all Space levels.',
+      welcome: { en: '🚀 Welcome to Space!', bg: '🚀 Добре дошъл в космоса!' },
+      subtitleMessage: { en: 'Explore the Galaxy!', bg: 'Разгледай галактиката!' },
+      bonusFound: { en: '⭐ Star crystal found! +25 coins', bg: '⭐ Откри звезден кристал! +25 монети' },
+      mischiefSwapped: { en: '👾 Sticky Alien mischief! Cards swapped!', bg: '👾 Лепкавото извънземно разбърка картите!' },
+      mischiefFailed: { en: '👾 Sticky Alien looked around… but nothing could be swapped!', bg: '👾 Лепкавото извънземно се огледа… но няма какво да размени!' },
+      mischiefMovedCard: { en: '👾 Sticky Alien moved your card!', bg: '👾 Лепкавото извънземно премести картата ти!' },
+      specialCardsIntroTitle: { en: '✨ New Surprise Cards!', bg: '✨ Нови изненадващи карти!' },
+      specialCardsIntroText: { en: 'Starting in the next level, special cards can appear.', bg: 'От следващото ниво могат да се появят специални карти.' },
+      worldCompleteTitle: { en: '🌍 Space World Complete!', bg: '🌍 Космосът е завършен!' },
+      worldCompleteText: { en: 'You finished all Space levels.', bg: 'Завърши всички нива в космоса.' },
     },
 
     mascots: {
@@ -314,8 +314,8 @@ export const WORLDS: WorldConfig[] = [
     },
 
     mascotMessages: {
-      peng: "Let's explore space!",
-      phin: "Find the matching space creatures!"
-    }
-  }
+      peng: { en: "Let's explore space!", bg: 'Хайде да изследваме космоса!' },
+      phin: { en: 'Find the matching space creatures!', bg: 'Намери еднаквите космически създания!' },
+    },
+  },
 ];

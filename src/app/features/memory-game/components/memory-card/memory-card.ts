@@ -12,10 +12,10 @@ import { CommonModule } from '@angular/common';
 export class MemoryCard {
   @Input() card!: MemoryCardModel;
 
-  @Output() cardClicked = new EventEmitter<void>();
+  @Output() cardClicked = new EventEmitter<MouseEvent>();
 
-  onCardClick(): void {
-    this.cardClicked.emit();
+  onCardClick(event: MouseEvent): void {
+    this.cardClicked.emit(event);
   }
 
   isImageIcon(icon: string): boolean {

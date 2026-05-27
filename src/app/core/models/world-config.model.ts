@@ -1,19 +1,26 @@
 import { Animal } from './animal.model';
 import { LevelConfig } from './level-config.model';
 
+export type AppLanguage = 'en' | 'bg';
+
+export type LocalizedText = {
+  en: string;
+  bg: string;
+};
+
 export interface WorldConfig {
   id: string;
-  title: string;
+  title: LocalizedText;
   icon: string;
   backgroundImage: string;
   animals: Animal[];
   levels: LevelConfig[];
 
   bonusIcon: string;
-  bonusName: string;
+  bonusName: LocalizedText;
 
   mischiefIcon: string;
-  mischiefName: string;
+  mischiefName: LocalizedText;
 
   theme: {
     titleColor: string;
@@ -25,21 +32,19 @@ export interface WorldConfig {
     scoreBarTextColor: string;
     hintButtonBg: string;
     hintButtonTextColor: string;
-    // cardBackColor: string
-    // cardBackPattern?: string
   };
 
   messages: {
-    welcome: string;
-    subtitleMessage: string;
-    bonusFound: string;
-    mischiefSwapped: string;
-    mischiefFailed: string;
-    mischiefMovedCard: string;
-    specialCardsIntroTitle: string;
-    specialCardsIntroText: string;
-    worldCompleteTitle: string;
-    worldCompleteText: string;
+    welcome: LocalizedText;
+    subtitleMessage: LocalizedText;
+    bonusFound: LocalizedText;
+    mischiefSwapped: LocalizedText;
+    mischiefFailed: LocalizedText;
+    mischiefMovedCard: LocalizedText;
+    specialCardsIntroTitle: LocalizedText;
+    specialCardsIntroText: LocalizedText;
+    worldCompleteTitle: LocalizedText;
+    worldCompleteText: LocalizedText;
   };
 
   mascots: {
@@ -48,7 +53,7 @@ export interface WorldConfig {
   };
 
   mascotMessages: {
-    peng: string;
-    phin: string;
+    peng: LocalizedText;
+    phin: LocalizedText;
   };
 }

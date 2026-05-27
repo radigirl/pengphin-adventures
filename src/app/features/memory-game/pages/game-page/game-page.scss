@@ -1,3 +1,5 @@
+@use '../../../../../styles/breakpoints' as *;
+
 .game-page {
   min-height: 100vh;
   height: 100vh;
@@ -227,6 +229,29 @@
   display: none;
 }
 
+.mascot-button {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mascot-button:focus,
+.mascot-button:active {
+  outline: none;
+}
+
+.mascot-button:active {
+  transform: scale(0.97);
+}
+
+.mascot-button .mascot-image {
+  pointer-events: none;
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -268,8 +293,8 @@
   cursor: pointer;
 }
 
-/* Tablet + small laptop: 701px - 1259px */
-@media (min-width: 701px) and (max-width: 1259px) {
+
+@include tablet {
   .game-page {
     padding: 12px 12px 12px;
   }
@@ -308,8 +333,36 @@
   }
 }
 
-/* Phone: <= 700px */
-@media (max-width: 700px) {
+.game-controls {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 30;
+  display: flex;
+  gap: 8px;
+}
+
+.game-control {
+  width: 38px;
+  height: 38px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: #21486b;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game-control:active {
+  transform: scale(0.95);
+}
+
+
+@include mobile {
   .game-page {
     padding: 10px 8px 10px;
     background-attachment: scroll;
@@ -374,12 +427,11 @@
     display: none;
   }
 
-  /* IMPORTANT: board stays above mascots */
   .board-wrap {
     position: relative;
     overflow: visible;
     border-radius: 22px;
-    margin-top: 10px;
+    margin-top: 8px;
     z-index: 3;
   }
 
@@ -389,64 +441,194 @@
   }
 
   /* BIG PEEK MASCOTS */
-.mobile-mascot-peek {
-  display: block;
-  position: absolute;
-  top: -16px;
-  width: 120px;
-  height: 120px;
-  pointer-events: none;
-  z-index: 1; /* behind board */
+  .mobile-mascot-peek {
+    display: block;
+    position: absolute;
+    top: -40px;
+    width: 112px;
+    height: 112px;
+    pointer-events: auto;
+    z-index: 1;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-mascot-peek--left {
+    left: -62px;
+  }
+
+  .mobile-mascot-peek--right {
+    right: -62px;
+  }
+
+  .mobile-mascot-peek img {
+    display: block;
+    width: 116px;
+    height: 116px;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.25));
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .mobile-mascot-peek--left img {
+    transform: rotate(-8deg);
+    transform-origin: bottom right;
+  }
+
+  .mobile-mascot-peek--right img {
+    transform: rotate(8deg);
+    transform-origin: bottom left;
+  }
+
+  .mobile-mascot-peek--compact {
+    top: -20px;
+    width: 104px;
+    height: 104px;
+  }
+
+  .mobile-mascot-peek--compact.mobile-mascot-peek--left {
+    left: -50px;
+  }
+
+  .mobile-mascot-peek--compact.mobile-mascot-peek--right {
+    right: -50px;
+  }
+
+  .mobile-mascot-peek--compact img {
+    width: 104px;
+    height: 104px;
+  }
+
 }
 
-.mobile-mascot-peek--left {
-  left: -70px;
+@include mobile {
+  @media (orientation: landscape) {
+    .mobile-mascot-peek {
+      top: -42px;
+      width: 120px;
+      height: 120px;
+    }
+
+    .mobile-mascot-peek--left {
+      left: -66px;
+    }
+
+    .mobile-mascot-peek--right {
+      right: -66px;
+    }
+
+    .mobile-mascot-peek img {
+      width: 122px;
+      height: 122px;
+    }
+  }
+
+  .mobile-mascot-peek--large-board {
+    top: -86px;
+    width: 96px;
+    height: 96px;
+  }
+
+  .mobile-mascot-peek--large-board.mobile-mascot-peek--left {
+    left: -30px;
+  }
+
+  .mobile-mascot-peek--large-board.mobile-mascot-peek--right {
+    right: -30px;
+  }
+
+  .mobile-mascot-peek--large-board img {
+    width: 96px;
+    height: 96px;
+  }
+
+  .mobile-mascot-peek--large-board ~ .board {
+  margin-top: 18px;
 }
 
-.mobile-mascot-peek--right {
-  right: -70px;
+.board-wrap--large-phone {
+  margin-top: 28px;
 }
 
-.mobile-mascot-peek img {
-  display: block;
-  width: 130px;
-  height: 130px;
-  max-width: none;
-  max-height: none;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.25));
-  transition: transform 0.2s ease, filter 0.2s ease;
+  .feedback-banner-slot--compact {
+    height: 24px;
+  }
+
+  .feedback-banner-slot--compact .feedback-banner {
+    font-size: 0.72rem;
+    padding: 3px 6px;
+  }
 }
 
-/* Tilt toward board (always) */
-.mobile-mascot-peek--left img {
-  transform: rotate(-8deg);
-  transform-origin: bottom right;
-}
+@media (max-height: 500px) and (orientation: landscape) {
+  .game-page {
+    padding: 6px 8px;
+  }
 
-.mobile-mascot-peek--right img {
-  transform: rotate(8deg);
-  transform-origin: bottom left;
-}
+  .game-header {
+    margin-bottom: 0;
+  }
 
-/* Slightly smaller for tall boards */
-.mobile-mascot-peek--compact {
-  top: -20px;
-  width: 104px;
-  height: 104px;
-}
+  .game-header h1 {
+    font-size: 2.2rem;
+  }
 
-.mobile-mascot-peek--compact.mobile-mascot-peek--left {
-  left: -50px;
-}
+  .game-subtitle {
+    margin-top: 0;
+    font-size: 0.82rem;
+  }
 
-.mobile-mascot-peek--compact.mobile-mascot-peek--right {
-  right: -50px;
-}
+  .hud-row {
+    margin-bottom: 2px;
+  }
 
-.mobile-mascot-peek--compact img {
-  width: 104px;
-  height: 104px;
-}
+  .feedback-banner-slot {
+    height: 24px;
+    margin-bottom: 0;
+  }
 
+  .feedback-banner {
+    font-size: 0.74rem;
+    padding: 3px 8px;
+  }
+
+  .play-area {
+    grid-template-columns:
+      var(--mascot-side-width) minmax(0, auto) var(--mascot-side-width);
+
+    gap: var(--play-gap);
+
+    align-items: center;
+    align-content: center;
+  }
+
+  .mascot-side {
+    display: flex;
+    width: var(--mascot-side-width);
+  }
+
+  .mascot-bubble {
+    display: block;
+  }
+
+  .board-wrap {
+    margin-top: 0;
+    transform: none;
+  }
+
+  .mobile-mascot-peek {
+    display: none;
+  }
+
+  .mascot-image--desktop {
+    height: var(--mascot-size);
+    max-width: 100%;
+  }
 }

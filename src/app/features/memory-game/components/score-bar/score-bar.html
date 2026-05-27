@@ -1,23 +1,18 @@
-<div
-  class="score-bar"
-  [ngStyle]="{
+<div class="score-bar" [ngStyle]="{
     background: backgroundColor,
     color: textColor
-  }"
->
-  <div class="score-item">⭐ Level {{ level }}</div>
-  <div class="score-item">💰 Coins: {{ coins }}</div>
+  }">
+  <div class="score-item score-item--level">
+    <button class="level-nav-button" type="button" (click)="onPreviousLevelClick()">‹</button>
+    <span>⭐ {{ levelLabel }} {{ level }}</span>
+    <button class="level-nav-button" type="button" (click)="onNextLevelClick()">›</button>
+  </div>
+  <div class="score-item">💰 {{ coinsLabel }}: {{ coins }}</div>
 
-  <button
-    class="hint-button"
-    type="button"
-    [disabled]="hintDisabled"
-    [ngStyle]="{
+  <button class="hint-button" type="button" [disabled]="hintDisabled" [ngStyle]="{
       background: hintButtonBg,
       color: hintButtonTextColor
-    }"
-    (click)="onHintClick()"
-  >
-    💡 Hint (-{{ hintCost }})
+    }" (click)="onHintClick()">
+    💡 {{ hintLabel }} (-{{ hintCost }})
   </button>
 </div>

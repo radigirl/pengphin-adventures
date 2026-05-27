@@ -14,12 +14,26 @@ export class ScoreBar {
   @Input() hintDisabled = false;
   @Input() hintCost = 20;
 
+  @Input() levelLabel = 'Level';
+  @Input() coinsLabel = 'Coins';
+  @Input() hintLabel = 'Hint';
+
   @Input() backgroundColor = 'rgba(255, 255, 255, 0.1)';
   @Input() textColor = '#ffffff';
   @Input() hintButtonBg = '#ffd166';
   @Input() hintButtonTextColor = '#1f2937';
 
   @Output() hintClicked = new EventEmitter<void>();
+  @Output() previousLevelClicked = new EventEmitter<void>();
+  @Output() nextLevelClicked = new EventEmitter<void>();
+
+  onPreviousLevelClick(): void {
+    this.previousLevelClicked.emit();
+  }
+
+  onNextLevelClick(): void {
+    this.nextLevelClicked.emit();
+  }
 
   onHintClick(): void {
     if (this.hintDisabled) {

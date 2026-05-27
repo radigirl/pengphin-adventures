@@ -9,4 +9,10 @@ export const en = {
   messages: {
     voiceUnavailable: 'Bulgarian voice is not available here. Try another browser or device.',
   },
+  game: {
+    worldSuffix: 'World',
+    level: 'Level',
+    coins: 'Coins',
+    hint: 'Hint',
+  },
 };

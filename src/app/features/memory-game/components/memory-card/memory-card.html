@@ -1,5 +1,5 @@
 <div class="card" [class.card--flipped]="card.flipped || card.matched" [class.card--matched]="card.matched"
-  [class.card--hinted]="card.hinted" [class.card--swapped]="card.swapped" (click)="onCardClick()">
+  [class.card--hinted]="card.hinted" [class.card--swapped]="card.swapped" (click)="onCardClick($event)">
   <div class="card__inner">
     <div class="card__face card__face--front">
       <span class="card__emoji">❓</span>

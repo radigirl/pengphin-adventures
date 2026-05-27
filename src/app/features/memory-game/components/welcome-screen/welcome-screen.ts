@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LanguageService } from '../../../../services/language.service';
-import { Snackbar } from '../../../../shared/snackbar';
+import { Snackbar } from '../../../../shared/components/snackbar/snackbar';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class WelcomeScreen {
 
   @Output() startClicked = new EventEmitter<void>();
 
-  soundEnabled = true;
+  soundEnabled = localStorage.getItem('pengphin-sound') !== 'off';
 
   isVoiceWarningVisible = false;
   hasShownVoiceWarning = false;
@@ -42,8 +42,13 @@ export class WelcomeScreen {
   }
 
   toggleSound(): void {
-    this.soundEnabled = !this.soundEnabled;
-  }
+  this.soundEnabled = !this.soundEnabled;
+
+  localStorage.setItem(
+    'pengphin-sound',
+    this.soundEnabled ? 'on' : 'off'
+  );
+}
 
   toggleLanguage(): void {
     this.languageService.toggleLanguage();

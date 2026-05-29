@@ -5,4 +5,6 @@ export interface Animal {
   icon: string
   introductionEn: string
   introductionBg: string
+  audioEn?: string;
+  audioBg?: string;
 }

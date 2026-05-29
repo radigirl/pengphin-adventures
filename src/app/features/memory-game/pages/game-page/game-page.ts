@@ -10,6 +10,7 @@ import { ScoreBar } from '../../components/score-bar/score-bar';
 import { WelcomeScreen } from '../../components/welcome-screen/welcome-screen';
 import { TranslatePipe } from '../../../../shared/pipes/translate.pipe';
 import { LanguageService } from '../../../../services/language.service';
+import { AudioService } from '../../../../services/audio.service';
 
 
 @Component({
@@ -58,22 +59,17 @@ export class GamePage implements OnInit {
   private firstSelectedCardId: string | null = null;
   private secondSelectedCardId: string | null = null;
   private boardLocked = false;
-  private speechSequenceId = 0;
   private feedbackTimeoutId: number | null = null;
-
-  private selectedVoice: SpeechSynthesisVoice | null = null;
-  private speechReady = false;
-  private animalVoiceIndex = 0;
 
   constructor(
     private memoryGameService: MemoryGameService,
     private cdr: ChangeDetectorRef,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private audioService: AudioService
   ) { }
 
   ngOnInit(): void {
     this.updateViewportMode();
-    this.initSpeechVoice();
   }
 
   @HostListener('window:resize')
@@ -82,7 +78,6 @@ export class GamePage implements OnInit {
     this.updateViewportMode();
 
     if (!this.showStartScreen && wasPhone !== this.isPhoneView) {
-      this.speechSequenceId += 1;
       this.clearMascotBubbles();
     }
   }
@@ -109,10 +104,6 @@ export class GamePage implements OnInit {
 
   startAdventure(): void {
     this.showStartScreen = false;
-
-    speechSynthesis.cancel();
-    speechSynthesis.resume();
-
     this.setupBoard();
     this.cdr.detectChanges();
   }
@@ -362,8 +353,16 @@ export class GamePage implements OnInit {
               ? animal.introductionBg
               : animal.introductionEn;
 
+          const audioPath =
+            this.currentLanguage === 'bg'
+              ? animal.audioBg
+              : animal.audioEn;
+
           this.showFeedback(`${animalName}: ${intro}`, 2600);
-          this.speak(intro);
+
+          if (audioPath) {
+            this.audioService.play(audioPath);
+          }
         }
       }
 
@@ -432,7 +431,11 @@ export class GamePage implements OnInit {
       this.setCardState(secondSelectedCard.id, { matched: true });
       this.coins += this.matchReward;
 
-      this.showFeedback(`✅ Match! +${this.matchReward} coins`);
+      this.showFeedback(
+        this.currentLanguage === 'bg'
+          ? `✅ Съвпадение! +${this.matchReward} монети`
+          : `✅ Match! +${this.matchReward} coins`
+      );
       this.cdr.detectChanges();
 
       await this.sleep(500);
@@ -599,7 +602,11 @@ export class GamePage implements OnInit {
     this.setCardState(firstHintCard.id, { flipped: true, hinted: true });
     this.setCardState(secondHintCard.id, { flipped: true, hinted: true });
 
-    this.showFeedback(`💡 Hint used (-${this.hintCost} coins)`);
+    this.showFeedback(
+      this.currentLanguage === 'bg'
+        ? `💡 Използвана помощ (-${this.hintCost} монети)`
+        : `💡 Hint used (-${this.hintCost} coins)`
+    );
     this.cdr.detectChanges();
 
     setTimeout(() => {
@@ -686,29 +693,6 @@ export class GamePage implements OnInit {
     this.isPhoneView = window.innerWidth <= this.PHONE_MAX_WIDTH;
   }
 
-  private initSpeechVoice(): void {
-    const setVoice = () => {
-      const voices = speechSynthesis.getVoices();
-
-      this.selectedVoice =
-        voices.find((v) => v.lang === 'en-US') ||
-        voices.find((v) => v.lang.startsWith('en')) ||
-        null;
-
-      this.speechReady = voices.length > 0;
-
-      console.log('Voices loaded:', voices.length);
-      console.log('Selected voice:', this.selectedVoice);
-    };
-
-    setVoice();
-
-    if (!this.speechReady) {
-      speechSynthesis.onvoiceschanged = () => {
-        setVoice();
-      };
-    }
-  }
 
   private clearMascotBubbles(): void {
     this.showPengBubble = false;
@@ -723,8 +707,10 @@ export class GamePage implements OnInit {
       mascot === 'peng'
         ? this.localize(this.currentWorld.mascotMessages.peng)
         : this.localize(this.currentWorld.mascotMessages.phin);
-
-    this.speechSequenceId += 1;
+    const audioPath =
+      mascot === 'peng'
+        ? this.currentWorld.mascotAudio?.peng?.[this.currentLanguage]
+        : this.currentWorld.mascotAudio?.phin?.[this.currentLanguage];
     this.clearMascotBubbles();
     this.clearFeedbackMessage();
 
@@ -736,7 +722,9 @@ export class GamePage implements OnInit {
         2200
       );
 
-      this.speak(text, mascot);
+      if (audioPath) {
+        this.audioService.play(audioPath);
+      }
 
       window.setTimeout(() => {
         if (this.activeMobileSpeaker === mascot) {
@@ -756,8 +744,11 @@ export class GamePage implements OnInit {
       this.showPhinBubble = true;
     }
 
-    this.speak(text, mascot);
     this.cdr.detectChanges();
+
+    if (audioPath) {
+      this.audioService.play(audioPath);
+    }
 
     window.setTimeout(() => {
       if (mascot === 'peng') {
@@ -806,7 +797,7 @@ export class GamePage implements OnInit {
       }
 
       this.cdr.detectChanges();
-    }, 300);
+    }, 2400);
   }
 
   private showFeedback(message: string, duration = 1800): void {
@@ -859,76 +850,16 @@ export class GamePage implements OnInit {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  speak(text: string, mascot?: 'peng' | 'phin') {
-    console.log('SPEAKING:', text);
-    if (!this.soundEnabled) {
-      return;
-    }
-
-    if (!this.speechReady) {
-      console.log('Speech not ready yet');
-      return;
-    }
-
-    speechSynthesis.cancel();
-    speechSynthesis.resume();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    if (mascot === 'peng') {
-      utterance.rate = 0.8;
-      utterance.pitch = 0.75;
-    } else if (mascot === 'phin') {
-      utterance.rate = 1.12;
-      utterance.pitch = 1.65;
-    } else {
-      const voiceStyles = [
-        { rate: 0.88, pitch: 1.05 },
-        { rate: 1.0, pitch: 1.35 },
-        { rate: 1.12, pitch: 1.55 },
-      ];
-
-      const style =
-        voiceStyles[this.animalVoiceIndex];
-
-      utterance.rate = style.rate;
-      utterance.pitch = style.pitch;
-
-      this.animalVoiceIndex =
-        (this.animalVoiceIndex + 1) %
-        voiceStyles.length;
-    }
-    utterance.volume = 1;
-
-    if (this.selectedVoice) {
-      utterance.voice = this.selectedVoice;
-    }
-
-    utterance.onstart = () => console.log('Speech started:', text);
-    utterance.onend = () => console.log('Speech ended:', text);
-    utterance.onerror = (event) => console.log('Speech error:', event);
-
-    speechSynthesis.speak(utterance);
+  get soundEnabled(): boolean {
+    return this.audioService.getSoundEnabled();
   }
-
-  soundEnabled =
-    localStorage.getItem('pengphin-sound') !== 'off';
 
   get soundIcon(): string {
     return this.soundEnabled ? '🔊' : '🔇';
   }
 
   toggleSound(): void {
-    this.soundEnabled = !this.soundEnabled;
-
-    localStorage.setItem(
-      'pengphin-sound',
-      this.soundEnabled ? 'on' : 'off'
-    );
-
-    if (!this.soundEnabled) {
-      speechSynthesis.cancel();
-    }
+    this.audioService.toggleSound();
   }
 
   toggleLanguage(): void {
@@ -971,5 +902,20 @@ export class GamePage implements OnInit {
 
       this.setupBoard();
     }
+  }
+
+  stayAndExplore(): void {
+    this.showLevelCompleteModal = false;
+    this.cdr.detectChanges();
+  }
+
+  stayAndExploreSpecialIntro(): void {
+    this.showSpecialCardsIntroModal = false;
+    this.cdr.detectChanges();
+  }
+
+  stayAndExploreWorldComplete(): void {
+    this.showWorldCompleteModal = false;
+    this.cdr.detectChanges();
   }
 }

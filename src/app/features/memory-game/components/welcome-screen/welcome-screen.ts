@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LanguageService } from '../../../../services/language.service';
-import { Snackbar } from '../../../../shared/components/snackbar/snackbar';
+import { AudioService } from '../../../../services/audio.service';
 
 
 @Component({
   selector: 'app-welcome-screen',
   standalone: true,
-  imports: [CommonModule, Snackbar],
+  imports: [CommonModule],
   templateUrl: './welcome-screen.html',
   styleUrl: './welcome-screen.scss',
 })
@@ -17,13 +17,15 @@ export class WelcomeScreen {
 
   @Output() startClicked = new EventEmitter<void>();
 
-  soundEnabled = localStorage.getItem('pengphin-sound') !== 'off';
+  get soundEnabled(): boolean {
+    return this.audioService.getSoundEnabled();
+  }
 
-  isVoiceWarningVisible = false;
-  hasShownVoiceWarning = false;
-  private voiceWarningTimeout?: number;
 
-  constructor(public languageService: LanguageService) { }
+  constructor(
+    public languageService: LanguageService,
+    private audioService: AudioService
+  ) { }
 
   get language(): string {
     return this.languageService.getLanguage();
@@ -42,83 +44,18 @@ export class WelcomeScreen {
   }
 
   toggleSound(): void {
-  this.soundEnabled = !this.soundEnabled;
-
-  localStorage.setItem(
-    'pengphin-sound',
-    this.soundEnabled ? 'on' : 'off'
-  );
-}
+    this.audioService.toggleSound();
+  }
 
   toggleLanguage(): void {
     this.languageService.toggleLanguage();
   }
+
   onMascotClick(mascot: 'peng' | 'phin'): void {
-    if (!this.soundEnabled) {
-      return;
-    }
+    const audioPath =
+      this.languageService.getWelcomeAudioPath(mascot);
 
-    const visibleText =
-      mascot === 'peng'
-        ? this.pengBubble
-        : this.phinBubble;
-
-    let spokenText = visibleText;
-
-    const availableVoices = window.speechSynthesis.getVoices();
-
-    const hasBulgarianVoice = availableVoices.some((voice) =>
-      voice.lang.toLowerCase().startsWith('bg')
-    );
-
-    if (this.languageService.getLanguage() === 'bg' && !hasBulgarianVoice) {
-      this.showVoiceWarningOnce();
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(spokenText);
-
-    utterance.lang =
-      this.languageService.getLanguage() === 'bg' && hasBulgarianVoice
-        ? 'bg-BG'
-        : 'en-US';
-
-    const matchingVoice = availableVoices.find((voice) =>
-      utterance.lang.startsWith('bg')
-        ? voice.lang.toLowerCase().startsWith('bg')
-        : voice.lang.toLowerCase().startsWith('en')
-    );
-
-    if (matchingVoice) {
-      utterance.voice = matchingVoice;
-    }
-
-    if (mascot === 'peng') {
-      utterance.rate = 0.8;
-      utterance.pitch = 0.75;
-    } else {
-      utterance.rate = 1.12;
-      utterance.pitch = 1.65;
-    }
-
-    window.speechSynthesis.speak(utterance);
-  }
-
-  private showVoiceWarningOnce(): void {
-    if (this.hasShownVoiceWarning) {
-      return;
-    }
-
-    this.hasShownVoiceWarning = true;
-    this.isVoiceWarningVisible = true;
-
-    window.clearTimeout(this.voiceWarningTimeout);
-
-    this.voiceWarningTimeout = window.setTimeout(() => {
-      this.isVoiceWarningVisible = false;
-    }, 4200);
+    this.audioService.play(audioPath);
   }
 
   onStartClick(): void {

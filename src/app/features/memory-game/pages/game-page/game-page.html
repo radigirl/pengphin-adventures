@@ -53,15 +53,18 @@
         </div>
       </aside>
 
-      <div class="board-wrap" [class.board-wrap--large-phone]="hasLargePhoneBoard" [style.background]="currentWorld.theme.boardWrapBg" [style.--board-columns]="boardColumns"
+      <div class="board-wrap" [class.board-wrap--large-phone]="hasLargePhoneBoard"
+        [style.background]="currentWorld.theme.boardWrapBg" [style.--board-columns]="boardColumns"
         [style.--board-card-size.px]="boardCardSize" [style.--board-gap.px]="boardGap"
         [style.--board-padding.px]="boardPadding">
-        <button class="mobile-mascot-peek mobile-mascot-peek--left" [class.mobile-mascot-peek--large-board]="hasLargePhoneBoard" type="button" *ngIf="isPhonePortrait"
+        <button class="mobile-mascot-peek mobile-mascot-peek--left"
+          [class.mobile-mascot-peek--large-board]="hasLargePhoneBoard" type="button" *ngIf="isPhonePortrait"
           (click)="onMascotClick('peng')" aria-label="Talk to Peng">
           <img [src]="currentWorld.mascots.peng" alt="Peng" [class.active]="activeMobileSpeaker === 'peng'" />
         </button>
 
-        <button class="mobile-mascot-peek mobile-mascot-peek--right" [class.mobile-mascot-peek--large-board]="hasLargePhoneBoard" type="button" *ngIf="isPhonePortrait"
+        <button class="mobile-mascot-peek mobile-mascot-peek--right"
+          [class.mobile-mascot-peek--large-board]="hasLargePhoneBoard" type="button" *ngIf="isPhonePortrait"
           (click)="onMascotClick('phin')" aria-label="Talk to Phin">
           <img [src]="currentWorld.mascots.phin" alt="Phin" [class.active]="activeMobileSpeaker === 'phin'" />
         </button>
@@ -92,46 +95,69 @@
 
 <div class="modal-overlay" *ngIf="showLevelCompleteModal">
   <div class="modal-card">
-    <h2>⭐ Level Complete!</h2>
-    <p>You finished Level {{ getGlobalLevel() }}.</p>
-    <p>Total coins: {{ coins }}</p>
+    <h2>{{ 'modals.levelCompleteTitle' | translate }}</h2>
+    <p>{{ 'modals.levelCompleteText' | translate }}</p>
+    <p>{{ 'modals.totalCoins' | translate }}: {{ coins }}</p>
 
-    <button class="modal-button" (click)="goToNextLevel()">
-      Next Level ▶
-    </button>
+    <div class="modal-actions">
+      <button class="modal-button modal-button--secondary" type="button" (click)="stayAndExplore()">
+        {{ 'modals.stayAndExplore' | translate }}
+      </button>
+
+      <button class="modal-button" type="button" (click)="goToNextLevel()">
+        {{ 'modals.nextLevel' | translate }} ▶
+      </button>
+    </div>
   </div>
 </div>
 
 <div class="modal-overlay" *ngIf="showSpecialCardsIntroModal">
   <div class="modal-card">
-    <h2>{{ currentWorld.messages.specialCardsIntroTitle }}</h2>
-    <p>{{ currentWorld.messages.specialCardsIntroText }}</p>
+    <h2>{{ currentWorld.messages.specialCardsIntroTitle[currentLanguage] }}</h2>
+    <p>{{ currentWorld.messages.specialCardsIntroText[currentLanguage] }}</p>
 
     <div class="special-info">
       <p>
-        {{ currentWorld.bonusIcon }} {{ currentWorld.bonusName }}: gives you
-        bonus coins.
+        <img class="special-card-icon" [src]="currentWorld.bonusIcon" alt="" />
+
+        {{ currentWorld.bonusName[currentLanguage] }}:
+        {{ 'modals.bonusCardInfo' | translate }}
       </p>
+
       <p>
-        {{ currentWorld.mischiefIcon }} {{ currentWorld.mischiefName }}: causes
-        mischief on the board.
+        <img class="special-card-icon" [src]="currentWorld.mischiefIcon" alt="" />
+
+        {{ currentWorld.mischiefName[currentLanguage] }}:
+        {{ 'modals.mischiefCardInfo' | translate }}
       </p>
     </div>
 
-    <button (click)="continueToSpecialCardsLevel()">
-      Start Level {{ getGlobalLevel() + 1 }} ▶
-    </button>
+    <div class="modal-actions">
+      <button class="modal-button modal-button--secondary" type="button" (click)="stayAndExploreSpecialIntro()">
+        {{ 'modals.stayAndExplore' | translate }}
+      </button>
+
+      <button class="modal-button" type="button" (click)="continueToSpecialCardsLevel()">
+        {{ 'modals.startLevel' | translate }} {{ getGlobalLevel() + 1 }} ▶
+      </button>
+    </div>
   </div>
 </div>
 
 <div class="modal-overlay" *ngIf="showWorldCompleteModal">
   <div class="modal-card">
-    <h2>{{ currentWorld.messages.worldCompleteTitle }}</h2>
-    <p>{{ currentWorld.messages.worldCompleteText }}</p>
-    <p>Total coins: {{ coins }}</p>
+    <h2>{{ currentWorld.messages.worldCompleteTitle[currentLanguage] }}</h2>
+    <p>{{ currentWorld.messages.worldCompleteText[currentLanguage] }}</p>
+    <p>{{ 'modals.totalCoins' | translate }}: {{ coins }}</p>
 
-    <button class="modal-button" (click)="goToNextWorld()">
-      Next World ▶
-    </button>
+    <div class="modal-actions">
+      <button class="modal-button modal-button--secondary" type="button" (click)="stayAndExploreWorldComplete()">
+        {{ 'modals.stayAndExplore' | translate }}
+      </button>
+
+      <button class="modal-button" type="button" (click)="goToNextWorld()">
+        {{ 'modals.nextWorld' | translate }} ▶
+      </button>
+    </div>
   </div>
 </div>

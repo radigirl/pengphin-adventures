@@ -51,16 +51,28 @@ export class LanguageService {
     return this.currentLanguageSubject.value;
   }
 
-  t(path: string): string {
-    return (
-      path
-        .split('.')
-        .reduce(
-          (obj: any, key) => obj?.[key],
-          this.currentTranslations
-        ) || path
-    );
+  getWelcomeAudioPath(mascot: 'peng' | 'phin'): string {
+  if (mascot === 'peng') {
+    return this.currentTranslations.welcome.pengBubbleAudio;
   }
+
+  return this.currentTranslations.welcome.phinBubbleAudio;
+}
+
+  getTranslations(): any {
+    return this.currentTranslations;
+  }
+
+  t<T = string>(path: string): T {
+  const value = path
+    .split('.')
+    .reduce(
+      (obj: any, key) => obj?.[key],
+      this.currentTranslations
+    );
+
+  return (value ?? path) as T;
+}
 
   private getSavedLanguage(): AppLanguage {
     const saved = localStorage.getItem(
@@ -71,4 +83,6 @@ export class LanguageService {
       ? 'bg'
       : 'en';
   }
+
+
 }

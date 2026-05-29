@@ -67,6 +67,16 @@ export const WORLDS: WorldConfig[] = [
       peng: { en: "Let's explore the ocean!", bg: 'Хайде да изследваме океана!' },
       phin: { en: 'Find the matching sea animals!', bg: 'Намери еднаквите морски животни!' },
     },
+    mascotAudio: {
+      peng: {
+        en: 'assets/audio/en/ocean/peng-ocean.mp3',
+        bg: 'assets/audio/bg/ocean/peng-ocean.mp3',
+      },
+      phin: {
+        en: 'assets/audio/en/ocean/phin-ocean.mp3',
+        bg: 'assets/audio/bg/ocean/phin-ocean.mp3',
+      },
+    },
   },
 
   {

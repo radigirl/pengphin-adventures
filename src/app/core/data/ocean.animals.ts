@@ -7,7 +7,9 @@ export const OCEAN_ANIMALS: Animal[] = [
     nameBg: "Костенурка",
     icon: "assets/ocean/turtle.png",
     introductionEn: "I'm a turtle! I love swimming slowly!",
-    introductionBg: "Аз съм костенурка! Обичам да плувам бавно!"
+    introductionBg: "Аз съм костенурка! Обичам да плувам бавно!",
+    audioEn: "assets/audio/en/ocean/turtle.mp3",
+    audioBg: "assets/audio/bg/ocean/turtle.mp3",
   },
   {
     id: "crab",
@@ -15,7 +17,9 @@ export const OCEAN_ANIMALS: Animal[] = [
     nameBg: "Рак",
     icon: "assets/ocean/crab.png",
     introductionEn: "I'm a crab! I love walking sideways!",
-    introductionBg: "Аз съм рак! Обичам да ходя настрани!"
+    introductionBg: "Аз съм рак! Обичам да ходя настрани!",
+    audioEn: "assets/audio/en/ocean/crab.mp3",
+    audioBg: "assets/audio/bg/ocean/crab.mp3",
   },
   {
     id: "fish",
@@ -23,7 +27,9 @@ export const OCEAN_ANIMALS: Animal[] = [
     nameBg: "Риба",
     icon: "assets/ocean/fish.png",
     introductionEn: "I'm a fish! I love the water!",
-    introductionBg: "Аз съм риба! Обичам водата!"
+    introductionBg: "Аз съм риба! Обичам водата!",
+    audioEn: "assets/audio/en/ocean/fish.mp3",
+    audioBg: "assets/audio/bg/ocean/fish.mp3",
   },
   {
     id: "seahorse",
@@ -31,7 +37,9 @@ export const OCEAN_ANIMALS: Animal[] = [
     nameBg: "Морско конче",
     icon: "assets/ocean/seahorse.png",
     introductionEn: "I'm a seahorse! I love floating in the sea!",
-    introductionBg: "Аз съм морско конче! Обичам да се нося в морето!"
+    introductionBg: "Аз съм морско конче! Обичам да се нося в морето!",
+    audioEn: "assets/audio/en/ocean/seahorse.mp3",
+    audioBg: "assets/audio/bg/ocean/seahorse.mp3",
   },
   {
     id: "starfish",
@@ -39,7 +47,9 @@ export const OCEAN_ANIMALS: Animal[] = [
     nameBg: "Морска звезда",
     icon: "assets/ocean/starfish.png",
     introductionEn: "I'm a starfish! I love resting on the sand!",
-    introductionBg: "Аз съм морска звезда! Обичам да лежа на пясъка!"
+    introductionBg: "Аз съм морска звезда! Обичам да лежа на пясъка!",
+    audioEn: "assets/audio/en/ocean/starfish.mp3",
+    audioBg: "assets/audio/bg/ocean/starfish.mp3",
   },
   {
     id: "whale",
@@ -47,6 +57,8 @@ export const OCEAN_ANIMALS: Animal[] = [
     nameBg: "Кит",
     icon: "assets/ocean/whale.png",
     introductionEn: "I'm a whale! I love splashing water!",
-    introductionBg: "Аз съм кит! Обичам да пръскам вода!"
+    introductionBg: "Аз съм кит! Обичам да пръскам вода!",
+    audioEn: "assets/audio/en/ocean/whale.mp3",
+    audioBg: "assets/audio/bg/ocean/whale.mp3",
   }
 ];

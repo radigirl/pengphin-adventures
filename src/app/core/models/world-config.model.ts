@@ -15,13 +15,10 @@ export interface WorldConfig {
   backgroundImage: string;
   animals: Animal[];
   levels: LevelConfig[];
-
   bonusIcon: string;
   bonusName: LocalizedText;
-
   mischiefIcon: string;
   mischiefName: LocalizedText;
-
   theme: {
     titleColor: string;
     subtitleColor: string;
@@ -55,5 +52,10 @@ export interface WorldConfig {
   mascotMessages: {
     peng: LocalizedText;
     phin: LocalizedText;
+  };
+
+  mascotAudio?: {
+    peng?: LocalizedText;
+    phin?: LocalizedText;
   };
 }

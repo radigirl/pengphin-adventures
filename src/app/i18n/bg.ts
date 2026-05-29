@@ -5,6 +5,8 @@ export const bg = {
     start: 'Играй',
     pengBubble: 'Здравей!',
     phinBubble: 'Да играем!',
+    pengBubbleAudio: 'assets/audio/bg/peng-hello-bg.mp3',
+    phinBubbleAudio: 'assets/audio/bg/phin-play-bg.mp3',
   },
   messages: {
     voiceUnavailable: 'Гласът на български не е наличен тук. Опитайте с друг браузър или устройство.',
@@ -14,5 +16,16 @@ export const bg = {
     level: 'Ниво',
     coins: 'Монети',
     hint: 'Помощ',
+  },
+  modals: {
+    levelCompleteTitle: '⭐ Нивото е завършено!',
+    levelCompleteText: 'Откри всички животни!',
+    totalCoins: 'Монети общо',
+    stayAndExplore: 'Остани и разгледай',
+    nextLevel: 'Следващо ниво',
+    nextWorld: 'Следващ свят',
+    startLevel: 'Започни ниво',
+    bonusCardInfo: 'дава допълнителни монети.',
+    mischiefCardInfo: 'прави пакости с картите.'
   },
 };

@@ -265,34 +265,61 @@
 
 .modal-card {
   width: min(420px, 100%);
-  background: white;
+  background: rgba(255, 255, 255, 0.96);
   color: #1f2937;
   border-radius: 24px;
-  padding: 24px;
+  padding: 24px 24px 22px;
   text-align: center;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
 }
 
 .modal-card h2 {
-  margin-top: 0;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
+  font-size: 1.45rem;
+  line-height: 1.15;
+}
+
+.modal-card p {
+  margin: 0 0 10px;
+  line-height: 1.25;
 }
 
 .special-info {
-  margin: 16px 0;
+  margin: 10px 0 14px;
   text-align: left;
 }
 
-.modal-button {
-  background: #ffd166;
-  color: #1f2937;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 18px;
-  font-weight: 700;
-  cursor: pointer;
+.special-info p {
+  margin: 0 0 4px;
+  line-height: 1.2;
 }
 
+.special-info p:last-child {
+  margin-bottom: 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.modal-button {
+  min-height: 40px;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  background: #ffd166;
+  color: #1f2937;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.modal-button--secondary {
+  background: #ffe8a8;
+}
 
 @include tablet {
   .game-page {
@@ -359,6 +386,14 @@
 
 .game-control:active {
   transform: scale(0.95);
+}
+
+.special-card-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 6px;
 }
 
 

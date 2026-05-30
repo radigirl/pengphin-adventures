@@ -28,6 +28,38 @@ It is also developed as a portfolio project, focusing on clean Angular architect
 
 ---
 
+## ✅ Quality & Testing
+
+The project includes automated unit tests covering core gameplay and supporting services.
+
+Current test coverage includes:
+
+- Memory board generation logic
+- Animal pair creation and card counts
+- Audio settings and sound toggling
+- Language switching (English/Bulgarian)
+- Core component creation and initialization
+
+Test Status:
+- 8 test files
+- 16 passing tests
+- 0 failing tests
+
+Run tests locally:
+
+```bash
+npm test
+```
+
+or
+
+```bash
+ng test
+```
+
+---
+
+
 ## 🎮 Features
 
 - Multi-world progression system

@@ -65,6 +65,7 @@ export class GamePage implements OnInit {
   private feedbackTimeoutId: number | null = null;
 
   private hintInProgress = false;
+  private lastHintedAnimalId: string | null = null;
 
   private boardSessionId = 0;
 
@@ -447,6 +448,7 @@ export class GamePage implements OnInit {
     if (this.firstSelectedCardId === card.id) {
       return;
     }
+    this.lastHintedAnimalId = null;
 
     const firstSelectedCard = this.firstSelectedCardId
       ? this.findCardById(this.firstSelectedCardId)
@@ -683,9 +685,8 @@ export class GamePage implements OnInit {
     if (!this.canUseHint()) {
       return;
     }
-    this.hintInProgress = true;
 
-    this.coins -= this.hintCost;
+    this.hintInProgress = true;
 
     const hiddenAnimalCards = this.cards.filter(
       (card) => card.type === 'animal' && !card.flipped && !card.matched
@@ -705,7 +706,19 @@ export class GamePage implements OnInit {
     );
 
     if (!matchingPair) {
+      this.hintInProgress = false;
       return;
+    }
+
+    const hintedAnimalId = matchingPair[0].animalId ?? null;
+
+    const isSameHintAsBefore =
+      hintedAnimalId !== null &&
+      hintedAnimalId === this.lastHintedAnimalId;
+
+    if (!isSameHintAsBefore) {
+      this.coins -= this.hintCost;
+      this.lastHintedAnimalId = hintedAnimalId;
     }
 
     this.boardLocked = true;
@@ -716,10 +729,15 @@ export class GamePage implements OnInit {
     this.setCardState(secondHintCard.id, { flipped: true, hinted: true });
 
     this.showFeedback(
-      this.currentLanguage === 'bg'
-        ? `💡 Използвана помощ (-${this.hintCost} монети)`
-        : `💡 Hint used (-${this.hintCost} coins)`
+      isSameHintAsBefore
+        ? this.currentLanguage === 'bg'
+          ? '💡 Същата помощ е показана отново'
+          : '💡 Same hint shown again'
+        : this.currentLanguage === 'bg'
+          ? `💡 Използвана помощ (-${this.hintCost} монети)`
+          : `💡 Hint used (-${this.hintCost} coins)`
     );
+
     this.cdr.detectChanges();
 
     setTimeout(() => {

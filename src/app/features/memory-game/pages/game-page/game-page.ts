@@ -109,12 +109,11 @@ export class GamePage implements OnInit {
   }
 
   get isPhoneLandscape(): boolean {
-    return (
-      window.innerWidth <= this.PHONE_MAX_WIDTH &&
-      window.innerHeight <= 500 &&
-      window.innerWidth > window.innerHeight
-    );
-  }
+  return (
+    window.innerHeight <= 500 &&
+    window.innerWidth > window.innerHeight
+  );
+}
 
   get isPhonePortrait(): boolean {
     return (

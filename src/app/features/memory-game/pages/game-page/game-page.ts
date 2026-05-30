@@ -126,30 +126,29 @@ export class GamePage implements OnInit {
   get hasLargePhoneBoard(): boolean {
     return (
       this.isPhonePortrait &&
-      this.cards.length >= 18
+      this.cards.length >= 16
     );
   }
 
   get boardColumns(): number {
-    if (this.isPhoneLandscape) {
-      if (this.cards.length >= 18) {
-        return 6;
-      }
-
-      return 4;
-    }
-
+    const cardCount = this.cards.length;
     const width = window.innerWidth;
 
-    if (width <= this.PHONE_MAX_WIDTH) {
-      return this.cards.length >= 18 ? 4 : 3;
+    if (this.isPhoneLandscape) {
+      if (cardCount <= 12) return 4;
+      if (cardCount <= 16) return 4;
+      if (cardCount <= 20) return 5;
+      return 6;
     }
 
-    if (width < this.DESKTOP_MIN_WIDTH) {
+    if (width <= this.PHONE_MAX_WIDTH) {
+      if (cardCount <= 12) return 3;
       return 4;
     }
 
-    return 5;
+    if (cardCount <= 16) return 4;
+    if (cardCount <= 20) return 5;
+    return 6;
   }
 
   get boardRows(): number {
@@ -317,7 +316,9 @@ export class GamePage implements OnInit {
       this.currentWorld.animals,
       levelConfig,
       this.currentWorld.bonusIcon,
-      this.currentWorld.mischiefIcon
+      this.currentWorld.mischiefIcon,
+      this.currentWorld.bonusIconPool,
+      this.currentWorld.mischiefIconPool
     );
 
     this.firstSelectedCardId = null;

@@ -18,6 +18,33 @@ import { DINOSAUR_LEVELS } from './dinosaur.levels';
 import { SPACE_ANIMALS } from './space.animals';
 import { SPACE_LEVELS } from './space.levels';
 
+const ALL_ANIMALS = [
+  ...OCEAN_ANIMALS,
+  ...FARM_ANIMALS,
+  ...JUNGLE_ANIMALS,
+  ...ARCTIC_ANIMALS,
+  ...DINOSAUR_ANIMALS,
+  ...SPACE_ANIMALS,
+];
+
+const ALL_BONUS_ICONS = [
+  'assets/ocean/treasure.png',
+  'assets/farm/treasure.png',
+  'assets/jungle/treasure.png',
+  'assets/arctic/treasure.png',
+  'assets/dinosaurs/treasure.png',
+  'assets/space/treasure.png',
+];
+
+const ALL_MISCHIEF_ICONS = [
+  'assets/ocean/octopus.png',
+  'assets/farm/chicken.png',
+  'assets/jungle/sneaky-monkey.png',
+  'assets/arctic/snowy-owl.png',
+  'assets/dinosaurs/sneaky-raptor.png',
+  'assets/space/jelly-alien.png',
+];
+
 export const WORLDS: WorldConfig[] = [
   {
     id: 'ocean',
@@ -127,6 +154,16 @@ export const WORLDS: WorldConfig[] = [
       peng: { en: "Let's explore the farm!", bg: 'Хайде да разгледаме фермата!' },
       phin: { en: 'Find the matching farm animals!', bg: 'Намери еднаквите животни от фермата!' },
     },
+    mascotAudio: {
+      peng: {
+        en: 'assets/audio/en/farm/peng-farm.mp3',
+        bg: 'assets/audio/bg/farm/peng-farm.mp3',
+      },
+      phin: {
+        en: 'assets/audio/en/farm/phin-farm.mp3',
+        bg: 'assets/audio/bg/farm/phin-farm.mp3',
+      },
+    },
   },
 
   {
@@ -176,6 +213,16 @@ export const WORLDS: WorldConfig[] = [
     mascotMessages: {
       peng: { en: "Let's explore the jungle!", bg: 'Хайде да разгледаме джунглата!' },
       phin: { en: 'Find the matching jungle animals!', bg: 'Намери еднаквите животни от джунглата!' },
+    },
+    mascotAudio: {
+      peng: {
+        en: 'assets/audio/en/jungle/peng-jungle.mp3',
+        bg: 'assets/audio/bg/jungle/peng-jungle.mp3',
+      },
+      phin: {
+        en: 'assets/audio/en/jungle/phin-jungle.mp3',
+        bg: 'assets/audio/bg/jungle/phin-jungle.mp3',
+      },
     },
   },
 
@@ -227,6 +274,16 @@ export const WORLDS: WorldConfig[] = [
       peng: { en: "It's cold here! Let's explore the Arctic!", bg: 'Тук е студено! Хайде да разгледаме Арктика!' },
       phin: { en: 'Find the matching arctic animals!', bg: 'Намери еднаквите арктически животни!' },
     },
+    mascotAudio: {
+      peng: {
+        en: 'assets/audio/en/arctic/peng-arctic.mp3',
+        bg: 'assets/audio/bg/arctic/peng-arctic.mp3',
+      },
+      phin: {
+        en: 'assets/audio/en/arctic/phin-arctic.mp3',
+        bg: 'assets/audio/bg/arctic/phin-arctic.mp3',
+      },
+    },
   },
 
   {
@@ -277,6 +334,16 @@ export const WORLDS: WorldConfig[] = [
       peng: { en: "Let's explore the dinosaur world!", bg: 'Хайде при динозаврите!' },
       phin: { en: 'Find the matching dinosaurs!', bg: 'Намери еднаквите динозаври!' },
     },
+    mascotAudio: {
+      peng: {
+        en: 'assets/audio/en/dinosaur/peng-dinosaur.mp3',
+        bg: 'assets/audio/bg/dinosaur/peng-dinosaur.mp3',
+      },
+      phin: {
+        en: 'assets/audio/en/dinosaur/phin-dinosaur.mp3',
+        bg: 'assets/audio/bg/dinosaur/phin-dinosaur.mp3',
+      },
+    },
   },
 
   {
@@ -326,6 +393,85 @@ export const WORLDS: WorldConfig[] = [
     mascotMessages: {
       peng: { en: "Let's explore space!", bg: 'Хайде да изследваме космоса!' },
       phin: { en: 'Find the matching space creatures!', bg: 'Намери еднаквите космически създания!' },
+    },
+    mascotAudio: {
+      peng: {
+        en: 'assets/audio/en/space/peng-space.mp3',
+        bg: 'assets/audio/bg/space/peng-space.mp3',
+      },
+      phin: {
+        en: 'assets/audio/en/space/phin-space.mp3',
+        bg: 'assets/audio/bg/space/phin-space.mp3',
+      },
+    },
+  },
+
+  {
+    id: 'celebration',
+    title: { en: 'Celebration', bg: 'Празник' },
+    icon: '🎉',
+    backgroundImage: 'assets/backgrounds/space-bg.png',
+    animals: ALL_ANIMALS,
+    levels: [
+      {
+        levelNumber: 1,
+        animalCount: 10, // 20 animals + 2 treasure + 2 mischief = 24 cards
+        bonusCards: 2,
+        mischiefCards: 2,
+      },
+    ],
+
+    bonusIcon: ALL_BONUS_ICONS[0],
+    bonusName: { en: 'Surprise Treasure', bg: 'Изненадващо съкровище' },
+    bonusIconPool: ALL_BONUS_ICONS,
+
+    mischiefIcon: ALL_MISCHIEF_ICONS[0],
+    mischiefName: { en: 'Surprise Mischief', bg: 'Изненадваща пакост' },
+    mischiefIconPool: ALL_MISCHIEF_ICONS,
+
+    theme: {
+      titleColor: '#fff7ed',
+      subtitleColor: '#ffedd5',
+      boardWrapBg: 'rgba(124, 58, 237, 0.72)',
+      mascotBg: 'rgba(255, 255, 255, 0.22)',
+      mascotTextColor: '#ffffff',
+      scoreBarBg: 'rgba(88, 28, 135, 0.35)',
+      scoreBarTextColor: '#ffffff',
+      hintButtonBg: '#fcd34d',
+      hintButtonTextColor: '#1f2937',
+    },
+
+    messages: {
+      welcome: { en: '🎉 Welcome to the Celebration!', bg: '🎉 Добре дошъл на празника!' },
+      subtitleMessage: { en: 'All worlds together!', bg: 'Всички светове заедно!' },
+      bonusFound: { en: '🎉 Treasure found! +25 coins', bg: '🎉 Откри съкровище! +25 монети' },
+      mischiefSwapped: { en: '🎭 Mischief time! Cards swapped places!', bg: '🎭 Време за пакост! Картите си размениха местата!' },
+      mischiefFailed: { en: '🎭 Mischief looked around… but nothing could be swapped!', bg: '🎭 Пакостта се огледа… но няма какво да размени!' },
+      mischiefMovedCard: { en: '🎭 Mischief moved your card!', bg: '🎭 Пакостта премести картата ти!' },
+      specialCardsIntroTitle: { en: '✨ Final Surprise!', bg: '✨ Финална изненада!' },
+      specialCardsIntroText: { en: 'Animals and surprises from every world can appear.', bg: 'Могат да се появят животни и изненади от всички светове.' },
+      worldCompleteTitle: { en: '🏆 Adventure Complete!', bg: '🏆 Приключението е завършено!' },
+      worldCompleteText: { en: 'You finished all PengPhin worlds!', bg: 'Завърши всички светове на PengPhin!' },
+    },
+
+    mascots: {
+      peng: 'assets/mascots/peng-home.png',
+      phin: 'assets/mascots/phin-home.png',
+    },
+
+    mascotMessages: {
+      peng: { en: 'This is the big celebration!', bg: 'Това е големият празник!' },
+      phin: { en: 'Find animals from every world!', bg: 'Намери животни от всички светове!' },
+    },
+    mascotAudio: {
+      peng: {
+        en: 'assets/audio/en/celebration/peng-celebration.mp3',
+        bg: 'assets/audio/bg/celebration/peng-celebration.mp3',
+      },
+      phin: {
+        en: 'assets/audio/en/celebration/phin-celebration.mp3',
+        bg: 'assets/audio/bg/celebration/phin-celebration.mp3',
+      },
     },
   },
 ];

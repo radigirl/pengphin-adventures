@@ -8,6 +8,8 @@ export const FARM_ANIMALS: Animal[] = [
     icon: "assets/farm/cow.png",
     introductionEn: "I'm a cow! I like chewing grass!",
     introductionBg: 'Аз съм крава! Обичам да дъвча трева!',
+    audioEn: "assets/audio/en/farm/cow.mp3",
+    audioBg: "assets/audio/bg/farm/cow.mp3",
   },
   {
     id: 'pig',
@@ -16,6 +18,8 @@ export const FARM_ANIMALS: Animal[] = [
     icon: "assets/farm/pig.png",
     introductionEn: "I'm a pig! I love rolling in the mud!",
     introductionBg: 'Аз съм прасенце! Обичам да се търкалям в калта!',
+    audioEn: "assets/audio/en/farm/pig.mp3",
+    audioBg: "assets/audio/bg/farm/pig.mp3",
   },
   {
     id: 'sheep',
@@ -24,6 +28,8 @@ export const FARM_ANIMALS: Animal[] = [
     icon: "assets/farm/sheep.png",
     introductionEn: "I'm a sheep! My wool is fluffy!",
     introductionBg: 'Аз съм овца! Вълната ми е пухкава!',
+    audioEn: "assets/audio/en/farm/sheep.mp3",
+    audioBg: "assets/audio/bg/farm/sheep.mp3",
   },
   {
     id: 'horse',
@@ -32,6 +38,8 @@ export const FARM_ANIMALS: Animal[] = [
     icon: "assets/farm/horse.png",
     introductionEn: "I'm a horse! I like to run fast!",
     introductionBg: 'Аз съм кон! Обичам да тичам бързо!',
+    audioEn: "assets/audio/en/farm/horse.mp3",
+    audioBg: "assets/audio/bg/farm/horse.mp3",
   },
   {
     id: 'goat',
@@ -40,6 +48,8 @@ export const FARM_ANIMALS: Animal[] = [
     icon: "assets/farm/goat.png",
     introductionEn: "I'm a goat! I love climbing and jumping!",
     introductionBg: 'Аз съм коза! Обичам да скачам и да се катеря!',
+    audioEn: "assets/audio/en/farm/goat.mp3",
+    audioBg: "assets/audio/bg/farm/goat.mp3",
   },
   {
     id: 'duck',
@@ -47,6 +57,8 @@ export const FARM_ANIMALS: Animal[] = [
     nameBg: 'Патица',
     icon: "assets/farm/duck.png",
     introductionEn: "I'm a duck! I love splashing in puddles!",
-    introductionBg: 'Аз съм патица! Обичам да се плискам в локвите!',
+    introductionBg: 'Аз съм патe! Обичам да се плискам в локвите!',
+    audioEn: "assets/audio/en/farm/duck.mp3",
+    audioBg: "assets/audio/bg/farm/duck.mp3",
   },
 ];

@@ -11,9 +11,11 @@ export class MemoryGameService {
     animals: Animal[],
     levelConfig: LevelConfig,
     bonusIcon: string,
-    mischiefIcon: string
+    mischiefIcon: string,
+    bonusIcons: string[] = [bonusIcon],
+    mischiefIcons: string[] = [mischiefIcon]
   ): MemoryCard[] {
-    const selectedAnimals = animals.slice(0, levelConfig.animalCount);
+    const selectedAnimals = this.shuffle(animals).slice(0, levelConfig.animalCount);
 
     const animalCards: MemoryCard[] = selectedAnimals.flatMap((animal) => [
       {
@@ -38,17 +40,17 @@ export class MemoryGameService {
       },
     ]);
 
-    const bonusCards = this.createBonusCards(levelConfig.bonusCards, bonusIcon);
-    const mischiefCards = this.createMischiefCards(levelConfig.mischiefCards, mischiefIcon);
+    const bonusCards = this.createBonusCards(levelConfig.bonusCards, bonusIcons);
+    const mischiefCards = this.createMischiefCards(levelConfig.mischiefCards, mischiefIcons);
 
     return this.shuffle([...animalCards, ...bonusCards, ...mischiefCards]);
   }
 
-  private createBonusCards(count: number, bonusIcon: string): MemoryCard[] {
+  private createBonusCards(count: number, bonusIcons: string[]): MemoryCard[] {
     return Array.from({ length: count }, (_, index) => ({
       id: `bonus-${index + 1}`,
       type: 'bonus' as const,
-      icon: bonusIcon,
+      icon: this.pickRandom(bonusIcons),
       flipped: false,
       matched: false,
       hinted: false,
@@ -57,11 +59,11 @@ export class MemoryGameService {
     }));
   }
 
-  private createMischiefCards(count: number, mischiefIcon: string): MemoryCard[] {
+  private createMischiefCards(count: number, mischiefIcons: string[]): MemoryCard[] {
     return Array.from({ length: count }, (_, index) => ({
       id: `mischief-${index + 1}`,
       type: 'mischief' as const,
-      icon: mischiefIcon,
+      icon: this.pickRandom(mischiefIcons),
       flipped: false,
       matched: false,
       hinted: false,
@@ -69,7 +71,11 @@ export class MemoryGameService {
     }));
   }
 
-  private shuffle(cards: MemoryCard[]): MemoryCard[] {
-    return [...cards].sort(() => Math.random() - 0.5);
+  private pickRandom(items: string[]): string {
+    return items[Math.floor(Math.random() * items.length)];
+  }
+
+  private shuffle<T>(items: T[]): T[] {
+    return [...items].sort(() => Math.random() - 0.5);
   }
 }

@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1780147275627,
+  "timestamp": 1780147851132,
   "index": "https://radigirl.github.io/pengphin-adventures/index.html",
   "assetGroups": [
     {
@@ -11,8 +11,10 @@
         "ignoreVary": true
       },
       "urls": [
+        "https://radigirl.github.io/pengphin-adventures/favicon.ico",
         "https://radigirl.github.io/pengphin-adventures/index.html",
         "https://radigirl.github.io/pengphin-adventures/main-KFEWSF4Q.js",
+        "https://radigirl.github.io/pengphin-adventures/manifest.webmanifest",
         "https://radigirl.github.io/pengphin-adventures/styles-LFARRET4.css"
       ],
       "patterns": []
@@ -110,6 +112,14 @@
         "https://radigirl.github.io/pengphin-adventures/assets/space/space-octopus.png",
         "https://radigirl.github.io/pengphin-adventures/assets/space/space-turtle.png",
         "https://radigirl.github.io/pengphin-adventures/assets/space/treasure.png",
+        "https://radigirl.github.io/pengphin-adventures/icons/icon-128x128.png",
+        "https://radigirl.github.io/pengphin-adventures/icons/icon-144x144.png",
+        "https://radigirl.github.io/pengphin-adventures/icons/icon-152x152.png",
+        "https://radigirl.github.io/pengphin-adventures/icons/icon-192x192.png",
+        "https://radigirl.github.io/pengphin-adventures/icons/icon-384x384.png",
+        "https://radigirl.github.io/pengphin-adventures/icons/icon-512x512.png",
+        "https://radigirl.github.io/pengphin-adventures/icons/icon-72x72.png",
+        "https://radigirl.github.io/pengphin-adventures/icons/icon-96x96.png",
         "https://radigirl.github.io/pengphin-adventures/media/welcome-bg-WLQG6VQI.png"
       ],
       "patterns": []
@@ -202,8 +212,18 @@
     "https://radigirl.github.io/pengphin-adventures/assets/space/space-octopus.png": "93da3555df5a9f9b6f649cea72ed0a55b85133a0",
     "https://radigirl.github.io/pengphin-adventures/assets/space/space-turtle.png": "3420eea838428ef47a3b26984ebc45d4ff0e89ed",
     "https://radigirl.github.io/pengphin-adventures/assets/space/treasure.png": "8a332f7dbb2f2290cdbd2d967a0ef557dff56f93",
+    "https://radigirl.github.io/pengphin-adventures/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "https://radigirl.github.io/pengphin-adventures/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "https://radigirl.github.io/pengphin-adventures/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "https://radigirl.github.io/pengphin-adventures/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "https://radigirl.github.io/pengphin-adventures/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "https://radigirl.github.io/pengphin-adventures/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "https://radigirl.github.io/pengphin-adventures/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "https://radigirl.github.io/pengphin-adventures/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "https://radigirl.github.io/pengphin-adventures/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
     "https://radigirl.github.io/pengphin-adventures/index.html": "c0fa6b4efa3a621321080a9353390cc70e22116d",
     "https://radigirl.github.io/pengphin-adventures/main-KFEWSF4Q.js": "423800629bfbed554e3ea8cc994d597bf0dee1c1",
+    "https://radigirl.github.io/pengphin-adventures/manifest.webmanifest": "e5e899b5167643ed0569eb1f3aabd3b34f9b2083",
     "https://radigirl.github.io/pengphin-adventures/media/welcome-bg-WLQG6VQI.png": "f027b0b76298d84ee85fe7932e78167ca1403d5e",
     "https://radigirl.github.io/pengphin-adventures/styles-LFARRET4.css": "0b668ba75f3367700beabb4974aff35ef6b8fa35"
   },

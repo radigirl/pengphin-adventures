@@ -158,6 +158,10 @@ export class GamePage implements OnInit {
   get boardGap(): number {
     const width = window.innerWidth;
 
+    if (this.isPhoneLandscape) {
+      return 8;
+    }
+
     if (width <= this.PHONE_MAX_WIDTH) {
       return this.boardRows >= 8 ? 8 : 10;
     }
@@ -171,6 +175,10 @@ export class GamePage implements OnInit {
 
   get boardPadding(): number {
     const width = window.innerWidth;
+
+    if (this.isPhoneLandscape) {
+      return 8;
+    }
 
     if (width <= this.PHONE_MAX_WIDTH) {
       return 10;
@@ -259,7 +267,7 @@ export class GamePage implements OnInit {
     const width = window.innerWidth;
 
     if (this.isPhoneLandscape) {
-      return Math.max(44, Math.min(rawSize, 64));
+      return Math.max(34, Math.min(rawSize, 54));
     }
 
     if (width <= this.PHONE_MAX_WIDTH) {

@@ -105,7 +105,7 @@
       </button>
 
       <button class="modal-button" type="button" (click)="goToNextLevel()">
-        {{ 'modals.nextLevel' | translate }} {{ getGlobalLevel()  + 1 }} ▶
+        {{ 'modals.nextLevel' | translate }} {{ getGlobalLevel() + 1 }} ▶
       </button>
     </div>
   </div>
@@ -155,9 +155,17 @@
         {{ 'modals.stayAndExplore' | translate }}
       </button>
 
-      <button class="modal-button" type="button" (click)="goToNextWorld()">
-        {{ 'modals.nextLevel' | translate }} {{ getGlobalLevel()  + 1 }} ▶
+      <button class="modal-button" type="button" *ngIf="!isFinalLevel" (click)="goToNextWorld()">
+        {{ 'modals.nextLevel' | translate }} {{ getGlobalLevel() + 1 }} ▶
+      </button>
+
+      <button class="modal-button" type="button" *ngIf="isFinalLevel" (click)="stayAndExploreWorldComplete()">
+        {{ 'modals.finishAdventure' | translate }}
       </button>
     </div>
   </div>
 </div>
+
+<app-snackbar [message]="'update.newVersion' | translate" [isVisible]="showUpdateSnackbar"
+  [actionLabel]="'update.refresh' | translate" (actionClicked)="refreshApp()">
+</app-snackbar>

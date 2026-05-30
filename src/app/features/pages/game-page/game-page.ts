@@ -11,6 +11,8 @@ import { WelcomeScreen } from '../../components/welcome-screen/welcome-screen';
 import { LanguageService } from '../../../core/services/language.service';
 import { AudioService } from '../../../core/services/audio.service';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
+import { Snackbar } from '../../../shared/components/snackbar/snackbar';
+import { SwUpdate } from '@angular/service-worker';
 
 
 @Component({
@@ -21,7 +23,8 @@ import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
     MemoryCard,
     ScoreBar,
     WelcomeScreen,
-    TranslatePipe
+    TranslatePipe,
+    Snackbar
   ],
   templateUrl: './game-page.html',
   styleUrl: './game-page.scss',
@@ -65,16 +68,20 @@ export class GamePage implements OnInit {
 
   private boardSessionId = 0;
 
+  showUpdateSnackbar = false;
+
   constructor(
     private memoryGameService: MemoryGameService,
     private cdr: ChangeDetectorRef,
     private languageService: LanguageService,
-    private audioService: AudioService
+    private audioService: AudioService,
+    private swUpdate: SwUpdate
   ) { }
 
   ngOnInit(): void {
     this.updateViewportMode();
     this.preloadWorldBackgrounds();
+    this.listenForAppUpdates();
   }
 
   @HostListener('window:resize')
@@ -1008,4 +1015,29 @@ export class GamePage implements OnInit {
   private isOldBoard(sessionId: number): boolean {
     return sessionId !== this.boardSessionId;
   }
+
+  get isFinalLevel(): boolean {
+    return (
+      this.currentWorldIndex === WORLDS.length - 1 &&
+      this.currentLevel === this.currentWorld.levels.length
+    );
+  }
+
+  private listenForAppUpdates(): void {
+    if (!this.swUpdate.isEnabled) {
+      return;
+    }
+
+    this.swUpdate.versionUpdates.subscribe((event) => {
+      if (event.type === 'VERSION_READY') {
+        this.showUpdateSnackbar = true;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  refreshApp(): void {
+    window.location.reload();
+  }
+
 }

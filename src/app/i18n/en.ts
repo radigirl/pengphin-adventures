@@ -18,16 +18,21 @@ export const en = {
     hint: 'Hint',
   },
   modals: {
-  levelCompleteTitle: '⭐ Level Complete!',
-  levelCompleteText: 'You found all the animals!',
-  totalCoins: 'Total coins',
-  stayAndExplore: 'Stay & Explore',
-  nextLevel: 'Level',
-  nextWorld: 'Next World',
-  startLevel: 'Level',
-  bonusCardName: 'Bonus card',
-  mischiefCardName: 'Mischief card',
-  bonusCardInfo: 'gives extra coins.',
-  mischiefCardInfo: 'can move cards around.',
-},
+    levelCompleteTitle: '⭐ Level Complete!',
+    levelCompleteText: 'You found all the animals!',
+    totalCoins: 'Total coins',
+    stayAndExplore: 'Stay & Explore',
+    nextLevel: 'Level',
+    nextWorld: 'Next World',
+    startLevel: 'Level',
+    bonusCardName: 'Bonus card',
+    mischiefCardName: 'Mischief card',
+    bonusCardInfo: 'gives extra coins.',
+    mischiefCardInfo: 'can move cards around.',
+    finishAdventure: 'Finish Adventure'
+  },
+  update: {
+    newVersion: 'New version available',
+    refresh: 'Refresh'
+  },
 };

@@ -28,6 +28,11 @@ export const bg = {
     bonusCardName: 'Бонус карта',
     mischiefCardName: 'Пакостлива карта',
     bonusCardInfo: 'дава допълнителни монети.',
-    mischiefCardInfo: 'може да размества картите.'
+    mischiefCardInfo: 'може да размества картите.',
+    finishAdventure: 'Край на приключението'
+  },
+  update: {
+    newVersion: 'Има нова версия',
+    refresh: 'Обнови'
   },
 };

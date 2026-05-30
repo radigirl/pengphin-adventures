@@ -1,3 +1,7 @@
 <div class="snackbar" *ngIf="isVisible && message">
-  {{ message }}
+  <span>{{ message }}</span>
+
+  <button *ngIf="actionLabel" type="button" (click)="actionClicked.emit()">
+    {{ actionLabel }}
+  </button>
 </div>

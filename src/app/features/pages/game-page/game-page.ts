@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 
-import { WORLDS } from '../../../../core/data/worlds';
-import { MemoryCard as MemoryCardModel } from '../../../../core/models/memory-card.model';
-import { MemoryGameService } from '../../../../core/services/memory-game.service';
+import { WORLDS } from '../../../core/data/worlds';
+import { MemoryCard as MemoryCardModel } from '../../../core/models/memory-card.model';
+import { MemoryGameService } from '../../../core/services/memory-game.service';
 
 import { MemoryCard } from '../../components/memory-card/memory-card';
 import { ScoreBar } from '../../components/score-bar/score-bar';
 import { WelcomeScreen } from '../../components/welcome-screen/welcome-screen';
-import { TranslatePipe } from '../../../../shared/pipes/translate.pipe';
-import { LanguageService } from '../../../../services/language.service';
-import { AudioService } from '../../../../services/audio.service';
+import { LanguageService } from '../../../core/services/language.service';
+import { AudioService } from '../../../core/services/audio.service';
+import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
 
 
 @Component({
@@ -27,8 +27,8 @@ import { AudioService } from '../../../../services/audio.service';
   styleUrl: './game-page.scss',
 })
 export class GamePage implements OnInit {
-  welcomePeng = 'assets/mascots/peng-home.png';
-  welcomePhin = 'assets/mascots/phin-home.png';
+  welcomePeng = 'assets/mascots/peng-home-small.png';
+  welcomePhin = 'assets/mascots/phin-home-small.png';
 
   cards: MemoryCardModel[] = [];
   currentWorldIndex = 0;
@@ -61,6 +61,10 @@ export class GamePage implements OnInit {
   private boardLocked = false;
   private feedbackTimeoutId: number | null = null;
 
+  private hintInProgress = false;
+
+  private boardSessionId = 0;
+
   constructor(
     private memoryGameService: MemoryGameService,
     private cdr: ChangeDetectorRef,
@@ -70,6 +74,7 @@ export class GamePage implements OnInit {
 
   ngOnInit(): void {
     this.updateViewportMode();
+    this.preloadWorldBackgrounds();
   }
 
   @HostListener('window:resize')
@@ -108,12 +113,19 @@ export class GamePage implements OnInit {
     this.cdr.detectChanges();
   }
 
+  private preloadWorldBackgrounds(): void {
+    WORLDS.forEach((world) => {
+      const image = new Image();
+      image.src = world.backgroundImage;
+    });
+  }
+
   get isPhoneLandscape(): boolean {
-  return (
-    window.innerHeight <= 500 &&
-    window.innerWidth > window.innerHeight
-  );
-}
+    return (
+      window.innerHeight <= 500 &&
+      window.innerWidth > window.innerHeight
+    );
+  }
 
   get isPhonePortrait(): boolean {
     return (
@@ -317,20 +329,15 @@ export class GamePage implements OnInit {
   }
 
   setupBoard(): void {
-    const levelConfig = this.currentWorld.levels[this.currentLevel - 1];
+    this.boardSessionId++;
 
-    this.cards = this.memoryGameService.createBoard(
-      this.currentWorld.animals,
-      levelConfig,
-      this.currentWorld.bonusIcon,
-      this.currentWorld.mischiefIcon,
-      this.currentWorld.bonusIconPool,
-      this.currentWorld.mischiefIconPool
-    );
+    const sessionId = this.boardSessionId;
 
+    this.cards = [];
     this.firstSelectedCardId = null;
     this.secondSelectedCardId = null;
-    this.boardLocked = false;
+    this.boardLocked = true;
+    this.hintInProgress = false;
 
     this.showLevelCompleteModal = false;
     this.showSpecialCardsIntroModal = false;
@@ -339,9 +346,39 @@ export class GamePage implements OnInit {
 
     this.clearMascotBubbles();
     this.cdr.detectChanges();
+
+    window.setTimeout(() => {
+      if (this.isOldBoard(sessionId)) {
+        return;
+      }
+
+      const levelConfig = this.currentWorld.levels[this.currentLevel - 1];
+
+      this.cards = this.memoryGameService.createBoard(
+        this.currentWorld.animals,
+        levelConfig,
+        this.currentWorld.bonusIcon,
+        this.currentWorld.mischiefIcon,
+        this.currentWorld.bonusIconPool,
+        this.currentWorld.mischiefIconPool
+      );
+
+      window.setTimeout(() => {
+        if (this.isOldBoard(sessionId)) {
+          return;
+        }
+
+        this.boardLocked = false;
+        this.cdr.detectChanges();
+      }, 300);
+
+      this.cdr.detectChanges();
+    }, 0);
   }
 
   async onCardClicked(card: MemoryCardModel, event?: MouseEvent): Promise<void> {
+    const sessionId = this.boardSessionId;
+
     if (card.flipped || card.matched) {
       event?.stopPropagation();
 
@@ -394,12 +431,12 @@ export class GamePage implements OnInit {
       this.cdr.detectChanges();
 
       if (card.type === 'bonus') {
-        await this.handleBonusAsFirst(card.id);
+        await this.handleBonusAsFirst(card.id, sessionId);
         return;
       }
 
       if (card.type === 'mischief') {
-        await this.handleMischiefAsFirst(card.id);
+        await this.handleMischiefAsFirst(card.id, sessionId);
         return;
       }
 
@@ -411,12 +448,12 @@ export class GamePage implements OnInit {
     this.cdr.detectChanges();
 
     if (card.type === 'bonus') {
-      await this.handleBonusAsSecond(card.id);
+      await this.handleBonusAsSecond(card.id, sessionId);
       return;
     }
 
     if (card.type === 'mischief') {
-      await this.handleMischiefAsSecond(card.id, firstSelectedCard.id);
+      await this.handleMischiefAsSecond(card.id, firstSelectedCard.id, sessionId);
       return;
     }
 
@@ -448,6 +485,10 @@ export class GamePage implements OnInit {
 
       await this.sleep(500);
 
+      if (sessionId !== this.boardSessionId) {
+        return;
+      }
+
       this.resetTurn();
       this.checkWin();
       this.cdr.detectChanges();
@@ -456,6 +497,10 @@ export class GamePage implements OnInit {
 
     await this.sleep(1000);
 
+    if (sessionId !== this.boardSessionId) {
+      return;
+    }
+
     this.setCardState(firstSelectedCard.id, { flipped: false });
     this.setCardState(secondSelectedCard.id, { flipped: false });
 
@@ -463,7 +508,7 @@ export class GamePage implements OnInit {
     this.cdr.detectChanges();
   }
 
-  private async handleBonusAsFirst(cardId: string): Promise<void> {
+  private async handleBonusAsFirst(cardId: string, sessionId: number): Promise<void> {
     const card = this.findCardById(cardId);
     if (!card) {
       return;
@@ -478,11 +523,16 @@ export class GamePage implements OnInit {
 
     await this.sleep(700);
 
+    if (this.isOldBoard(sessionId)) {
+      return;
+    }
+
     this.boardLocked = false;
+    this.checkWin();
     this.cdr.detectChanges();
   }
 
-  private async handleBonusAsSecond(cardId: string): Promise<void> {
+  private async handleBonusAsSecond(cardId: string, sessionId: number): Promise<void> {
     const firstCard = this.firstSelectedCardId
       ? this.findCardById(this.firstSelectedCardId)
       : null;
@@ -501,20 +551,29 @@ export class GamePage implements OnInit {
 
     await this.sleep(700);
 
+    if (this.isOldBoard(sessionId)) {
+      return;
+    }
+
     if (firstCard) {
       this.setCardState(firstCard.id, { flipped: false });
     }
 
     this.resetTurn();
+    this.checkWin();
     this.cdr.detectChanges();
   }
 
-  private async handleMischiefAsFirst(cardId: string): Promise<void> {
+  private async handleMischiefAsFirst(cardId: string, sessionId: number): Promise<void> {
     this.boardLocked = true;
     this.setCardState(cardId, { matched: true });
     this.cdr.detectChanges();
 
     await this.sleep(700);
+
+    if (this.isOldBoard(sessionId)) {
+      return;
+    }
 
     const hiddenCandidates = this.cards.filter(
       (c) => c.id !== cardId && !c.flipped && !c.matched
@@ -523,6 +582,7 @@ export class GamePage implements OnInit {
     if (hiddenCandidates.length < 1) {
       this.showFeedback(this.localize(this.currentWorld.messages.mischiefFailed));
       this.boardLocked = false;
+      this.checkWin();
       this.cdr.detectChanges();
       return;
     }
@@ -539,22 +599,32 @@ export class GamePage implements OnInit {
 
     await this.sleep(1200);
 
+    if (this.isOldBoard(sessionId)) {
+      return;
+    }
+
     this.setCardState(cardId, { swapped: false });
     this.setCardState(targetCard.id, { swapped: false });
 
     this.boardLocked = false;
+    this.checkWin();
     this.cdr.detectChanges();
   }
 
   private async handleMischiefAsSecond(
     mischiefCardId: string,
-    firstAnimalCardId: string
+    firstAnimalCardId: string,
+    sessionId: number
   ): Promise<void> {
     this.boardLocked = true;
     this.setCardState(mischiefCardId, { matched: true });
     this.cdr.detectChanges();
 
     await this.sleep(700);
+
+    if (this.isOldBoard(sessionId)) {
+      return;
+    }
 
     this.swapCards(mischiefCardId, firstAnimalCardId);
     this.setCardState(mischiefCardId, { swapped: true });
@@ -564,6 +634,10 @@ export class GamePage implements OnInit {
     this.cdr.detectChanges();
 
     await this.sleep(1200);
+
+    if (this.isOldBoard(sessionId)) {
+      return;
+    }
 
     this.setCardState(mischiefCardId, { swapped: false });
     this.setCardState(firstAnimalCardId, {
@@ -576,9 +650,14 @@ export class GamePage implements OnInit {
   }
 
   onHintClicked(): void {
+    if (this.hintInProgress) {
+      return;
+    }
+
     if (!this.canUseHint()) {
       return;
     }
+    this.hintInProgress = true;
 
     this.coins -= this.hintCost;
 
@@ -621,6 +700,7 @@ export class GamePage implements OnInit {
       this.setCardState(firstHintCard.id, { flipped: false, hinted: false });
       this.setCardState(secondHintCard.id, { flipped: false, hinted: false });
       this.boardLocked = false;
+      this.hintInProgress = false;
       this.cdr.detectChanges();
     }, 1100);
   }
@@ -657,7 +737,7 @@ export class GamePage implements OnInit {
   }
 
   trackByCard(index: number, card: MemoryCardModel): string {
-    return card.id;
+    return `${this.boardSessionId}-${card.id}`;
   }
 
   goToNextLevel(): void {
@@ -787,11 +867,9 @@ export class GamePage implements OnInit {
   }
 
   private checkWin(): void {
-    const allAnimalCardsMatched = this.cards
-      .filter((card) => card.type === 'animal')
-      .every((card) => card.matched);
+    const allCardsResolved = this.cards.every((card) => card.matched);
 
-    if (!allAnimalCardsMatched) {
+    if (!allCardsResolved) {
       return;
     }
 
@@ -805,7 +883,7 @@ export class GamePage implements OnInit {
       }
 
       this.cdr.detectChanges();
-    }, 2400);
+    }, 1000);
   }
 
   private showFeedback(message: string, duration = 1800): void {
@@ -925,5 +1003,9 @@ export class GamePage implements OnInit {
   stayAndExploreWorldComplete(): void {
     this.showWorldCompleteModal = false;
     this.cdr.detectChanges();
+  }
+
+  private isOldBoard(sessionId: number): boolean {
+    return sessionId !== this.boardSessionId;
   }
 }

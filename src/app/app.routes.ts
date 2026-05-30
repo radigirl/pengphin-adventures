@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { GamePage } from './features/memory-game/pages/game-page/game-page';
+import { GamePage } from './features/pages/game-page/game-page';
+
 
 export const routes: Routes = [
   {

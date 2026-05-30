@@ -105,7 +105,7 @@
       </button>
 
       <button class="modal-button" type="button" (click)="goToNextLevel()">
-        {{ 'modals.nextLevel' | translate }} ▶
+        {{ 'modals.nextLevel' | translate }} {{ getGlobalLevel()  + 1 }} ▶
       </button>
     </div>
   </div>
@@ -120,14 +120,14 @@
       <p>
         <img class="special-card-icon" [src]="currentWorld.bonusIcon" alt="" />
 
-        {{ currentWorld.bonusName[currentLanguage] }}:
+        {{ 'modals.bonusCardName' | translate }}:
         {{ 'modals.bonusCardInfo' | translate }}
       </p>
 
       <p>
         <img class="special-card-icon" [src]="currentWorld.mischiefIcon" alt="" />
 
-        {{ currentWorld.mischiefName[currentLanguage] }}:
+        {{ 'modals.mischiefCardName' | translate }}:
         {{ 'modals.mischiefCardInfo' | translate }}
       </p>
     </div>
@@ -156,7 +156,7 @@
       </button>
 
       <button class="modal-button" type="button" (click)="goToNextWorld()">
-        {{ 'modals.nextWorld' | translate }} ▶
+        {{ 'modals.nextLevel' | translate }} {{ getGlobalLevel()  + 1 }} ▶
       </button>
     </div>
   </div>

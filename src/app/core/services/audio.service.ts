@@ -35,8 +35,6 @@ export class AudioService {
 
     this.stop();
 
-    console.log('AUDIO PATH:', path);
-
     const audio = new Audio(path);
 
     audio.playbackRate = playbackRate;

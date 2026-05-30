@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MemoryCard as MemoryCardModel } from '../../../../core/models/memory-card.model';
+import { MemoryCard as MemoryCardModel } from '../../../core/models/memory-card.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

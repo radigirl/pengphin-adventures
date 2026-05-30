@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { LanguageService } from '../../../../services/language.service';
-import { AudioService } from '../../../../services/audio.service';
+import { AudioService } from '../../../core/services/audio.service';
+import { LanguageService } from '../../../core/services/language.service';
+
 
 
 @Component({

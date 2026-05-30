@@ -23,14 +23,15 @@ It is also developed as a portfolio project, focusing on clean Angular architect
 - Angular (standalone components)
 - TypeScript
 - SCSS
-- Web Speech API (in progress)
+- HTML5 Audio API
+- Localized audio assets
 
 ---
 
 ## 🎮 Features
 
-- Multi-world progression system  
-  (Ocean → Farm → Jungle → Arctic → Dinosaur → Space)
+- Multi-world progression system
+  (Ocean → Farm → Jungle → Arctic → Dinosaur → Space → Celebration)
 
 - Global level progression across all worlds  
   (continuous level numbering instead of resetting per world)
@@ -46,11 +47,11 @@ It is also developed as a portfolio project, focusing on clean Angular architect
 - Mascot-driven interaction  
   Peng 🐧 and Phin 🐬 guide the player, provide feedback, and enhance engagement
 
-- 🗣️ Speech-enhanced interaction (in progress)  
-  Character voice feedback is being developed using the Web Speech API to create a more engaging experience
+- 🗣️ Interactive audio experience
+  Animals, mascots, and special cards use recorded voice and sound effects to reinforce learning, provide feedback, and make gameplay more engaging for young players.
 
-- 🌍 Bilingual support (English 🇬🇧 / Bulgarian 🇧🇬) – in progress  
-  The game is being prepared for multilingual content and speech in both English and Bulgarian
+- 🌍 Bilingual support (English 🇬🇧 / Bulgarian 🇧🇬)  
+  All game content is available in both English and Bulgarian, including world descriptions, gameplay messages, and mascot interactions.
 
 - Responsive design (mobile, tablet, desktop)
 
@@ -65,7 +66,7 @@ It is also developed as a portfolio project, focusing on clean Angular architect
 ## 📱 Responsive Design
 
 - Adaptive layout across mobile, tablet, and desktop
-- Game board dynamically adjusts rows and columns based on screen size and level complexity
+- Game board dynamically adjusts rows, columns, and card sizes based on screen size, orientation, and level complexity
 - Card sizes scale to maintain usability and visual balance
 - Mascots reposition responsively:
   - Desktop: full side placement
@@ -81,7 +82,7 @@ The game is designed with simple educational goals in mind:
 - Improve memory and recall
 - Support focus and concentration
 - Encourage pattern recognition
-- Introduce language elements (through future speech and descriptions)
+- Reinforce language learning through bilingual content and audio feedback
 
 ---
 
@@ -99,37 +100,54 @@ This influenced:
 
 ## 🎮 Progression System
 
-The game uses a structured progression system designed to gradually introduce new mechanics.
+The game uses a structured progression system designed around increasing board sizes and gradually introducing special card mechanics.
 
-### Level Structure
+### 🃏 Board Sizes
 
-| Level | Mechanics |
-|------|----------|
-| Level 1 | Pure memory (no special cards) |
-| Level 2 | Bonus cards (reward-focused) |
-| Level 3 | Bonus + Mischief cards |
-| Level 4 | Mischief cards (challenge-focused) |
+| Board Size | Total Cards |
+|------------|------------|
+| 3 × 4 | 12 cards |
+| 4 × 4 | 16 cards |
+| 4 × 5 | 20 cards |
+| 4 × 6 | 24 cards |
 
-### 🌍 Worlds
+### 🎁 Special Cards
 
-- Ocean
-- Farm
-- Jungle
-- Arctic
-- Dinosaur
-- Space
+The game introduces two special card types:
 
-### 🔢 Global Progression
+- 🎁 Treasure Cards — reward bonus coins
+- 😈 Mischief Cards — swap positions with another hidden card
 
-Levels are continuous across worlds (not reset per world), creating a stronger sense of progression:
+As players progress, levels combine both mechanics to create additional challenge.
 
-- Ocean → Levels 1–4  
-- Farm → Levels 5–7  
-- Jungle → Levels 8–10  
-- Arctic → Levels 11–13  
-- Dinosaur → Levels 14–16  
-- Space → Levels 17–19  
-- Final Celebration Level → Level 20 (planned, combining animals from all worlds)
+### 🌍 World Progression
+
+| Global Level | World | Cards |
+|-------------|--------|--------|
+| 1 | Ocean | 12 |
+| 2 | Ocean | 12 |
+| 3 | Ocean | 12 |
+| 4 | Farm | 12 |
+| 5 | Farm | 12 |
+| 6 | Jungle | 16 |
+| 7 | Jungle | 16 |
+| 8 | Arctic | 16 |
+| 9 | Arctic | 16 |
+| 10 | Dinosaur | 20 |
+| 11 | Dinosaur | 20 |
+| 12 | Space | 20 |
+| 13 | Space | 20 |
+| 14 | Celebration | 24 |
+
+### 📈 Difficulty Curve
+
+Difficulty increases through:
+
+- Larger board sizes
+- Treasure card mechanics
+- Mischief card mechanics
+- Mixed special-card levels
+- A final celebration level combining animals from all worlds
 
 ---
 
@@ -154,8 +172,6 @@ Peng and Phin are more than visual elements — they are part of the gameplay ex
 ---
 
 ## 📸 Screenshots
-
-_(Current version – visuals are actively being improved)_
 
 ### Start Screen  
 ![Start Screen](./screenshots/start-screen.png)
@@ -182,23 +198,13 @@ http://localhost:4200/
 
 ---
 
-## 🐞 Known Issues
-
-- Hint can be triggered multiple times before being consumed (edge case)  
-- UI polish improvements still in progress  
-- Some animations and transitions are simplified for now  
-
----
-
 ## 🌱 Future Improvements
 
-- Add a final celebration level (Level 20) combining animals from all worlds  
-- Introduce distinct voices for Peng and Phin  
-- Improve speech timing and interaction flow  
-- Complete speech system for Peng and Phin (timing, voices, interaction flow)  
-- Complete bilingual support (English and Bulgarian content and speech)  
-- Add animations and celebration moments  
-- Enhance accessibility and interaction polish  
+- Add additional worlds, animals, and themed content
+- Expand mascot interactions and gameplay events
+- Introduce richer animations and celebration moments
+- Continue improving usability and interaction polish
+- Continue refining the experience through real user testing
 
 ---
 

@@ -22,10 +22,12 @@ export const bg = {
     levelCompleteText: 'Откри всички животни!',
     totalCoins: 'Монети общо',
     stayAndExplore: 'Остани и разгледай',
-    nextLevel: 'Следващо ниво',
+    nextLevel: 'Ниво',
     nextWorld: 'Следващ свят',
-    startLevel: 'Започни ниво',
+    startLevel: 'Ниво',
+    bonusCardName: 'Бонус карта',
+    mischiefCardName: 'Пакостлива карта',
     bonusCardInfo: 'дава допълнителни монети.',
-    mischiefCardInfo: 'прави пакости с картите.'
+    mischiefCardInfo: 'може да размества картите.'
   },
 };

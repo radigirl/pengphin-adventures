@@ -1,4 +1,4 @@
-@use '../../../../../styles/breakpoints' as *;
+@use '../../../../styles/breakpoints' as *;
 
 .game-page {
   min-height: 100vh;
@@ -584,13 +584,13 @@
     height: 96px;
   }
 
-  .mobile-mascot-peek--large-board ~ .board {
-  margin-top: 18px;
-}
+  .mobile-mascot-peek--large-board~.board {
+    margin-top: 18px;
+  }
 
-.board-wrap--large-phone {
-  margin-top: 28px;
-}
+  .board-wrap--large-phone {
+    margin-top: 28px;
+  }
 
   .feedback-banner-slot--compact {
     height: 24px;
@@ -612,16 +612,29 @@
   }
 
   .game-header h1 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+    line-height: 1;
   }
 
   .game-subtitle {
-    margin-top: 0;
-    font-size: 0.82rem;
+    margin-top: -2px;
+    font-size: 0.72rem;
+    line-height: 1;
   }
 
   .hud-row {
-    margin-bottom: 2px;
+    margin-bottom: 0;
+  }
+
+  .game-controls {
+    top: 8px;
+    right: 8px;
+  }
+
+  .game-control {
+    width: 34px;
+    height: 34px;
+    font-size: 0.82rem;
   }
 
   .feedback-banner-slot {

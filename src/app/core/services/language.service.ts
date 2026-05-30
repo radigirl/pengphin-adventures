@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { en } from '../i18n/en';
-import { bg } from '../i18n/bg';
+import { en } from '../../i18n/en';
+import { bg } from '../../i18n/bg';
 
 export type AppLanguage = 'en' | 'bg';
 

@@ -88,7 +88,7 @@ The game is designed with simple educational goals in mind:
 
 ## 👶 Real User Testing
 
-The game has been tested with a real young user — my 5-year-old child — helping guide design decisions around interaction, clarity, pacing, and feedback.
+The game has been continuously tested with a real young user — my 5-year-old child — helping guide design decisions around interaction, clarity, pacing, difficulty progression, and feedback.
 
 This influenced:
 - simpler interactions
@@ -116,7 +116,7 @@ The game uses a structured progression system designed around increasing board s
 The game introduces two special card types:
 
 - 🎁 Treasure Cards — reward bonus coins
-- 😈 Mischief Cards — swap positions with another hidden card
+- 😈 Mischief Cards — create surprises by moving cards around the board
 
 As players progress, levels combine both mechanics to create additional challenge.
 
@@ -144,7 +144,7 @@ As players progress, levels combine both mechanics to create additional challeng
 Difficulty increases through:
 
 - Larger board sizes
-- Treasure card mechanics
+- Bonus card mechanics
 - Mischief card mechanics
 - Mixed special-card levels
 - A final celebration level combining animals from all worlds

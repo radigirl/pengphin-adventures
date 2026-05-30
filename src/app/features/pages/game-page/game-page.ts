@@ -418,6 +418,25 @@ export class GamePage implements OnInit {
         }
       }
 
+      if (card.type === 'mischief') {
+        const mischiefName =
+          this.currentWorld.mischiefName[this.currentLanguage];
+
+        const message =
+          this.currentWorld.mischiefMessage?.[this.currentLanguage];
+
+        const audioPath =
+          this.currentWorld.mischiefAudio?.[this.currentLanguage];
+
+        if (message) {
+          this.showFeedback(`${mischiefName}: ${message}`, 2600);
+        }
+
+        if (audioPath) {
+          this.audioService.play(audioPath);
+        }
+      }
+
       return;
     }
 
@@ -1037,7 +1056,9 @@ export class GamePage implements OnInit {
   }
 
   refreshApp(): void {
-    window.location.reload();
+    this.swUpdate.activateUpdate().then(() => {
+      window.location.reload();
+    });
   }
 
 }

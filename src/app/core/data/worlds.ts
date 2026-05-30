@@ -59,6 +59,15 @@ export const WORLDS: WorldConfig[] = [
 
     mischiefIcon: 'assets/ocean/octopus.png',
     mischiefName: { en: 'Octopus', bg: 'Октопод' },
+    mischiefMessage: {
+      en: 'I am the Octopus! I have eight amazing arms!',
+      bg: 'Аз съм Октоподът! Имам осем невероятни пипала!'
+    },
+
+    mischiefAudio: {
+      en: 'assets/audio/en/ocean/octopus.mp3',
+      bg: 'assets/audio/bg/ocean/octopus.mp3',
+    },
 
     theme: {
       titleColor: '#e6f7ff',
@@ -119,6 +128,15 @@ export const WORLDS: WorldConfig[] = [
 
     mischiefIcon: 'assets/farm/chicken.png',
     mischiefName: { en: 'Mad Chicken', bg: 'Луда кокошка' },
+    mischiefMessage: {
+      en: 'I am the Mad Chicken! I love running around the farm!',
+      bg: 'Аз съм Лудата кокошка! Обичам да тичам из фермата!'
+    },
+
+    mischiefAudio: {
+      en: 'assets/audio/en/farm/chicken.mp3',
+      bg: 'assets/audio/bg/farm/chicken.mp3',
+    },
 
     theme: {
       titleColor: '#fffaf0',
@@ -178,7 +196,16 @@ export const WORLDS: WorldConfig[] = [
     bonusName: { en: 'Banana Bunch', bg: 'Банани' },
 
     mischiefIcon: 'assets/jungle/sneaky-monkey.png',
-    mischiefName: { en: 'Sneaky Monkey', bg: 'Палавата маймунка' },
+    mischiefName: { en: 'Sneaky Monkey', bg: 'Игрива маймунка' },
+    mischiefMessage: {
+      en: 'I am the Sneaky Monkey! I love bananas!',
+      bg: 'Аз съм Игрива маймунка! Обичам банани!'
+    },
+
+    mischiefAudio: {
+      en: 'assets/audio/en/jungle/sneaky-monkey.mp3',
+      bg: 'assets/audio/bg/jungle/sneaky-monkey.mp3',
+    },
 
     theme: {
       titleColor: '#f0fdf4',
@@ -196,9 +223,9 @@ export const WORLDS: WorldConfig[] = [
       welcome: { en: '🌴 Welcome to the Jungle!', bg: '🌴 Добре дошъл в джунглата!' },
       subtitleMessage: { en: 'Explore the Jungle!', bg: 'Разгледай джунглата!' },
       bonusFound: { en: '🍌 Banana bunch found! +25 coins', bg: '🍌 Откри банани! +25 монети' },
-      mischiefSwapped: { en: '🐒 Sneaky Monkey mischief! Cards swapped!', bg: '🐒 Палавата маймунка разбърка картите!' },
-      mischiefFailed: { en: '🐒 Sneaky Monkey looked around… but nothing could be swapped!', bg: '🐒 Палавата маймунка се огледа… но няма какво да размени!' },
-      mischiefMovedCard: { en: '🐒 Sneaky Monkey moved your card!', bg: '🐒 Палавата маймунка премести картата ти!' },
+      mischiefSwapped: { en: '🐒 Sneaky Monkey mischief! Cards swapped!', bg: '🐒 Игривата маймунка разбърка картите!' },
+      mischiefFailed: { en: '🐒 Sneaky Monkey looked around… but nothing could be swapped!', bg: '🐒 Игривата маймунка се огледа… но няма какво да размени!' },
+      mischiefMovedCard: { en: '🐒 Sneaky Monkey moved your card!', bg: '🐒 Игривата маймунка премести картата ти!' },
       specialCardsIntroTitle: { en: '✨ New Surprise Cards!', bg: '✨ Нови изненадващи карти!' },
       specialCardsIntroText: { en: 'Starting in the next level, special cards can appear.', bg: 'От следващото ниво ще се появят специални карти.' },
       worldCompleteTitle: { en: '🌍 Jungle World Complete!', bg: '🌍 Джунглата е завършена!' },
@@ -239,6 +266,15 @@ export const WORLDS: WorldConfig[] = [
 
     mischiefIcon: 'assets/arctic/snowy-owl.png',
     mischiefName: { en: 'Snowy Owl', bg: 'Снежна сова' },
+    mischiefMessage: {
+      en: 'I am the Snowy Owl! I can see very well in the snow!',
+      bg: 'Аз съм Снежната сова! Виждам отлично в снега!'
+    },
+
+    mischiefAudio: {
+      en: 'assets/audio/en/arctic/snowy-owl.mp3',
+      bg: 'assets/audio/bg/arctic/snowy-owl.mp3',
+    },
 
     theme: {
       titleColor: '#e0f7ff',
@@ -298,7 +334,16 @@ export const WORLDS: WorldConfig[] = [
     bonusName: { en: 'Dinosaur Egg', bg: 'Динозавърско яйце' },
 
     mischiefIcon: 'assets/dinosaurs/sneaky-raptor.png',
-    mischiefName: { en: 'Sneaky Raptor', bg: 'Палав раптор' },
+    mischiefName: { en: 'Sneaky Raptor', bg: 'Игрив раптор' },
+    mischiefMessage: {
+      en: 'I am the Sneaky Raptor! I can run very fast!',
+      bg: 'Аз съм Игривият раптор! Тичам много бързо!'
+    },
+
+    mischiefAudio: {
+      en: 'assets/audio/en/dinosaur/sneaky-raptor.mp3',
+      bg: 'assets/audio/bg/dinosaur/sneaky-raptor.mp3',
+    },
 
     theme: {
       titleColor: '#fef3c7',
@@ -359,6 +404,15 @@ export const WORLDS: WorldConfig[] = [
 
     mischiefIcon: 'assets/space/jelly-alien.png',
     mischiefName: { en: 'Jelly Alien', bg: 'Лепкаво извънземно' },
+    mischiefMessage: {
+      en: 'I am the Jelly Alien! I came from a distant galaxy!',
+      bg: 'Аз съм Лепкавото извънземно! Долетях от далечна галактика!'
+    },
+
+    mischiefAudio: {
+      en: 'assets/audio/en/space/jelly-alien.mp3',
+      bg: 'assets/audio/bg/space/jelly-alien.mp3',
+    },
 
     theme: {
       titleColor: '#e0f2fe',
@@ -427,6 +481,15 @@ export const WORLDS: WorldConfig[] = [
 
     mischiefIcon: ALL_MISCHIEF_ICONS[0],
     mischiefName: { en: 'Surprise Mischief', bg: 'Изненадваща пакост' },
+    mischiefMessage: {
+      en: 'I am the Surprise Mischief! You never know where I will appear!',
+      bg: 'Аз съм Изненадващата пакост! Никога не знаеш къде ще се появя!'
+    },
+
+    mischiefAudio: {
+      en: 'assets/audio/en/celebration/mischief.mp3',
+      bg: 'assets/audio/bg/celebration/mischief.mp3',
+    },
     mischiefIconPool: ALL_MISCHIEF_ICONS,
 
     theme: {

@@ -19,6 +19,11 @@ export interface WorldConfig {
   bonusName: LocalizedText;
   mischiefIcon: string;
   mischiefName: LocalizedText;
+  mischiefMessage?: LocalizedText;
+  mischiefAudio?: {
+    en?: string;
+    bg?: string;
+  };
   bonusIconPool?: string[];
   mischiefIconPool?: string[];
   theme: {

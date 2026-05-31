@@ -8,6 +8,8 @@ export const ARCTIC_ANIMALS: Animal[] = [
     icon: 'assets/arctic/arctic-wolf.png',
     introductionEn: "I'm an arctic wolf! I run fast in the snow!",
     introductionBg: 'Аз съм арктически вълк! Тичам бързо в снега!',
+    audioEn: "assets/audio/en/arctic/arctic-wolf.mp3",
+    audioBg: "assets/audio/bg/arctic/arctic-wolf.mp3",
   },
   {
     id: 'moose',
@@ -16,6 +18,8 @@ export const ARCTIC_ANIMALS: Animal[] = [
     icon: 'assets/arctic/moose.png',
     introductionEn: "I'm a moose! I have big antlers!",
     introductionBg: 'Аз съм лос! Имам големи рога!',
+    audioEn: "assets/audio/en/arctic/moose.mp3",
+    audioBg: "assets/audio/bg/arctic/moose.mp3",
   },
   {
     id: 'polar-bear',
@@ -24,6 +28,8 @@ export const ARCTIC_ANIMALS: Animal[] = [
     icon: 'assets/arctic/polar-bear.png',
     introductionEn: "I'm a polar bear! I love walking on the ice!",
     introductionBg: 'Аз съм полярна мечка! Обичам да ходя по леда!',
+    audioEn: "assets/audio/en/arctic/polar-bear.mp3",
+    audioBg: "assets/audio/bg/arctic/polar-bear.mp3",
   },
   {
     id: 'seal',
@@ -32,6 +38,8 @@ export const ARCTIC_ANIMALS: Animal[] = [
     icon: 'assets/arctic/seal.png',
     introductionEn: "I'm a seal! I love swimming in icy water!",
     introductionBg: 'Аз съм тюлен! Обичам да плувам в ледената вода!',
+    audioEn: "assets/audio/en/arctic/seal.mp3",
+    audioBg: "assets/audio/bg/arctic/seal.mp3",
   },
   {
     id: 'snow-hare',
@@ -40,6 +48,8 @@ export const ARCTIC_ANIMALS: Animal[] = [
     icon: 'assets/arctic/snow-hare.png',
     introductionEn: "I'm a snow hare! I hop quickly across the snow!",
     introductionBg: 'Аз съм полярен заек! Подскачам бързо по снега!',
+    audioEn: "assets/audio/en/arctic/snow-hare.mp3",
+    audioBg: "assets/audio/bg/arctic/snow-hare.mp3",
   },
   {
     id: 'walrus',
@@ -48,6 +58,8 @@ export const ARCTIC_ANIMALS: Animal[] = [
     icon: 'assets/arctic/walrus.png',
     introductionEn: "I'm a walrus! Look at my big tusks!",
     introductionBg: 'Аз съм морж! Виж големите ми бивни!',
+    audioEn: "assets/audio/en/arctic/walrus.mp3",
+    audioBg: "assets/audio/bg/arctic/walrus.mp3",
   },
   {
     id: 'ram',
@@ -56,6 +68,8 @@ export const ARCTIC_ANIMALS: Animal[] = [
     icon: 'assets/arctic/ram.png',
     introductionEn: "I'm a ram! I have strong curved horns!",
     introductionBg: 'Аз съм овен! Имам силни извити рога!',
+    audioEn: "assets/audio/en/arctic/ram.mp3",
+    audioBg: "assets/audio/bg/arctic/ram.mp3",
   },
   {
     id: 'ox',
@@ -64,5 +78,7 @@ export const ARCTIC_ANIMALS: Animal[] = [
     icon: 'assets/arctic/ox.png',
     introductionEn: "I'm a musk ox! My thick fur keeps me warm!",
     introductionBg: 'Аз съм мускусен бик! Гъстата ми козина ме топли!',
+    audioEn: "assets/audio/en/arctic/ox.mp3",
+    audioBg: "assets/audio/bg/arctic/ox.mp3",
   },
 ];

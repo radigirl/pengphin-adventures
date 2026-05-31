@@ -8,6 +8,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/chompy.png',
     introductionEn: "I’m Chompy! I love to munch leaves!",
     introductionBg: 'Аз съм Чомпи! Обичам да хрупам листа!',
+    audioEn: "assets/audio/en/dinosaur/chompy.mp3",
+    audioBg: "assets/audio/bg/dinosaur/chompy.mp3",
   },
   {
     id: 'dashy',
@@ -16,6 +18,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/dashy.png',
     introductionEn: "I’m Dashy! I run super fast!",
     introductionBg: 'Аз съм Даши! Тичам много бързо!',
+    audioEn: "assets/audio/en/dinosaur/dashy.mp3",
+    audioBg: "assets/audio/bg/dinosaur/dashy.mp3",
   },
   {
     id: 'wobble',
@@ -24,6 +28,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/wobble.png',
     introductionEn: "I’m Wobble! My long neck goes up and down!",
     introductionBg: 'Аз съм Уобъл! Дългият ми врат се движи нагоре и надолу!',
+    audioEn: "assets/audio/en/dinosaur/wobble.mp3",
+    audioBg: "assets/audio/bg/dinosaur/wobble.mp3",
   },
   {
     id: 'pebble',
@@ -32,6 +38,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/pebble.png',
     introductionEn: "I’m Pebble! I like to walk slowly!",
     introductionBg: 'Аз съм Пебъл! Обичам да ходя бавно!',
+    audioEn: "assets/audio/en/dinosaur/pebble.mp3",
+    audioBg: "assets/audio/bg/dinosaur/pebble.mp3",
   },
   {
     id: 'zappy',
@@ -40,6 +48,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/zappy.png',
     introductionEn: "I’m Zappy! I move quick like lightning!",
     introductionBg: 'Аз съм Запи! Движа се бързо като светкавица!',
+    audioEn: "assets/audio/en/dinosaur/zappy.mp3",
+    audioBg: "assets/audio/bg/dinosaur/zappy.mp3",
   },
   {
     id: 'spiky',
@@ -48,6 +58,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/spiky.png',
     introductionEn: "I’m Spiky! My back is full of spikes!",
     introductionBg: 'Аз съм Спайки! Гърбът ми е пълен с шипове!',
+    audioEn: "assets/audio/en/dinosaur/spiky.mp3",
+    audioBg: "assets/audio/bg/dinosaur/spiky.mp3",
   },
   {
     id: 'rexy',
@@ -56,6 +68,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/rexy.png',
     introductionEn: "I’m Rexy! Hear me ROAR!",
     introductionBg: 'Аз съм Рекси! Чуй как РЕВА!',
+    audioEn: "assets/audio/en/dinosaur/rexy.mp3",
+    audioBg: "assets/audio/bg/dinosaur/rexy.mp3",
   },
   {
     id: 'flappy',
@@ -64,6 +78,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/flappy.png',
     introductionEn: "I’m Flappy! I fly high in the sky!",
     introductionBg: 'Аз съм Флапи! Летя високо в небето!',
+    audioEn: "assets/audio/en/dinosaur/flappy.mp3",
+    audioBg: "assets/audio/bg/dinosaur/flappy.mp3",
   },
   {
     id: 'nibbles',
@@ -72,6 +88,8 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/nibbles.png',
     introductionEn: "I’m Nibbles! I take tiny bites!",
     introductionBg: 'Аз съм Нибълс! Отхапвам малки хапки!',
+    audioEn: "assets/audio/en/dinosaur/nibbles.mp3",
+    audioBg: "assets/audio/bg/dinosaur/nibbles.mp3",
   },
   {
     id: 'bloop',
@@ -80,5 +98,7 @@ export const DINOSAUR_ANIMALS: Animal[] = [
     icon: 'assets/dinosaurs/bloop.png',
     introductionEn: "I’m Bloop! I have a big fin on my back!",
     introductionBg: 'Аз съм Блуп! Имам голяма перка на гърба си!',
+    audioEn: "assets/audio/en/dinosaur/bloop.mp3",
+    audioBg: "assets/audio/bg/dinosaur/bloop.mp3",
   },
 ];

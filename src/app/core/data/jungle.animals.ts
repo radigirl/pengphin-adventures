@@ -8,6 +8,8 @@ export const JUNGLE_ANIMALS: Animal[] = [
     icon: "assets/jungle/giraffe.png",
     introductionEn: "I'm a giraffe! My neck is very long!",
     introductionBg: 'Аз съм жираф! Вратът ми е много дълъг!',
+    audioEn: "assets/audio/en/jungle/giraffe.mp3",
+    audioBg: "assets/audio/bg/jungle/giraffe.mp3",
   },
   {
     id: 'snake',
@@ -15,7 +17,9 @@ export const JUNGLE_ANIMALS: Animal[] = [
     nameBg: 'Змия',
     icon: "assets/jungle/snake.png",
     introductionEn: "I'm a snake! I slither through the jungle!",
-    introductionBg: 'Аз съм змия! Плъзгам се през джунглата!',
+    introductionBg: 'Аз съм змия! Пълзя през джунглата!',
+    audioEn: "assets/audio/en/jungle/snake.mp3",
+    audioBg: "assets/audio/bg/jungle/snake.mp3",
   },
   {
     id: 'tiger',
@@ -24,6 +28,8 @@ export const JUNGLE_ANIMALS: Animal[] = [
     icon: "assets/jungle/tiger.png",
     introductionEn: "I'm a tiger! I'm strong and fast!",
     introductionBg: 'Аз съм тигър! Силен и бърз съм!',
+    audioEn: "assets/audio/en/jungle/tiger.mp3",
+    audioBg: "assets/audio/bg/jungle/tiger.mp3",
   },
   {
     id: 'parrot',
@@ -31,7 +37,9 @@ export const JUNGLE_ANIMALS: Animal[] = [
     nameBg: 'Папагал',
     icon: "assets/jungle/parrot.png",
     introductionEn: "I'm a parrot! I love colorful feathers!",
-    introductionBg: 'Аз съм папагал! Имам цветни пера!',
+    introductionBg: 'Аз съм папагал! Обичам цветни пера!',
+    audioEn: "assets/audio/en/jungle/parrot.mp3",
+    audioBg: "assets/audio/bg/jungle/parrot.mp3",
   },
   {
     id: 'elephant',
@@ -40,6 +48,8 @@ export const JUNGLE_ANIMALS: Animal[] = [
     icon: "assets/jungle/elephant.png",
     introductionEn: "I'm an elephant! My trunk is very strong!",
     introductionBg: 'Аз съм слон! Хоботът ми е много силен!',
+    audioEn: "assets/audio/en/jungle/elephant.mp3",
+    audioBg: "assets/audio/bg/jungle/elephant.mp3",
   },
   {
     id: 'frog',
@@ -48,6 +58,8 @@ export const JUNGLE_ANIMALS: Animal[] = [
     icon: "assets/jungle/frog.png",
     introductionEn: "I'm a frog! I love jumping near the jungle river!",
     introductionBg: 'Аз съм жаба! Обичам да скачам край реката!',
+    audioEn: "assets/audio/en/jungle/frog.mp3",
+    audioBg: "assets/audio/bg/jungle/frog.mp3",
   },
   {
     id: 'gorilla',
@@ -56,6 +68,8 @@ export const JUNGLE_ANIMALS: Animal[] = [
     icon: "assets/jungle/gorilla.png",
     introductionEn: "I'm a gorilla! I'm strong and live deep in the jungle!",
     introductionBg: 'Аз съм горила! Силен съм и живея дълбоко в джунглата!',
+    audioEn: "assets/audio/en/jungle/gorilla.mp3",
+    audioBg: "assets/audio/bg/jungle/gorilla.mp3",
   },
   {
     id: 'sloth',
@@ -64,5 +78,7 @@ export const JUNGLE_ANIMALS: Animal[] = [
     icon: "assets/jungle/sloth.png",
     introductionEn: "I'm a sloth! I move very slowly in the trees!",
     introductionBg: 'Аз съм ленивец! Движа се много бавно по дърветата!',
+    audioEn: "assets/audio/en/jungle/sloth.mp3",
+    audioBg: "assets/audio/bg/jungle/sloth.mp3",
   },
 ];

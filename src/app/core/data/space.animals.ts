@@ -8,6 +8,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/friendly-alien.png',
     introductionEn: "I'm a friendly alien! I come in peace!",
     introductionBg: 'Аз съм приятно извънземно! Идвам с мир!',
+    audioEn: "assets/audio/en/space/friendly-alien.mp3",
+    audioBg: "assets/audio/bg/space/friendly-alien.mp3",
   },
   {
     id: 'moon-bunny',
@@ -16,6 +18,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/moon-bunny.png',
     introductionEn: "I'm a moon bunny! I hop across craters!",
     introductionBg: 'Аз съм лунно зайче! Подскачам по кратерите!',
+    audioEn: "assets/audio/en/space/friendly-alien.mp3",
+    audioBg: "assets/audio/bg/space/friendly-alien.mp3",
   },
   {
     id: 'space-dog',
@@ -24,6 +28,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/space-dog.png',
     introductionEn: "I'm a space dog! I explore new planets!",
     introductionBg: 'Аз съм космическо куче! Изследвам нови планети!',
+    audioEn: "assets/audio/en/space/space-dog.mp3",
+    audioBg: "assets/audio/bg/space/space-dog.mp3",
   },
   {
     id: 'comet-friend',
@@ -32,6 +38,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/comet-friend.png',
     introductionEn: "Zoom! I fly across the galaxy!",
     introductionBg: 'Фиуу! Летя през галактиката!',
+    audioEn: "assets/audio/en/space/comet-friend.mp3",
+    audioBg: "assets/audio/bg/space/comet-friend.mp3",
   },
   {
     id: 'planet-friend',
@@ -40,6 +48,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/planet-friend.png',
     introductionEn: "I'm a happy planet spinning in space!",
     introductionBg: 'Аз съм весела планета, която се върти в космоса!',
+    audioEn: "assets/audio/en/space/planet-friend.mp3",
+    audioBg: "assets/audio/bg/space/planet-friend.mp3",
   },
   {
     id: 'robot',
@@ -48,6 +58,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/robot.png',
     introductionEn: "I'm a robot! I help on space missions!",
     introductionBg: 'Аз съм робот! Помагам в космическите мисии!',
+    audioEn: "assets/audio/en/space/robot.mp3",
+    audioBg: "assets/audio/bg/space/robot.mp3",
   },
   {
     id: 'space-cat',
@@ -56,6 +68,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/space-cat.png',
     introductionEn: "I'm a space cat! I float in zero gravity!",
     introductionBg: 'Аз съм космическа котка! Плувам в безтегловност!',
+    audioEn: "assets/audio/en/space/space-cat.mp3",
+    audioBg: "assets/audio/bg/space/space-cat.mp3",
   },
   {
     id: 'space-turtle',
@@ -64,6 +78,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/space-turtle.png',
     introductionEn: "I'm a space turtle! I cruise through space!",
     introductionBg: 'Аз съм космическа костенурка! Плавам в космоса!',
+    audioEn: "assets/audio/en/space/space-turtle.mp3",
+    audioBg: "assets/audio/bg/space/space-turtle.mp3",
   },
   {
     id: 'space-octopus',
@@ -72,6 +88,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/space-octopus.png',
     introductionEn: "I'm a space octopus! I drift among the stars!",
     introductionBg: 'Аз съм космически октопод! Нося се сред звездите!',
+    audioEn: "assets/audio/en/space/space-octopus.mp3",
+    audioBg: "assets/audio/bg/space/space-octopus.mp3",
   },
   {
     id: 'shooting-star',
@@ -79,6 +97,8 @@ export const SPACE_ANIMALS: Animal[] = [
     nameBg: 'Падаща звезда',
     icon: 'assets/space/shooting-star.png',
     introductionEn: "I'm a shooting star! Make a wish!",
-    introductionBg: 'Аз съм падаща звезда! Намисли си желание!',
+    introductionBg: 'Аз съм падаща звезда! Пожелай си нещо!',
+    audioEn: "assets/audio/en/space/shooting-star.mp3",
+    audioBg: "assets/audio/bg/space/shooting-star.mp3",
   },
 ];

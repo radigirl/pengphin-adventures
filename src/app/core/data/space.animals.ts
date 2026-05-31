@@ -18,8 +18,8 @@ export const SPACE_ANIMALS: Animal[] = [
     icon: 'assets/space/moon-bunny.png',
     introductionEn: "I'm a moon bunny! I hop across craters!",
     introductionBg: 'Аз съм лунно зайче! Подскачам по кратерите!',
-    audioEn: "assets/audio/en/space/friendly-alien.mp3",
-    audioBg: "assets/audio/bg/space/friendly-alien.mp3",
+    audioEn: "assets/audio/en/space/moon-bunny.mp3",
+    audioBg: "assets/audio/bg/space/moon-bunny.mp3",
   },
   {
     id: 'space-dog',
